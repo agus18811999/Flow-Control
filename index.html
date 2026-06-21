@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Control Flow | Premium Work Control System</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif']
+          },
+          colors: {
+            ink: '#233047',
+            softBlue: '#7BA7FF',
+            softPurple: '#A78BFA',
+            softPink: '#F5A6C8',
+            softMint: '#8FE7D2',
+            softPeach: '#FFD6A5'
+          },
+          boxShadow: {
+            premium: '0 30px 90px rgba(80, 73, 142, 0.20)',
+            glass: '0 20px 70px rgba(88, 73, 125, 0.18)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --ink: #233047;
+      --muted: #64748b;
+      --violet: #8b5cf6;
+      --blue: #60a5fa;
+      --pink: #f472b6;
+      --mint: #5eead4;
+      --peach: #fdba74;
+      --soft-panel: rgba(255, 255, 255, 0.24);
+      --soft-panel-2: rgba(255, 255, 255, 0.16);
+      --stroke: rgba(255, 255, 255, 0.36);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(167, 139, 250, 0.48), transparent 31%),
+        radial-gradient(circle at 92% 14%, rgba(94, 234, 212, 0.42), transparent 32%),
+        radial-gradient(circle at 72% 86%, rgba(244, 114, 182, 0.36), transparent 34%),
+        radial-gradient(circle at 20% 92%, rgba(253, 186, 116, 0.42), transparent 33%),
+        linear-gradient(135deg, #d8ecff 0%, #eee1ff 36%, #ffe0ea 68%, #d7fff5 100%);
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.33;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.17) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.17) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.78), transparent 76%);
+      z-index: 0;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .ambient-orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(16px);
+      opacity: 0.62;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatOrb 9s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 220px;
+      height: 220px;
+      left: -60px;
+      top: 110px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.35), transparent 70%);
+    }
+
+    .orb-2 {
+      width: 280px;
+      height: 280px;
+      right: -90px;
+      bottom: 80px;
+      background: radial-gradient(circle, rgba(94, 234, 212, 0.34), transparent 70%);
+      animation-delay: -3s;
+    }
+
+    .orb-3 {
+      width: 180px;
+      height: 180px;
+      right: 16%;
+      top: 5%;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.28), transparent 70%);
+      animation-delay: -5s;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(18px, -24px, 0) scale(1.07);
+      }
+    }
+
+    .glass {
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.34),
+        rgba(255, 255, 255, 0.14)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 28px 90px rgba(88, 73, 125, 0.18);
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
+    }
+
+    .glass-deep {
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.09)),
+        linear-gradient(135deg, rgba(123, 167, 255, 0.15), rgba(245, 166, 200, 0.15));
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      box-shadow: 0 32px 100px rgba(65, 73, 133, 0.20);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
+    .topbar {
+      width: min(1180px, 100%);
+      margin: 0 auto 22px auto;
+      border-radius: 28px;
+      padding: 14px 18px;
+    }
+
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.55), transparent 36%),
+        linear-gradient(135deg, #7BA7FF, #A78BFA 45%, #F5A6C8);
+      box-shadow: 0 18px 42px rgba(139, 92, 246, 0.26);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      right: -52px;
+      bottom: -44px;
+    }
+
+    .auth-grid {
+      width: min(1180px, 100%);
+      min-height: calc(100vh - 132px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .hero-panel,
+    .form-panel {
+      border-radius: 38px;
+      min-height: 690px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-panel {
+      padding: 34px;
+    }
+
+    .form-panel {
+      padding: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .soft-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      color: #4c4f75;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      color: #2d335b;
+    }
+
+    .gradient-text {
+      background: linear-gradient(105deg, #4f68d7, #8b5cf6 42%, #db6aa4 74%, #18aaa0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      color: rgba(45, 51, 91, 0.72);
+      line-height: 1.8;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 24px;
+      padding: 17px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 50px rgba(79, 104, 215, 0.11);
+    }
+
+    .visual-stage {
+      position: relative;
+      margin-top: 24px;
+      min-height: 342px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255,255,255,0.35), transparent 32%),
+        radial-gradient(circle at 86% 25%, rgba(139, 92, 246, 0.25), transparent 36%),
+        linear-gradient(135deg, rgba(123, 167, 255, 0.30), rgba(245, 166, 200, 0.24), rgba(143, 231, 210, 0.26));
+      border: 1px solid rgba(255,255,255,0.38);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 25px 80px rgba(83, 94, 160, 0.15);
+    }
+
+    .dashboard-illustration {
+      position: absolute;
+      inset: 18px;
+      border-radius: 28px;
+      padding: 18px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.34);
+      backdrop-filter: blur(18px);
+      transform: perspective(900px) rotateX(2deg) rotateY(-4deg);
+      box-shadow: 0 35px 90px rgba(80,73,142,0.18);
+      animation: dashboardFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes dashboardFloat {
+      0%, 100% {
+        transform: perspective(900px) rotateX(2deg) rotateY(-4deg) translateY(0);
+      }
+      50% {
+        transform: perspective(900px) rotateX(2deg) rotateY(-4deg) translateY(-8px);
+      }
+    }
+
+    .mini-window {
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(237, 244, 255, 0.78), rgba(255, 232, 242, 0.68));
+      border: 1px solid rgba(255,255,255,0.44);
+    }
+
+    .mini-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 15px;
+      background: linear-gradient(90deg, rgba(123,167,255,0.28), rgba(167,139,250,0.22));
+      border-bottom: 1px solid rgba(255,255,255,0.36);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .mini-body {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .mini-side {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.42);
+    }
+
+    .mini-line {
+      height: 10px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, rgba(123,167,255,0.50), rgba(167,139,250,0.24));
+      margin-bottom: 10px;
+    }
+
+    .mini-card {
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255,255,255,0.32);
+      border: 1px solid rgba(255,255,255,0.42);
+      box-shadow: 0 12px 32px rgba(79, 104, 215, 0.10);
+    }
+
+    .floating-chip {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 13px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.32);
+      border: 1px solid rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 50px rgba(79, 104, 215, 0.16);
+      color: #39415e;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .chip-1 {
+      top: 18px;
+      right: 20px;
+      animation: floatChip 5s ease-in-out infinite;
+    }
+
+    .chip-2 {
+      bottom: 18px;
+      left: 18px;
+      animation: floatChip 5.8s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatChip {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .auth-card {
+      width: min(470px, 100%);
+      border-radius: 34px;
+      padding: 25px;
+      position: relative;
+    }
+
+    .auth-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.16), rgba(255,255,255,0.52));
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 6px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.34);
+      gap: 6px;
+    }
+
+    .mode-tab {
+      border-radius: 17px;
+      padding: 11px 8px;
+      color: rgba(45, 51, 91, 0.68);
+      font-weight: 900;
+      font-size: 12px;
+      transition: all 0.28s ease;
+      position: relative;
+    }
+
+    .mode-tab.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, #6f8cff, #9b74f2 48%, #e979ad);
+      box-shadow: 0 14px 32px rgba(139, 92, 246, 0.24);
+      transform: translateY(-1px);
+    }
+
+    .form-view {
+      display: none;
+      animation: formEnter 0.38s ease;
+    }
+
+    .form-view.active {
+      display: block;
+    }
+
+    @keyframes formEnter {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .field-group {
+      position: relative;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: rgba(45, 51, 91, 0.72);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .field-shell {
+      position: relative;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(86, 94, 140, 0.62);
+      font-size: 14px;
+      z-index: 2;
+    }
+
+    .premium-input,
+    .premium-select,
+    .premium-textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.44);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.12));
+      color: #273452;
+      border-radius: 18px;
+      outline: none;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+      backdrop-filter: blur(16px);
+      font-weight: 700;
+    }
+
+    .premium-input,
+    .premium-select {
+      min-height: 52px;
+      padding: 0 16px 0 45px;
+    }
+
+    .premium-input.no-left-icon {
+      padding-left: 16px;
+    }
+
+    .premium-textarea {
+      min-height: 106px;
+      padding: 15px 16px;
+      resize: vertical;
+    }
+
+    .premium-input::placeholder,
+    .premium-textarea::placeholder {
+      color: rgba(82, 91, 132, 0.52);
+      font-weight: 600;
+    }
+
+    .premium-input:focus,
+    .premium-select:focus,
+    .premium-textarea:focus {
+      border-color: rgba(139, 92, 246, 0.70);
+      background: rgba(255,255,255,0.31);
+      box-shadow:
+        0 0 0 4px rgba(139, 92, 246, 0.14),
+        0 14px 32px rgba(79, 104, 215, 0.11);
+    }
+
+    .premium-select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .select-caret {
+      position: absolute;
+      right: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(86, 94, 140, 0.62);
+      pointer-events: none;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(86, 94, 140, 0.68);
+      z-index: 3;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      transition: 0.22s ease;
+    }
+
+    .password-toggle:hover {
+      background: rgba(255,255,255,0.22);
+      color: #7759e7;
+    }
+
+    .input-error {
+      margin-top: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #b65379;
+      display: none;
+    }
+
+    .input-error.show {
+      display: block;
+    }
+
+    .primary-btn {
+      width: 100%;
+      min-height: 54px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.32), transparent 34%),
+        linear-gradient(135deg, #6387f6, #8b5cf6 46%, #e873aa);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      box-shadow: 0 20px 46px rgba(139, 92, 246, 0.30);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .primary-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
+      transition: transform 0.75s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 26px 60px rgba(139, 92, 246, 0.36);
+    }
+
+    .primary-btn:hover::after {
+      transform: translateX(100%);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.72;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ghost-btn {
+      border-radius: 18px;
+      padding: 11px 14px;
+      font-weight: 900;
+      color: #536096;
+      background: rgba(255,255,255,0.17);
+      border: 1px solid rgba(255,255,255,0.36);
+      transition: all 0.22s ease;
+    }
+
+    .ghost-btn:hover {
+      background: rgba(255,255,255,0.27);
+      color: #7654dd;
+      transform: translateY(-1px);
+    }
+
+    .strength-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .strength-seg {
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.22);
+      transition: all 0.25s ease;
+    }
+
+    .strength-seg.on {
+      background: linear-gradient(90deg, #7BA7FF, #A78BFA, #F5A6C8);
+      border-color: rgba(255,255,255,0.42);
+      box-shadow: 0 8px 16px rgba(139,92,246,0.16);
+    }
+
+    .password-hint {
+      color: rgba(45, 51, 91, 0.55);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(45, 51, 91, 0.48);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(255,255,255,0.36);
+    }
+
+    .mini-info {
+      border-radius: 22px;
+      padding: 14px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.34);
+      color: rgba(45, 51, 91, 0.70);
+    }
+
+    .mini-info strong {
+      color: #344069;
+    }
+
+    .clock-pill {
+      padding: 10px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.19);
+      border: 1px solid rgba(255,255,255,0.38);
+      color: #4a557f;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .status-pill {
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.34);
+      color: #536096;
+      font-size: 12px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .swal2-popup {
+      border-radius: 28px !important;
+      background:
+        linear-gradient(135deg, rgba(238, 245, 255, 0.96), rgba(255, 232, 244, 0.96)) !important;
+      color: #263453 !important;
+      box-shadow: 0 30px 90px rgba(83, 94, 160, 0.24) !important;
+    }
+
+    .swal2-confirm {
+      border-radius: 16px !important;
+      background: linear-gradient(135deg, #6387f6, #8b5cf6, #e873aa) !important;
+      box-shadow: 0 16px 36px rgba(139, 92, 246, 0.25) !important;
+      font-weight: 900 !important;
+    }
+
+    .swal2-cancel {
+      border-radius: 16px !important;
+      font-weight: 900 !important;
+    }
+
+    .swal2-icon,
+    .swal2-icon * {
+      box-sizing: content-box !important;
+    }
+
+    @media (max-width: 1024px) {
+      .auth-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .form-panel {
+        min-height: auto;
+      }
+
+      .hero-panel {
+        padding: 26px;
+      }
+
+      .visual-stage {
+        min-height: 280px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: 14px;
+      }
+
+      .topbar {
+        border-radius: 22px;
+        padding: 12px;
+      }
+
+      .hero-panel,
+      .form-panel {
+        border-radius: 28px;
+      }
+
+      .hero-title {
+        font-size: 44px !important;
+      }
+
+      .auth-card {
+        padding: 18px;
+        border-radius: 28px;
+      }
+
+      .mode-tab {
+        font-size: 11px;
+        padding: 10px 4px;
+      }
+
+      .clock-pill {
+        display: none;
+      }
+
+      .mini-body {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-chip {
+        display: none;
+      }
+    }
+    /* ==================================================
+   PATCH FINAL AUTH LAYOUT
+   Tujuan:
+   - Hero kiri tidak ikut berubah saat form register panjang
+   - Prototype dashboard tidak kepotong
+   - Scroll hanya di form kanan
+   - Judul hero tidak kepotong di huruf g/y/p
+================================================== */
+
+/* Fix huruf g di made elegant agar tidak nyungsep */
+.hero-title {
+  line-height: 1.08 !important;
+  letter-spacing: -0.055em !important;
+  padding-bottom: 0.18em !important;
+  overflow: visible !important;
+}
+
+.hero-title .gradient-text {
+  display: block;
+  line-height: 1.12 !important;
+  padding-bottom: 0.18em !important;
+}
+
+/* Jarak card Track / Control / Grow lebih nyaman */
+.hero-metric-grid {
+  gap: 18px !important;
+  margin-top: 38px !important;
+  margin-bottom: 28px !important;
+}
+
+.metric-card {
+  min-height: 142px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* Prototype dashboard jangan kepotong */
+.visual-stage {
+  margin-top: 32px !important;
+  min-height: 360px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Desktop only */
+@media (min-width: 1025px) {
+  .auth-grid {
+    align-items: start !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* Panel kiri jangan dikunci height */
+  .hero-panel {
+    min-height: 760px !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hero-panel > .relative {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* Panel kanan yang boleh fixed dan scroll */
+ 
+
+  
+}
+/* ==================================================
+   FORM PANEL OUTER SCROLL
+   Scroll form dipindah ke sisi kanan luar card
+================================================== */
+
+@media (min-width: 1025px) {
+  .form-panel {
+    height: calc(100vh - 135px) !important;
+    min-height: 770px !important;
+
+    /* ini yang bikin scroll ada di panel kanan */
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    /* kasih ruang supaya scrollbar tidak nempel ke card */
+    padding-right: 18px !important;
+    align-items: flex-start !important;
+  }
+.form-panel {
+    height: 690px !important;
+    max-height: 690px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    align-items: flex-start !important;
+  }
+
+  .auth-card {
+    max-height: none !important;
+    overflow: visible !important;
+
+    /* card tetap rapi, tidak punya scrollbar sendiri */
+    margin: 0 auto !important;
+  }
+
+  /* Scrollbar panel kanan */
+  .form-panel::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  .form-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    margin: 24px 0;
+  }
+
+  .form-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7BA7FF, #A78BFA, #F5A6C8);
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .form-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6387f6, #8b5cf6, #e873aa);
+  }
+}
+
+/* Tablet & mobile: jangan pakai scroll panel, biar natural */
+@media (max-width: 1024px) {
+  .form-panel {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding-right: 26px !important;
+  }
+
+ 
+}
+/* ==================================================
+   FINAL FORM PANEL SCROLL FIX
+   Scroll kanan lebih responsif dan tidak nested
+================================================== */
+
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Browser tetap punya scroll utama */
+body {
+  overflow-y: auto !important;
+}
+
+/* Auth card tidak boleh punya scroll sendiri */
+.auth-card {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+/* Desktop: scroll khusus hanya di panel kanan */
+@media (min-width: 1025px) {
+ 
+
+  .form-panel .auth-card {
+    width: min(470px, 100%) !important;
+    margin: 0 auto !important;
+  }
+
+  .form-panel::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .form-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    margin: 18px 0;
+  }
+
+  .form-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7BA7FF, #A78BFA, #F5A6C8);
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.30);
+  }
+
+  .form-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6387f6, #8b5cf6, #e873aa);
+  }
+}
+
+/* Mobile/tablet: pakai scroll halaman biasa */
+@media (max-width: 1024px) {
+  .form-panel {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 26px !important;
+  }
+
+  .auth-card {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+}
+/* Tablet/mobile kembali natural */
+@media (max-width: 1024px) {
+  .auth-grid {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .hero-panel{
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .auth-card {
+    max-height: none !important;
+    overflow: visible !important;
+    padding-right: 18px !important;
+  }
+
+  .visual-stage {
+    min-height: 300px !important;
+    margin-top: 28px !important;
+  }
+
+  .hero-metric-grid {
+    gap: 16px !important;
+    margin-top: 32px !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    line-height: 1.1 !important;
+    padding-bottom: 0.2em !important;
+  }
+
+  .hero-title .gradient-text {
+    line-height: 1.14 !important;
+    padding-bottom: 0.18em !important;
+  }
+
+  .visual-stage {
+    min-height: 280px !important;
+  }
+
+  .metric-card {
+    min-height: 124px !important;
+  }
+}
+/* ==================================================
+   SIMPLE FLOW PANEL PATCH
+   Mengganti Performance Matrix menjadi flow sederhana
+================================================== */
+
+.simple-flow-panel {
+  margin-top: 34px;
+  border-radius: 30px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255,255,255,0.32), transparent 36%),
+    linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10));
+  border: 1px solid rgba(255,255,255,0.40);
+  box-shadow: 0 22px 64px rgba(83, 94, 160, 0.13);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.simple-flow-header {
+  margin-bottom: 18px;
+}
+
+.simple-flow-header span {
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7654dd;
+  margin-bottom: 6px;
+}
+
+.simple-flow-header p {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(45, 51, 91, 0.64);
+  line-height: 1.7;
+}
+
+.simple-flow-strip {
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.34);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.simple-flow-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #667092;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.simple-flow-item i {
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.24);
+  border: 1px solid rgba(255,255,255,0.34);
+  color: #7654dd;
+}
+
+.simple-flow-item.active i {
+  color: #fff;
+  background: linear-gradient(135deg, #7BA7FF, #A78BFA, #F5A6C8);
+  box-shadow: 0 12px 26px rgba(139, 92, 246, 0.20);
+}
+
+.simple-flow-line {
+  height: 2px;
+  flex: 1;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(123,167,255,0.42), rgba(245,166,200,0.42));
+}
+
+/* Biar bagian kiri lebih balance */
+.hero-metric-grid {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .simple-flow-strip {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .simple-flow-line {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .simple-flow-panel {
+    padding: 18px;
+    border-radius: 26px;
+  }
+
+  .simple-flow-item {
+    font-size: 12px;
+  }
+}
+/* =========================================
+   HERO SPACING REVISION
+   ========================================= */
+
+/* Judul hero lebih rapat ke paragraf */
+.hero-title {
+  margin-bottom: 10px !important;
+  line-height: 1.02 !important;
+}
+
+/* Kalau ada span gradient di judul */
+.hero-title .gradient-text {
+  margin-top: -4px !important;
+}
+
+/* Paragraf hero jangan terlalu jauh dari judul dan bawahnya */
+.hero-copy {
+  margin-top: 8px !important;
+  margin-bottom: 18px !important;
+  line-height: 1.55 !important;
+}
+
+/* Card Track / Control / Grow lebih dekat ke paragraf */
+.hero-metric-grid {
+  margin-top: 18px !important;
+  margin-bottom: 18px !important;
+}
+
+/* Flow panel lebih dekat ke card atas */
+.simple-flow-panel {
+  margin-top: 18px !important;
+}
+
+/* Sedikit rapikan judul flow */
+.simple-flow-header {
+  margin-bottom: 12px !important;
+}
+
+.simple-flow-header p {
+  margin-top: 4px !important;
+  line-height: 1.55 !important;
+}
+.hero-title {
+  line-height: 1.08 !important;
+  letter-spacing: -0.045em !important;
+  margin-bottom: 10px !important;
+}
+
+.hero-title .gradient-text {
+  line-height: 1.1 !important;
+  margin-top: -2px !important;
+}
+/* =========================================
+   HERO TITLE & DESCRIPTION GAP FIX
+   ========================================= */
+
+.hero-title {
+  line-height: 1.03 !important;
+  letter-spacing: -0.045em !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 0.04em !important;
+}
+
+.hero-title .gradient-text {
+  line-height: 1.04 !important;
+  margin-top: -6px !important;
+  padding-bottom: 0.04em !important;
+}
+
+.hero-copy {
+  margin-top: 2px !important;
+  margin-bottom: 16px !important;
+  line-height: 1.55 !important;
+}
+/* ==================================================
+   HELP MODAL PREMIUM STYLE
+================================================== */
+
+.cf-help-popup {
+  border-radius: 34px !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(123, 167, 255, 0.22), transparent 34%),
+    radial-gradient(circle at 90% 12%, rgba(245, 166, 200, 0.20), transparent 34%),
+    linear-gradient(135deg, rgba(238, 245, 255, 0.98), rgba(255, 232, 244, 0.98)) !important;
+  box-shadow: 0 36px 110px rgba(83, 94, 160, 0.30) !important;
+}
+
+.cf-help-modal {
+  padding: 30px;
+  color: #263453;
+  text-align: left;
+}
+
+.cf-help-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255,255,255,0.42), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,0.34), rgba(255,255,255,0.16));
+  border: 1px solid rgba(255,255,255,0.54);
+  box-shadow: 0 20px 60px rgba(83, 94, 160, 0.13);
+}
+
+.cf-help-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: #fff;
+  font-size: 26px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.38), transparent 36%),
+    linear-gradient(135deg, #6f8cff, #8b5cf6 50%, #e873aa);
+  box-shadow: 0 18px 46px rgba(139, 92, 246, 0.28);
+}
+
+.cf-help-hero span {
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7654dd;
+  margin-bottom: 6px;
+}
+
+.cf-help-hero h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 900;
+  color: #2d335b;
+}
+
+.cf-help-hero p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 700;
+  color: rgba(45, 51, 91, 0.68);
+}
+
+.cf-help-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cf-help-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.44);
+  box-shadow: 0 14px 36px rgba(83, 94, 160, 0.09);
+}
+
+.cf-help-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: #fff;
+  box-shadow: 0 14px 32px rgba(139, 92, 246, 0.20);
+}
+
+.cf-help-card-icon.login {
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6);
+}
+
+.cf-help-card-icon.register {
+  background: linear-gradient(135deg, #65d7c5, #6f8cff);
+}
+
+.cf-help-card-icon.forgot {
+  background: linear-gradient(135deg, #f7b980, #e873aa);
+}
+
+.cf-help-card h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #2d335b;
+  letter-spacing: -0.02em;
+}
+
+.cf-help-card p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 700;
+  color: rgba(45, 51, 91, 0.64);
+}
+
+.cf-help-admin-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 17px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(232, 115, 170, 0.10));
+  border: 1px solid rgba(139, 92, 246, 0.18);
+}
+
+.cf-help-admin-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: #fff;
+  background: linear-gradient(135deg, #8b5cf6, #e873aa);
+  box-shadow: 0 14px 32px rgba(139, 92, 246, 0.20);
+}
+
+.cf-help-admin-note h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #2d335b;
+}
+
+.cf-help-admin-note p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 700;
+  color: rgba(45, 51, 91, 0.66);
+}
+
+.cf-help-confirm {
+  min-width: 180px !important;
+  height: 59px !important;
+  border-radius: 16px !important;
+  font-weight: 900 !important;
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6 48%, #e873aa) !important;
+  box-shadow: 0 16px 36px rgba(139, 92, 246, 0.25) !important;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 640px) {
+  .cf-help-modal {
+    padding: 20px;
+  }
+
+  .cf-help-hero {
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .cf-help-hero h2 {
+    font-size: 26px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+
+  <div class="page-shell">
+    <!-- Topbar -->
+    <header class="topbar glass flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="logo-mark grid place-items-center">
+          <i class="fa-solid fa-diagram-project text-white text-xl relative z-10"></i>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-black tracking-[-0.04em] text-[21px] text-[#2d335b]">Control Flow</h1>
+            <span class="hidden sm:inline-flex status-pill">
+              <i class="fa-solid fa-shield-heart text-[#8b5cf6]"></i>
+              User Portal
+            </span>
+          </div>
+          <p class="text-[12px] font-bold text-[#596486] mt-0.5">Sistem Manajemen Kontrol Kerja</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div id="wibClock" class="clock-pill">
+          Memuat waktu WIB...
+        </div>
+        <button id="helpBtn" class="ghost-btn hidden sm:inline-flex items-center gap-2">
+          <i class="fa-regular fa-circle-question"></i>
+          Bantuan
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="auth-grid">
+      <!-- Left Hero -->
+      <section class="hero-panel glass-deep">
+        <div class="relative z-10 h-full flex flex-col">
+          <div class="flex flex-wrap items-center gap-2 mb-7">
+            <span class="soft-badge">
+              <i class="fa-solid fa-sparkles text-[#8b5cf6]"></i>
+              Smart task governance
+            </span>
+            <span class="soft-badge">
+              <i class="fa-solid fa-clock text-[#18aaa0]"></i>
+              WIB real-time
+            </span>
+          </div>
+
+          <div class="max-w-[670px]">
+ <h2 class="hero-title text-[54px] md:text-[64px]">
+  Company control
+  <span class="gradient-text block">more structured.</span>
+</h2>
+
+<p class="hero-copy text-[15px] md:text-[16px] font-semibold max-w-[620px]">
+  Control Flow membantu perusahaan mengelola kontrol tugas, memantau progres pekerjaan, memastikan proses quality control berjalan baik, dan menampilkan report penilaian secara lebih terstruktur, transparan, dan terukur.
+</p>
+          </div>
+
+<div class="hero-metric-grid grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="metric-card">
+              <div class="w-10 h-10 rounded-2xl grid place-items-center mb-3 bg-gradient-to-br from-[#7BA7FF] to-[#A78BFA] text-white shadow-lg shadow-purple-300/30">
+                <i class="fa-solid fa-list-check"></i>
+              </div>
+              <p class="text-[12px] font-black uppercase tracking-widest text-[#667092]">Task</p>
+              <h3 class="text-2xl font-black tracking-[-0.04em] text-[#2d335b]">Track</h3>
+            </div>
+
+            <div class="metric-card">
+              <div class="w-10 h-10 rounded-2xl grid place-items-center mb-3 bg-gradient-to-br from-[#8FE7D2] to-[#7BA7FF] text-white shadow-lg shadow-cyan-300/30">
+                <i class="fa-solid fa-clipboard-check"></i>
+              </div>
+              <p class="text-[12px] font-black uppercase tracking-widest text-[#667092]">QC</p>
+              <h3 class="text-2xl font-black tracking-[-0.04em] text-[#2d335b]">Control</h3>
+            </div>
+
+            <div class="metric-card">
+              <div class="w-10 h-10 rounded-2xl grid place-items-center mb-3 bg-gradient-to-br from-[#F5A6C8] to-[#FFD6A5] text-white shadow-lg shadow-pink-300/30">
+                <i class="fa-solid fa-ranking-star"></i>
+              </div>
+              <p class="text-[12px] font-black uppercase tracking-widest text-[#667092]">Score</p>
+              <h3 class="text-2xl font-black tracking-[-0.04em] text-[#2d335b]">Grow</h3>
+            </div>
+          </div>
+<div class="simple-flow-panel">
+  <div class="simple-flow-header">
+    <span>Control Flow Process</span>
+    <p>Task berjalan dari assignment sampai report penilaian.</p>
+  </div>
+
+  <div class="simple-flow-strip">
+    <div class="simple-flow-item active">
+      <i class="fa-solid fa-user-check"></i>
+      <span>Assigned</span>
+    </div>
+
+    <div class="simple-flow-line"></div>
+
+    <div class="simple-flow-item">
+      <i class="fa-solid fa-spinner"></i>
+      <span>Progress</span>
+    </div>
+
+    <div class="simple-flow-line"></div>
+
+    <div class="simple-flow-item">
+      <i class="fa-solid fa-shield-halved"></i>
+      <span>QC</span>
+    </div>
+
+    <div class="simple-flow-line"></div>
+
+    <div class="simple-flow-item">
+      <i class="fa-solid fa-medal"></i>
+      <span>Report</span>
+    </div>
+  </div>
+</div>
+          <!-- Premium Visual / Image -->
+        
+        </div>
+      </section>
+
+      <!-- Right Auth Panel -->
+      <section class="form-panel glass-deep">
+        <div class="auth-card glass">
+          <div class="mb-6">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <div>
+                <p class="text-[12px] font-black uppercase tracking-[0.18em] text-[#7654dd]">Welcome User</p>
+                <h2 id="formTitle" class="text-[30px] font-black tracking-[-0.06em] text-[#2d335b] mt-1">
+                  Masuk ke akun
+                </h2>
+              </div>
+
+              <div class="w-14 h-14 rounded-3xl grid place-items-center bg-gradient-to-br from-[#7BA7FF] via-[#A78BFA] to-[#F5A6C8] text-white shadow-lg shadow-purple-300/40">
+                <i id="formIcon" class="fa-solid fa-right-to-bracket text-xl"></i>
+              </div>
+            </div>
+
+            <p id="formSubtitle" class="text-[13px] leading-relaxed font-semibold text-[#637092]">
+              Gunakan email dan password yang sudah terdaftar untuk masuk ke dashboard User Control Flow.
+            </p>
+          </div>
+
+          <!-- Existing session banner -->
+          <div id="sessionBanner" class="mini-info mb-5 hidden">
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-2xl grid place-items-center bg-gradient-to-br from-[#8FE7D2] to-[#7BA7FF] text-white flex-none">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-black text-sm text-[#344069]">Session tersimpan</p>
+                <p class="text-xs font-semibold mt-1">Kamu pernah login di perangkat ini. Kamu bisa langsung menuju dashboard atau login ulang.</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <button id="goDashboardBtn" class="ghost-btn text-xs py-2">
+                    Buka Dashboard
+                  </button>
+                  <button id="clearSessionBtn" class="ghost-btn text-xs py-2">
+                    Hapus Session
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="mode-tabs mb-6">
+            <button class="mode-tab active" data-mode="login">
+              <i class="fa-solid fa-right-to-bracket mr-1"></i>
+              Login
+            </button>
+            <button class="mode-tab" data-mode="register">
+              <i class="fa-solid fa-user-plus mr-1"></i>
+              Register
+            </button>
+            <button class="mode-tab" data-mode="forgot">
+              <i class="fa-solid fa-key mr-1"></i>
+              Lupa
+            </button>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <form id="loginForm" class="form-view active space-y-4" autocomplete="on">
+            <div class="field-group">
+              <label class="field-label" for="loginEmail">
+                Email
+                <span class="text-[11px] text-[#7c86a7]">Wajib diisi</span>
+              </label>
+              <div class="field-shell">
+                <i class="field-icon fa-regular fa-envelope"></i>
+                <input
+                  id="loginEmail"
+                  name="email"
+                  type="email"
+                  class="premium-input"
+                  placeholder="nama@email.com"
+                  required
+                />
+              </div>
+              <p id="loginEmailError" class="input-error">Format email belum valid.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="loginPassword">
+                Password
+                <button type="button" class="text-[11px] text-[#7654dd] hover:underline" data-switch="forgot">
+                  Lupa password?
+                </button>
+              </label>
+              <div class="field-shell">
+                <i class="field-icon fa-solid fa-lock"></i>
+                <input
+                  id="loginPassword"
+                  name="password"
+                  type="password"
+                  class="premium-input pr-14"
+                  placeholder="Masukkan password"
+                  required
+                />
+                <button type="button" class="password-toggle" data-toggle-password="loginPassword">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <p id="loginPasswordError" class="input-error">Password wajib diisi.</p>
+            </div>
+
+            <div class="flex items-center justify-between gap-3">
+              <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input id="rememberMe" type="checkbox" class="accent-[#8b5cf6] w-4 h-4">
+                <span class="text-xs font-bold text-[#637092]">Ingat perangkat ini</span>
+              </label>
+
+              <button type="button" class="text-xs font-black text-[#7654dd] hover:underline" data-switch="register">
+                Belum punya akun?
+              </button>
+            </div>
+
+            <button id="loginBtn" type="submit" class="primary-btn mt-2">
+              <span class="btn-text">
+                Masuk Dashboard
+                <i class="fa-solid fa-arrow-right ml-2"></i>
+              </span>
+              <span class="btn-loading hidden">
+                <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                Memproses...
+              </span>
+            </button>
+
+            <div class="divider pt-2">User access only</div>
+
+            <div class="mini-info">
+              <p class="text-xs leading-relaxed">
+                <strong>Catatan:</strong> halaman ini hanya untuk user/staff. Admin Control Flow tidak login dari halaman ini.
+              </p>
+            </div>
+          </form>
+
+          <!-- REGISTER FORM -->
+          <form id="registerForm" class="form-view space-y-4" autocomplete="on">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="field-group sm:col-span-2">
+                <label class="field-label" for="registerName">Nama User</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-regular fa-user"></i>
+                  <input
+                    id="registerName"
+                    name="namaUser"
+                    type="text"
+                    class="premium-input"
+                    placeholder="Contoh: M. Nabilah Abror"
+                    required
+                  />
+                </div>
+                <p id="registerNameError" class="input-error">Nama user wajib diisi.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="registerWa">No WhatsApp</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-brands fa-whatsapp"></i>
+                  <input
+                    id="registerWa"
+                    name="noWa"
+                    type="tel"
+                    class="premium-input"
+                    placeholder="08xxxxxxxxxx"
+                    required
+                  />
+                </div>
+                <p id="registerWaError" class="input-error">Nomor WhatsApp wajib diisi.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="registerDivisi">Divisi</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-solid fa-sitemap"></i>
+                  <input
+                    id="registerDivisi"
+                    name="divisi"
+                    type="text"
+                    class="premium-input"
+                    placeholder="Contoh: Business Development"
+                    required
+                  />
+                </div>
+                <p id="registerDivisiError" class="input-error">Divisi wajib diisi.</p>
+              </div>
+
+              <div class="field-group sm:col-span-2">
+                <label class="field-label" for="registerPosition">Posisi User</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-solid fa-briefcase"></i>
+                  <select id="registerPosition" name="posisi" class="premium-select" required>
+                    <option value="">Pilih posisi user</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Deputy">Deputy</option>
+                    <option value="General Manager">General Manager</option>
+                    <option value="Head of Division">Head of Division</option>
+                    <option value="Head of Department">Head of Department</option>
+                    <option value="Vice President">Vice President</option>
+                    <option value="Team Leader">Team Leader</option>
+                    <option value="Lead Specialist">Lead Specialist</option>
+                    <option value="staff">staff</option>
+                    <option value="intern">intern</option>
+                  </select>
+                  <i class="select-caret fa-solid fa-chevron-down"></i>
+                </div>
+                <p id="registerPositionError" class="input-error">Posisi wajib dipilih.</p>
+              </div>
+
+              <div class="field-group sm:col-span-2">
+                <label class="field-label" for="registerEmail">Email</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-regular fa-envelope"></i>
+                  <input
+                    id="registerEmail"
+                    name="email"
+                    type="email"
+                    class="premium-input"
+                    placeholder="nama@email.com"
+                    required
+                  />
+                </div>
+                <p id="registerEmailError" class="input-error">Format email belum valid.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="registerPassword">Password</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-solid fa-lock"></i>
+                  <input
+                    id="registerPassword"
+                    name="password"
+                    type="password"
+                    class="premium-input pr-14"
+                    placeholder="Minimal 6 karakter"
+                    required
+                  />
+                  <button type="button" class="password-toggle" data-toggle-password="registerPassword">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
+                <div class="strength-track" aria-hidden="true">
+                  <span class="strength-seg" data-strength-seg></span>
+                  <span class="strength-seg" data-strength-seg></span>
+                  <span class="strength-seg" data-strength-seg></span>
+                  <span class="strength-seg" data-strength-seg></span>
+                </div>
+                <p id="passwordHint" class="password-hint">Gunakan kombinasi huruf dan angka agar lebih kuat.</p>
+                <p id="registerPasswordError" class="input-error">Password minimal 6 karakter.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="registerConfirmPassword">Konfirmasi</label>
+                <div class="field-shell">
+                  <i class="field-icon fa-solid fa-shield-halved"></i>
+                  <input
+                    id="registerConfirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    class="premium-input pr-14"
+                    placeholder="Ulangi password"
+                    required
+                  />
+                  <button type="button" class="password-toggle" data-toggle-password="registerConfirmPassword">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                </div>
+                <p id="registerConfirmError" class="input-error">Konfirmasi password belum sama.</p>
+              </div>
+            </div>
+
+            <label class="flex items-start gap-3 cursor-pointer select-none">
+              <input id="agreeTerms" type="checkbox" class="accent-[#8b5cf6] w-4 h-4 mt-1">
+              <span class="text-xs font-semibold leading-relaxed text-[#637092]">
+                Saya memastikan data yang saya isi benar dan bersedia menggunakan Control Flow untuk pengelolaan tugas secara profesional.
+              </span>
+            </label>
+            <p id="agreeError" class="input-error">Kamu perlu menyetujui pernyataan registrasi.</p>
+
+            <button id="registerBtn" type="submit" class="primary-btn mt-2">
+              <span class="btn-text">
+                Buat Akun User
+                <i class="fa-solid fa-user-plus ml-2"></i>
+              </span>
+              <span class="btn-loading hidden">
+                <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                Membuat akun...
+              </span>
+            </button>
+
+            <div class="text-center">
+              <button type="button" class="text-xs font-black text-[#7654dd] hover:underline" data-switch="login">
+                Sudah punya akun? Masuk di sini.
+              </button>
+            </div>
+          </form>
+
+          <!-- FORGOT FORM -->
+          <form id="forgotForm" class="form-view space-y-4" autocomplete="on">
+            <div class="mini-info mb-2">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-2xl grid place-items-center bg-gradient-to-br from-[#FFD6A5] to-[#F5A6C8] text-white flex-none">
+                  <i class="fa-solid fa-key"></i>
+                </div>
+                <div>
+                  <p class="font-black text-sm text-[#344069]">Pemulihan Password</p>
+                  <p class="text-xs font-semibold leading-relaxed mt-1">
+                    Masukkan email yang sudah terdaftar. Jika email ditemukan, sistem akan menampilkan password sesuai konsep prototype kamu.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="forgotEmail">Email Terdaftar</label>
+              <div class="field-shell">
+                <i class="field-icon fa-regular fa-envelope"></i>
+                <input
+                  id="forgotEmail"
+                  name="email"
+                  type="email"
+                  class="premium-input"
+                  placeholder="nama@email.com"
+                  required
+                />
+              </div>
+              <p id="forgotEmailError" class="input-error">Format email belum valid.</p>
+            </div>
+
+            <button id="forgotBtn" type="submit" class="primary-btn mt-2">
+              <span class="btn-text">
+                Cari Password
+                <i class="fa-solid fa-magnifying-glass ml-2"></i>
+              </span>
+              <span class="btn-loading hidden">
+                <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+                Mengecek...
+              </span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" class="ghost-btn" data-switch="login">
+                <i class="fa-solid fa-arrow-left mr-1"></i>
+                Login
+              </button>
+              <button type="button" class="ghost-btn" data-switch="register">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    /****************************************************
+     * CONTROL FLOW AUTH FRONTEND
+     * Login, Register, Forgot Password
+     ****************************************************/
+
+    // ==================================================
+    // 1. KONFIGURASI BACKEND
+    // ==================================================
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8EdVB5DiUTKtQb1LqDk4-RBkS3AMCCizs4WZsAmBwtTulaHAIq4kN-KfigM4gfIfX/exec';
+
+    const REDIRECT_AFTER_LOGIN = 'user-dashboard.html';
+
+    const STORAGE_KEYS = {
+      token: 'control_flow_token',
+      user: 'control_flow_user',
+      loggedAt: 'control_flow_logged_at'
+    };
+
+    const formMeta = {
+      login: {
+        title: 'Masuk ke akun',
+        subtitle: 'Gunakan email dan password yang sudah terdaftar untuk masuk ke dashboard user Control Flow.',
+        icon: 'fa-solid fa-right-to-bracket'
+      },
+      register: {
+        title: 'Buat akun user',
+        subtitle: 'Lengkapi data diri agar sistem bisa mengenali profil, divisi, posisi, dan akses dashboard kamu.',
+        icon: 'fa-solid fa-user-plus'
+      },
+      forgot: {
+        title: 'Lupa password',
+        subtitle: 'Masukkan email yang sudah terdaftar untuk mengambil password sesuai database prototype.',
+        icon: 'fa-solid fa-key'
+      }
+    };
+
+    const positionOptions = [
+      'Manager',
+      'Deputy',
+      'General Manager',
+      'Head of Division',
+      'Head of Department',
+      'Vice President',
+      'Team Leader',
+      'Lead Specialist',
+      'staff',
+      'intern'
+    ];
+
+    // ==================================================
+    // 2. INIT
+    // ==================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initClock();
+      initModeSwitcher();
+      initPasswordToggles();
+      initForms();
+      initPasswordStrength();
+      initSessionBanner();
+      initHelpButton();
+      restrictWaInput();
+      initFormPanelFastScroll();
+    });
+
+    // ==================================================
+    // 3. WIB CLOCK
+    // ==================================================
+    function initClock() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    function updateClock() {
+      const target = document.getElementById('wibClock');
+      if (!target) return;
+
+      const now = new Date();
+
+      const formatted = new Intl.DateTimeFormat('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(now);
+
+      target.innerHTML = `<i class="fa-regular fa-clock mr-2 text-[#8b5cf6]"></i>${formatted} WIB`;
+    }
+
+    // ==================================================
+    // 4. MODE SWITCHER
+    // ==================================================
+    function initModeSwitcher() {
+      document.querySelectorAll('[data-mode]').forEach(button => {
+        button.addEventListener('click', () => {
+          switchMode(button.dataset.mode);
+        });
+      });
+
+      document.querySelectorAll('[data-switch]').forEach(button => {
+        button.addEventListener('click', () => {
+          switchMode(button.dataset.switch);
+        });
+      });
+    }
+
+    function switchMode(mode) {
+      const tabs = document.querySelectorAll('.mode-tab');
+      const views = document.querySelectorAll('.form-view');
+
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.mode === mode);
+      });
+
+      views.forEach(view => {
+        view.classList.remove('active');
+      });
+
+      const activeView = document.getElementById(`${mode}Form`);
+      if (activeView) activeView.classList.add('active');
+
+      const meta = formMeta[mode];
+
+      if (meta) {
+        document.getElementById('formTitle').textContent = meta.title;
+        document.getElementById('formSubtitle').textContent = meta.subtitle;
+
+        const icon = document.getElementById('formIcon');
+        icon.className = `${meta.icon} text-xl`;
+      }
+
+      clearAllErrors();
+    }
+function initFormPanelFastScroll() {
+  const panel = document.querySelector('.form-panel');
+
+  if (!panel) return;
+
+  panel.addEventListener('wheel', function(event) {
+    if (window.innerWidth < 1025) return;
+
+    const canScroll = panel.scrollHeight > panel.clientHeight;
+
+    if (!canScroll) return;
+
+    event.preventDefault();
+
+    // Angka 1.65 bisa dinaikkan kalau mau lebih cepat
+    panel.scrollTop += event.deltaY * 1.65;
+  }, { passive: false });
+}
+    // ==================================================
+    // 5. PASSWORD TOGGLE
+    // ==================================================
+    function initPasswordToggles() {
+      document.querySelectorAll('[data-toggle-password]').forEach(button => {
+        button.addEventListener('click', () => {
+          const inputId = button.dataset.togglePassword;
+          const input = document.getElementById(inputId);
+          const icon = button.querySelector('i');
+
+          if (!input) return;
+
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+
+          icon.className = isPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        });
+      });
+    }
+
+    // ==================================================
+    // 6. FORM EVENTS
+    // ==================================================
+    function initForms() {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const forgotForm = document.getElementById('forgotForm');
+
+      loginForm.addEventListener('submit', handleLogin);
+      registerForm.addEventListener('submit', handleRegister);
+      forgotForm.addEventListener('submit', handleForgotPassword);
+    }
+
+    // ==================================================
+    // 7. LOGIN
+    // ==================================================
+    async function handleLogin(event) {
+      event.preventDefault();
+      clearAllErrors();
+
+      const form = event.currentTarget;
+      const button = document.getElementById('loginBtn');
+
+      const email = getInputValue('loginEmail').toLowerCase();
+      const password = getInputValue('loginPassword');
+      const rememberMe = document.getElementById('rememberMe').checked;
+
+      let valid = true;
+
+      if (!isValidEmail(email)) {
+        showFieldError('loginEmailError', 'Format email belum valid.');
+        valid = false;
+      }
+
+      if (!password) {
+        showFieldError('loginPasswordError', 'Password wajib diisi.');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      setButtonLoading(button, true);
+
+      try {
+        const response = await sendToBackend({
+          action: 'login',
+          email,
+          password,
+          deviceInfo: navigator.userAgent || 'Unknown device'
+        });
+
+        if (response.status === 'success') {
+          saveLoginSession(response, rememberMe);
+
+          await Swal.fire({
+            icon: 'success',
+            title: 'Login Berhasil',
+            html: `
+              <div style="font-weight:700; color:#52607f; line-height:1.7">
+                Selamat datang, <b>${escapeHtml(response?.data?.namaUser || 'User')}</b>.<br>
+                Kamu akan diarahkan ke dashboard user Control Flow.
+              </div>
+            `,
+            confirmButtonText: 'Masuk Dashboard',
+            timer: 1800,
+            timerProgressBar: true
+          });
+
+        window.location.href = REDIRECT_AFTER_LOGIN;
+          return;
+        }
+
+        if (response.status === 'not_registered') {
+          const result = await Swal.fire({
+            icon: 'info',
+            title: 'Akun Belum Terdaftar',
+            text: response.message || 'Email ini belum terdaftar. Silakan registrasi terlebih dahulu.',
+            confirmButtonText: 'Registrasi Sekarang',
+            showCancelButton: true,
+            cancelButtonText: 'Tetap di Login'
+          });
+
+          if (result.isConfirmed) {
+            document.getElementById('registerEmail').value = email;
+            switchMode('register');
+          }
+
+          return;
+        }
+
+        await Swal.fire({
+          icon: 'error',
+          title: 'Login Gagal',
+          text: response.message || 'Email atau password tidak sesuai.',
+          confirmButtonText: 'Coba Lagi'
+        });
+
+      } catch (error) {
+        showNetworkError(error);
+      } finally {
+        setButtonLoading(button, false);
+      }
+    }
+
+    // ==================================================
+    // 8. REGISTER
+    // ==================================================
+  async function handleRegister(event) {
+  event.preventDefault();
+  clearAllErrors();
+
+  // SIMPAN FORM DI AWAL
+  // Jangan pakai event.currentTarget setelah await
+  const form = event.currentTarget;
+  const button = document.getElementById('registerBtn');
+
+  const namaUser = getInputValue('registerName');
+  const noWa = getInputValue('registerWa');
+  const divisi = getInputValue('registerDivisi');
+  const posisi = getInputValue('registerPosition');
+  const email = getInputValue('registerEmail').toLowerCase();
+  const password = getInputValue('registerPassword');
+  const confirmPassword = getInputValue('registerConfirmPassword');
+  const agree = document.getElementById('agreeTerms').checked;
+
+  let valid = true;
+
+  if (!namaUser) {
+    showFieldError('registerNameError', 'Nama user wajib diisi.');
+    valid = false;
+  }
+
+  if (!noWa) {
+    showFieldError('registerWaError', 'Nomor WhatsApp wajib diisi.');
+    valid = false;
+  }
+
+  if (!divisi) {
+    showFieldError('registerDivisiError', 'Divisi wajib diisi.');
+    valid = false;
+  }
+
+  if (!posisi || !positionOptions.includes(posisi)) {
+    showFieldError('registerPositionError', 'Posisi wajib dipilih.');
+    valid = false;
+  }
+
+  if (!isValidEmail(email)) {
+    showFieldError('registerEmailError', 'Format email belum valid.');
+    valid = false;
+  }
+
+  if (!password || password.length < 6) {
+    showFieldError('registerPasswordError', 'Password minimal 6 karakter.');
+    valid = false;
+  }
+
+  if (password !== confirmPassword) {
+    showFieldError('registerConfirmError', 'Konfirmasi password belum sama.');
+    valid = false;
+  }
+
+  if (!agree) {
+    showFieldError('agreeError', 'Kamu perlu menyetujui pernyataan registrasi.');
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  setButtonLoading(button, true);
+
+  try {
+    const response = await sendToBackend({
+      action: 'register',
+      namaUser,
+      noWa,
+      divisi,
+      posisi,
+      email,
+      password
+    });
+
+    if (response.status === 'success') {
+    await Swal.fire({
+  icon: 'success',
+  title: 'Registrasi Berhasil',
+  html: `
+    <div style="font-weight:700; color:#52607f; line-height:1.7">
+      Akun <b>${escapeHtml(posisi)}</b> berhasil dibuat.<br>
+      Silakan login menggunakan email dan password yang baru kamu daftarkan.
+    </div>
+  `,
+  confirmButtonText: 'Login Sekarang'
+});
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPassword').value = '';
+
+      // INI YANG DIPERBAIKI
+      form.reset();
+
+      resetPasswordStrength();
+      switchMode('login');
+      return;
+    }
+
+    await Swal.fire({
+      icon: 'error',
+      title: 'Registrasi Gagal',
+      text: response.message || 'Data belum bisa disimpan.',
+      confirmButtonText: 'Periksa Lagi'
+    });
+
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Frontend Bermasalah',
+      html: `
+        <div style="font-weight:700; color:#52607f; line-height:1.7">
+          ${escapeHtml(error.message || 'Terjadi error di sisi frontend.')}<br><br>
+          Data mungkin sudah masuk ke database, tapi ada proses tampilan yang gagal setelahnya.
+        </div>
+      `,
+      confirmButtonText: 'Saya Mengerti'
+    });
+  } finally {
+    setButtonLoading(button, false);
+  }
+}
+    // ==================================================
+    // 9. FORGOT PASSWORD
+    // ==================================================
+    async function handleForgotPassword(event) {
+      event.preventDefault();
+      clearAllErrors();
+
+      const button = document.getElementById('forgotBtn');
+      const email = getInputValue('forgotEmail').toLowerCase();
+
+      if (!isValidEmail(email)) {
+        showFieldError('forgotEmailError', 'Format email belum valid.');
+        return;
+      }
+
+      setButtonLoading(button, true);
+
+      try {
+        const response = await sendToBackend({
+          action: 'forgot_password',
+          email
+        });
+
+        if (response.status === 'success') {
+          const foundPassword = response?.data?.password || '-';
+
+          await Swal.fire({
+            icon: 'success',
+            title: 'Password Ditemukan',
+            html: `
+              <div style="text-align:left; line-height:1.7; color:#52607f; font-weight:700">
+                <p>Email:</p>
+                <div style="
+                  padding:12px 14px;
+                  border-radius:16px;
+                  background:rgba(139,92,246,0.12);
+                  color:#344069;
+                  margin-bottom:12px;
+                  word-break:break-all;
+                ">${escapeHtml(email)}</div>
+
+                <p>Password:</p>
+                <div style="
+                  padding:12px 14px;
+                  border-radius:16px;
+                  background:rgba(94,234,212,0.16);
+                  color:#344069;
+                  font-size:18px;
+                  font-weight:900;
+                  letter-spacing:.02em;
+                  word-break:break-all;
+                ">${escapeHtml(foundPassword)}</div>
+
+                <p style="font-size:12px; margin-top:12px; color:#687495">
+                  Gunakan password ini untuk login. Untuk versi production, fitur ini sebaiknya diganti menjadi reset password.
+                </p>
+              </div>
+            `,
+            confirmButtonText: 'Login Sekarang'
+          });
+
+          document.getElementById('loginEmail').value = email;
+          document.getElementById('loginPassword').value = foundPassword === '-' ? '' : foundPassword;
+          switchMode('login');
+          return;
+        }
+
+        await Swal.fire({
+          icon: 'error',
+          title: 'Email Tidak Ditemukan',
+          text: response.message || 'Email belum terdaftar di database.',
+          confirmButtonText: 'Coba Lagi'
+        });
+
+      } catch (error) {
+        showNetworkError(error);
+      } finally {
+        setButtonLoading(button, false);
+      }
+    }
+
+    // ==================================================
+    // 10. BACKEND REQUEST
+    // ==================================================
+    async function sendToBackend(payload) {
+      if (!SCRIPT_URL || SCRIPT_URL.includes('ISI_URL_GOOGLE_APPS_SCRIPT')) {
+        throw new Error('SCRIPT_URL belum diisi. Masukkan URL Web App Google Apps Script kamu di bagian konfigurasi.');
+      }
+
+      const body = new URLSearchParams();
+
+      Object.keys(payload).forEach(key => {
+        if (payload[key] !== undefined && payload[key] !== null) {
+          body.append(key, payload[key]);
+        }
+      });
+
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request gagal. HTTP Status: ${response.status}`);
+      }
+
+      const json = await response.json();
+      return json;
+    }
+
+    // ==================================================
+    // 11. SESSION
+    // ==================================================
+    function saveLoginSession(response, rememberMe) {
+      const token = response.token;
+      const user = response.data || {};
+
+      localStorage.setItem(STORAGE_KEYS.token, token);
+      localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(user));
+      localStorage.setItem(STORAGE_KEYS.loggedAt, new Date().toISOString());
+
+      if (!rememberMe) {
+        sessionStorage.setItem(STORAGE_KEYS.token, token);
+        sessionStorage.setItem(STORAGE_KEYS.user, JSON.stringify(user));
+      }
+    }
+
+    function initSessionBanner() {
+      const token = localStorage.getItem(STORAGE_KEYS.token);
+      const userRaw = localStorage.getItem(STORAGE_KEYS.user);
+
+      if (!token || !userRaw) return;
+
+      const banner = document.getElementById('sessionBanner');
+      const goDashboardBtn = document.getElementById('goDashboardBtn');
+      const clearSessionBtn = document.getElementById('clearSessionBtn');
+
+      banner.classList.remove('hidden');
+
+      goDashboardBtn.addEventListener('click', () => {
+        window.location.href = REDIRECT_AFTER_LOGIN;
+      });
+
+      clearSessionBtn.addEventListener('click', () => {
+        localStorage.removeItem(STORAGE_KEYS.token);
+        localStorage.removeItem(STORAGE_KEYS.user);
+        localStorage.removeItem(STORAGE_KEYS.loggedAt);
+
+        sessionStorage.removeItem(STORAGE_KEYS.token);
+        sessionStorage.removeItem(STORAGE_KEYS.user);
+
+        banner.classList.add('hidden');
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Session Dihapus',
+          text: 'Kamu bisa login ulang dengan akun lain.',
+          timer: 1400,
+          showConfirmButton: false
+        });
+      });
+    }
+
+    // ==================================================
+    // 12. PASSWORD STRENGTH
+    // ==================================================
+    function initPasswordStrength() {
+      const passwordInput = document.getElementById('registerPassword');
+      passwordInput.addEventListener('input', () => {
+        updatePasswordStrength(passwordInput.value);
+      });
+    }
+
+    function updatePasswordStrength(password) {
+      const segments = document.querySelectorAll('[data-strength-seg]');
+      const hint = document.getElementById('passwordHint');
+
+      let score = 0;
+
+      if (password.length >= 6) score++;
+      if (/[A-Z]/.test(password) || /[a-z]/.test(password)) score++;
+      if (/\d/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password) || password.length >= 10) score++;
+
+      segments.forEach((segment, index) => {
+        segment.classList.toggle('on', index < score);
+      });
+
+      if (!password) {
+        hint.textContent = 'Gunakan kombinasi huruf dan angka agar lebih kuat.';
+      } else if (score <= 1) {
+        hint.textContent = 'Password masih lemah.';
+      } else if (score === 2) {
+        hint.textContent = 'Password cukup, tapi masih bisa diperkuat.';
+      } else if (score === 3) {
+        hint.textContent = 'Password sudah kuat.';
+      } else {
+        hint.textContent = 'Password sangat kuat.';
+      }
+    }
+
+    function resetPasswordStrength() {
+      document.querySelectorAll('[data-strength-seg]').forEach(segment => {
+        segment.classList.remove('on');
+      });
+
+      document.getElementById('passwordHint').textContent = 'Gunakan kombinasi huruf dan angka agar lebih kuat.';
+    }
+
+    // ==================================================
+    // 13. INPUT HELPERS
+    // ==================================================
+    function restrictWaInput() {
+      const input = document.getElementById('registerWa');
+
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^\d+]/g, '');
+      });
+    }
+
+    function getInputValue(id) {
+      const input = document.getElementById(id);
+      return input ? input.value.trim() : '';
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showFieldError(id, message) {
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      target.textContent = message;
+      target.classList.add('show');
+    }
+
+    function clearAllErrors() {
+      document.querySelectorAll('.input-error').forEach(error => {
+        error.classList.remove('show');
+      });
+    }
+
+    function setButtonLoading(button, isLoading) {
+      if (!button) return;
+
+      const text = button.querySelector('.btn-text');
+      const loading = button.querySelector('.btn-loading');
+
+      button.disabled = isLoading;
+
+      if (text) text.classList.toggle('hidden', isLoading);
+      if (loading) loading.classList.toggle('hidden', !isLoading);
+    }
+
+    function showNetworkError(error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Koneksi Backend Bermasalah',
+        html: `
+          <div style="font-weight:700; color:#52607f; line-height:1.7">
+            ${escapeHtml(error.message || 'Tidak bisa terhubung ke backend.')}<br><br>
+            Pastikan <b>SCRIPT_URL</b> sudah diisi dengan URL Web App Google Apps Script yang benar.
+          </div>
+        `,
+        confirmButtonText: 'Saya Mengerti'
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    // ==================================================
+    // 14. HELP BUTTON
+    // ==================================================
+    function initHelpButton() {
+  const helpBtn = document.getElementById('helpBtn');
+
+  helpBtn.addEventListener('click', () => {
+    Swal.fire({
+      width: 620,
+      padding: 0,
+      showConfirmButton: true,
+      confirmButtonText: 'Mengerti',
+      customClass: {
+        popup: 'cf-help-popup',
+        confirmButton: 'cf-help-confirm'
+      },
+      html: `
+        <div class="cf-help-modal">
+          <div class="cf-help-hero">
+            <div class="cf-help-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+
+            <div>
+              <span>Control Flow Guide</span>
+              <h2>User Portal</h2>
+              <p>
+                Halaman ini digunakan untuk akses akun user Control Flow, mulai dari login,
+                registrasi, sampai pemulihan password.
+              </p>
+            </div>
+          </div>
+
+          <div class="cf-help-grid">
+            <div class="cf-help-card">
+              <div class="cf-help-card-icon login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </div>
+              <div>
+                <h3>Login</h3>
+                <p>Digunakan oleh user yang sudah memiliki akun untuk masuk ke dashboard.</p>
+              </div>
+            </div>
+
+            <div class="cf-help-card">
+              <div class="cf-help-card-icon register">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+              <div>
+                <h3>Register</h3>
+                <p>Digunakan untuk membuat akun user baru dengan data nama, divisi, posisi, email, dan password.</p>
+              </div>
+            </div>
+
+            <div class="cf-help-card">
+              <div class="cf-help-card-icon forgot">
+                <i class="fa-solid fa-key"></i>
+              </div>
+              <div>
+                <h3>Lupa Password</h3>
+                <p>Digunakan untuk mencari password berdasarkan email yang sudah terdaftar di database.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cf-help-admin-note">
+            <div class="cf-help-admin-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h3>Catatan Admin</h3>
+              <p>
+                Admin tidak login dari halaman ini. Admin menggunakan halaman khusus admin untuk
+                mengelola task, QC, report, dan leaderboard.
+              </p>
+            </div>
+          </div>
+        </div>
+      `
+    });
+  });
+}
+  </script>
+</body>
+</html>
