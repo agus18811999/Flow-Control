@@ -6489,6 +6489,104 @@ height: 300px;
     min-height: 210px !important;
   }
 }
+/* ================================
+   USER DASHBOARD LEADERBOARD TABLE
+   Vertical Scroll Fix
+================================ */
+
+.user-leaderboard-table-panel {
+  height: 610px;
+  max-height: 610px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.user-leaderboard-table-head {
+  flex-shrink: 0;
+}
+
+.user-leaderboard-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.user-leaderboard-scroll {
+  height: 100%;
+  max-height: 100%;
+
+  overflow-y: auto;
+  overflow-x: auto;
+
+  border-radius: 24px;
+  padding-right: 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Biar table tidak gepeng */
+.user-leaderboard-scroll table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Header tabel tetap nempel saat discroll */
+.user-leaderboard-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Scrollbar premium */
+.user-leaderboard-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.user-leaderboard-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+.user-leaderboard-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #65d7c5, #6f8cff, #e873aa);
+  border-radius: 999px;
+}
+
+/* Optional: biar row lebih nyaman dibaca */
+.user-leaderboard-scroll tbody tr {
+  transition: background 0.2s ease;
+}
+
+.user-leaderboard-scroll tbody tr:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .user-leaderboard-table-panel {
+    height: 540px;
+    max-height: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-leaderboard-table-panel {
+    height: 500px;
+    max-height: 500px;
+  }
+
+  .user-leaderboard-scroll table {
+    min-width: 680px;
+  }
+}
   </style>
 </head>
 
@@ -6754,41 +6852,46 @@ height: 300px;
     <div class="skeleton mt-3"></div>
   </div>
 </div>
-          <div class="leaderboard-table-panel glass-soft">
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <div>
-                <p class="text-[11px] uppercase tracking-[0.16em] font-black text-[#7654dd]">Leaderboard Data</p>
-                <h3 class="text-2xl font-black tracking-[-0.05em] text-[#2d335b] mt-1">Ranking List</h3>
-              </div>
+         <div class="leaderboard-table-panel glass-soft user-leaderboard-table-panel">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-4 user-leaderboard-table-head">
+    <div>
+      <p class="text-[11px] uppercase tracking-[0.16em] font-black text-[#7654dd]">
+        Leaderboard Data
+      </p>
+      <h3 class="text-2xl font-black tracking-[-0.05em] text-[#2d335b] mt-1">
+        Ranking List
+      </h3>
+    </div>
 
-              <button id="reloadLeaderboardBtn" class="secondary-btn">
-                <i class="fa-solid fa-rotate"></i>
-                Muat Ulang
-              </button>
-            </div>
+    <button id="reloadLeaderboardBtn" class="secondary-btn">
+      <i class="fa-solid fa-rotate"></i>
+      Muat Ulang
+    </button>
+  </div>
 
-            <div id="leaderboardContent">
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Nama User</th>
-                      <th>Divisi</th>
-                      <th>Posisi</th>
-                      <th>Score</th>
-                      <th>Total Task</th>
-                    </tr>
-                  </thead>
-                  <tbody id="leaderboardTableBody">
-                    <tr>
-                      <td colspan="6">Memuat data...</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+  <div id="leaderboardContent" class="user-leaderboard-content">
+    <div class="table-wrap user-leaderboard-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Nama User</th>
+            <th>Divisi</th>
+            <th>Posisi</th>
+            <th>Score</th>
+            <th>Total Task</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboardTableBody">
+          <tr>
+            <td colspan="6">Memuat data...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
         </div>
       </section>
       <section id="meetingView" class="view-section">
@@ -11597,31 +11700,57 @@ function closeStatusTaskProcessLoading() {
     /****************************************************
      * BACKEND
      ****************************************************/
-    async function sendToBackend(payload) {
-      if (!SCRIPT_URL || SCRIPT_URL.includes('ISI_URL_GOOGLE_APPS_SCRIPT')) {
-        throw new Error('SCRIPT_URL belum diisi. Masukkan URL Web App Google Apps Script yang sama dengan halaman login.');
-      }
+async function sendToBackend(payload = {}) {
+  if (!SCRIPT_URL || !String(SCRIPT_URL).includes('/exec')) {
+    throw new Error('SCRIPT_URL user-dashboard belum benar. Pastikan memakai URL Web App Google Apps Script yang berakhir /exec.');
+  }
 
-      const body = new URLSearchParams();
+  const body = new URLSearchParams();
 
-      Object.keys(payload).forEach(key => {
-        if (payload[key] !== undefined && payload[key] !== null) {
-          body.append(key, payload[key]);
-        }
-      });
+  Object.keys(payload).forEach(key => {
+    const value = payload[key];
 
-      const response = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body
-      });
+    if (Array.isArray(value) || typeof value === 'object') {
+      body.append(key, JSON.stringify(value));
+    } else {
+      body.append(key, value ?? '');
+    }
+  });
 
-      if (!response.ok) {
-        throw new Error(`Request gagal. HTTP Status: ${response.status}`);
-      }
+  body.append('_t', Date.now());
 
-      return await response.json();
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body,
+      cache: 'no-store',
+      redirect: 'follow'
+    });
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      throw new Error(`Backend HTTP ${response.status}: ${text.slice(0, 180)}`);
     }
 
+    try {
+      return JSON.parse(text);
+    } catch (error) {
+      throw new Error('Response backend bukan JSON valid: ' + text.slice(0, 180));
+    }
+
+  } catch (error) {
+    console.error('USER DASHBOARD FETCH ERROR:', {
+      scriptUrl: SCRIPT_URL,
+      payload,
+      originalError: error
+    });
+
+    throw new Error(
+      'Koneksi backend gagal. Cek SCRIPT_URL di user-dashboard, akses deployment Apps Script, dan pastikan fetch tidak memakai header application/json.'
+    );
+  }
+}
     /****************************************************
      * SESSION
      ****************************************************/
