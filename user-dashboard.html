@@ -15726,6 +15726,194 @@ input[list]::-webkit-calendar-picker-indicator {
 .log-icon-Meeting { color: #8b5cf6; background: #f5f3ff; border-color: #ede9fe; }
 .log-icon-Call { color: #f59e0b; background: #fffbeb; border-color: #fef3c7; }
 .log-icon-WhatsApp { color: #10b981; background: #ecfdf5; border-color: #d1fae5; }
+/* ==================================================
+   PREMIUM FEEDBACK FORM STYLING
+   ================================================== */
+.feedback-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 48px;
+  padding: 40px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.2), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(232, 115, 170, 0.15), transparent 40%),
+    linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 30px 90px rgba(83, 94, 160, 0.15), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.feedback-tabs {
+  display: flex;
+  gap: 12px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: fit-content;
+  backdrop-filter: blur(10px);
+}
+
+.feedback-tab-btn {
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #59648e;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feedback-tab-btn.active {
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6, #e873aa);
+  color: white;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Skala 1-5 Radio Buttons (Ultra Premium) */
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+.rating-row:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(83, 94, 160, 0.08);
+}
+
+.rating-scale-group {
+  display: flex;
+  gap: 8px;
+}
+
+.rating-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  color: #59648e;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.rating-input:checked + .rating-circle {
+  transform: scale(1.15) translateY(-2px);
+  color: white;
+  border-color: transparent;
+}
+/* Gradasi Warna Skala (1 Merah, 3 Kuning, 5 Hijau/Ungu) */
+.rating-input[value="1"]:checked + .rating-circle { background: linear-gradient(135deg, #f43f5e, #e11d48); box-shadow: 0 8px 20px rgba(225, 29, 72, 0.4); }
+.rating-input[value="2"]:checked + .rating-circle { background: linear-gradient(135deg, #f97316, #ea580c); box-shadow: 0 8px 20px rgba(234, 88, 12, 0.4); }
+.rating-input[value="3"]:checked + .rating-circle { background: linear-gradient(135deg, #eab308, #d97706); box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4); }
+.rating-input[value="4"]:checked + .rating-circle { background: linear-gradient(135deg, #14b8a6, #0d9488); box-shadow: 0 8px 20px rgba(13, 148, 136, 0.4); }
+.rating-input[value="5"]:checked + .rating-circle { background: linear-gradient(135deg, #6f8cff, #8b5cf6); box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4); }
+
+/* Custom Checkbox/Radio Cards untuk Pilihan Ganda */
+.choice-card-input:checked + .choice-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(232, 115, 170, 0.1));
+  border-color: #8b5cf6;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+}
+.choice-card-input:checked + .choice-card .choice-icon {
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6);
+  color: white;
+  border-color: transparent;
+}
+
+.feedback-history-card {
+  transition: all 0.3s ease;
+  isolation: isolate;
+}
+.feedback-history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(83, 94, 160, 0.15);
+  border-color: rgba(255,255,255,0.8);
+}
+@media (max-width: 768px) {
+  .rating-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .rating-scale-group { width: 100%; justify-content: space-between; }
+}
+/* ==================================================
+   ULTRA PREMIUM TAB SWITCHER (FEEDBACK)
+   ================================================== */
+.feedback-tabs-container {
+  position: relative;
+  isolation: isolate;
+}
+
+.feedback-tab-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 26px 8px 10px; /* Padding asimetris agar ikon di kiri membaur sempurna */
+  border-radius: 999px; /* Bentuk kapsul penuh */
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #667092;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+}
+
+/* Hover State saat tidak aktif */
+.feedback-tab-btn:hover:not(.active) {
+  color: #2d335b;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(83, 94, 160, 0.06);
+}
+
+/* Lingkaran Ikon Eksekutif di Dalam Tab */
+.feedback-tab-btn .tab-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: #7a82a8;
+  box-shadow: 0 4px 10px rgba(83, 94, 160, 0.08);
+  transition: all 0.4s ease;
+}
+
+.feedback-tab-btn:hover:not(.active) .tab-icon-wrapper {
+  color: #7654dd;
+  background: #ffffff;
+}
+
+/* State Saat Tab Aktif (Menyala Elegan) */
+.feedback-tab-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6, #e873aa);
+  border-color: transparent;
+  box-shadow: 0 14px 32px rgba(139, 92, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Ikon Menjadi Kristal Transparan saat Aktif */
+.feedback-tab-btn.active .tab-icon-wrapper {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6);
+}
   </style>
 </head>
 
@@ -15872,6 +16060,10 @@ input[list]::-webkit-calendar-picker-indicator {
 <button class="menu-item" data-view="ideaPockets">
   <i class="fa-solid fa-lightbulb"></i>
   <span>Kantong Ide</span>
+</button>
+<button class="menu-item" data-view="feedback">
+  <i class="fa-solid fa-comment-dots"></i>
+  <span>Team Feedback</span>
 </button>
           <button class="menu-item" data-view="profile">
             <i class="fa-solid fa-user-gear"></i>
@@ -16660,6 +16852,431 @@ input[list]::-webkit-calendar-picker-indicator {
       <p class="text-sm font-bold text-[#667092] mt-2">Data history task sedang diproses.</p>
     </div>
   </div>
+</section>
+<!-- Team Feedback View -->
+<section id="feedbackView" class="view-section">
+  
+  <!-- Premium Hero Section -->
+ <!-- Premium Hero Section: Team Feedback & Evaluation -->
+<div class="hero-dashboard glass-deep mb-10 overflow-hidden relative p-10 md:p-12 rounded-[48px] border border-white/40 shadow-[0_32px_120px_rgba(31,38,135,0.15)] flex-none">
+  
+  <!-- Dynamic Background Orbs (Premium Ambient Glow) -->
+  <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-indigo-500/20 to-purple-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-gradient-to-tr from-pink-400/15 to-orange-300/10 rounded-full blur-[100px] pointer-events-none"></div>
+  
+  <!-- Subtle Blueprint Grid Overlay -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 30px 34px;"></div>
+
+  <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    
+    <!-- Left Content (Typography & Intro) -->
+    <div class="lg:col-span-7 space-y-8">
+      
+      <!-- Glowing Status Badge -->
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/10 border border-white/25 text-[#7654dd] backdrop-blur-md shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+        </span>
+        <span class="text-[11px] font-black uppercase tracking-[0.25em]">Culture & Evaluation</span>
+      </div>
+      
+      <!-- Mega Typography -->
+      <div class="space-y-4">
+        <h1 class="page-title text-[56px] md:text-[76px] font-black leading-[0.95] tracking-[-0.07em] text-[#1a1f3d]">
+          Team <br />
+          <span class="gradient-text block">Feedback & Evaluasi.</span>
+        </h1>
+        <p class="max-w-[540px] text-[17px] font-medium text-[#59648e] leading-relaxed">
+          Suara Anda menentukan arah pertumbuhan tim. Sampaikan kendala, tingkat kepuasan, dan saran Anda secara transparan. <span class="text-indigo-600 font-bold">Identitas 100% rahasia dan aman.</span>
+        </p>
+      </div>
+
+      <!-- Elegance Icon Stack (Quick Hint) -->
+      <div class="flex items-center gap-6 pt-2">
+        <div class="flex -space-x-3">
+          <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-bold shadow-sm"><i class="fa-solid fa-user-secret"></i></div>
+          <div class="w-10 h-10 rounded-full border-2 border-white bg-pink-100 flex items-center justify-center text-pink-600 text-xs font-bold shadow-sm"><i class="fa-solid fa-heart"></i></div>
+          <div class="w-10 h-10 rounded-full border-2 border-white bg-mint-100 flex items-center justify-center text-mint-600 text-xs font-bold shadow-sm"><i class="fa-solid fa-chart-pie"></i></div>
+        </div>
+        <p class="text-[13px] font-bold text-[#667092]">Evaluation process made <span class="text-[#7654dd]">intelligent.</span></p>
+      </div>
+
+    </div>
+
+    <!-- Right Content (Ultra Premium Metrics Card) -->
+    <div class="lg:col-span-5 flex lg:justify-end">
+      <div class="group relative w-full lg:w-auto min-w-[320px]">
+        
+        <!-- Hover Glow Aura -->
+        <div class="absolute inset-0 bg-indigo-500/10 blur-[40px] rounded-[42px] group-hover:bg-indigo-500/25 transition-all duration-700 pointer-events-none"></div>
+        
+        <div class="relative glass-soft p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] backdrop-blur-2xl overflow-hidden">
+          
+          <!-- Floating Watermark Icon -->
+          <div class="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-white/20 border border-white/40 flex items-center justify-center text-indigo-500/30 text-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+            <i class="fa-solid fa-comment-dots"></i>
+          </div>
+
+          <div class="space-y-10">
+            <!-- Card Header -->
+            <div>
+              <p class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 mb-2">Your Records</p>
+              <h4 class="text-xl font-black text-[#2d335b]">Feedback Stats</h4>
+            </div>
+
+            <!-- Metrics Values -->
+            <div class="relative z-10 grid grid-cols-2 gap-8">
+              <div class="relative">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Terkirim</p>
+                <div class="flex items-baseline gap-1">
+                  <h3 id="statFdbkTotal" class="text-5xl font-black text-[#2d335b] tracking-tighter">0</h3>
+                  <span class="text-sm font-bold text-gray-400">form</span>
+                </div>
+              </div>
+              <div class="relative pl-8 border-l border-white/40">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Avg Score</p>
+                <div class="flex items-baseline gap-1">
+                  <h3 id="statFdbkScore" class="text-5xl font-black text-pink-500 tracking-tighter">0.0</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Privacy Engine Status Bar -->
+            <div class="p-5 rounded-[24px] bg-white/20 border border-white/40 flex items-center justify-between group-hover:bg-white/30 transition-colors">
+              <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span class="text-xs font-black text-[#2d335b] uppercase tracking-wider">Privacy Engine</span>
+              </div>
+              <span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm">Secured</span>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>
+  <!-- Tab Controller -->
+ <!-- Premium Segmented Tab Controller -->
+  <div class="relative z-20 flex justify-center mb-10">
+    <div class="feedback-tabs-container p-1.5 rounded-full bg-white/40 border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.12)] backdrop-blur-2xl flex items-center gap-1.5">
+      
+      <button onclick="switchFeedbackTab('form')" id="tabFdbkForm" class="feedback-tab-btn active">
+        <div class="tab-icon-wrapper"><i class="fa-solid fa-pen-nib"></i></div>
+        <span>Isi Feedback Baru</span>
+      </button>
+
+      <button onclick="switchFeedbackTab('history')" id="tabFdbkHistory" class="feedback-tab-btn">
+        <div class="tab-icon-wrapper"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <span>Riwayat Anda</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ================= TAB 1: FORM FEEDBACK ================= -->
+  <!-- ================= TAB 1: FORM FEEDBACK (ULTRA PREMIUM) ================= -->
+  <!-- ================= TAB 1: FORM FEEDBACK (ULTRA PREMIUM) ================= -->
+  <!-- ================= TAB 1: FORM FEEDBACK (ULTRA PREMIUM) ================= -->
+  <div id="fdbkFormArea" class="animate-[viewEnter_0.4s_ease]">
+    <form id="teamFeedbackForm" onsubmit="submitFeedback(event)">
+      
+      <!-- PART A: Info -->
+      <div class="glass-soft p-8 md:p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.08)] relative overflow-hidden group mb-10">
+        <div class="absolute -top-24 -left-24 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/20 transition-all duration-700 z-0"></div>
+        
+        <div class="relative z-10 flex items-center gap-5 mb-8 border-b border-white/40 pb-6">
+          <div class="w-14 h-14 rounded-[22px] bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center shadow-[0_10px_25px_rgba(99,102,241,0.4)] text-[22px] font-black flex-none">
+            A
+          </div>
+          <div>
+            <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-none">Informasi Responden</h3>
+            <p class="text-[13px] font-bold text-[#667092] mt-1.5">Lengkapi profil Anda. Identitas dapat disembunyikan sesuai preferensi.</p>
+          </div>
+        </div>
+
+        <div class="relative z-10 flex flex-col gap-6">
+          <!-- Toggle Anonim (Full Width) -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-[24px] bg-gradient-to-r from-white/60 to-white/30 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+            <div>
+              <h4 class="font-black text-[#2d335b] text-[15px]">
+                <i class="fa-solid fa-user-secret text-indigo-500 mr-2"></i>Kirim sebagai Anonim?
+              </h4>
+              <p class="text-[12px] font-bold text-[#59648e] mt-1">Jika diaktifkan, Nama, Divisi, dan Jabatan akan dikunci dan disembunyikan dari laporan HR.</p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer mt-4 sm:mt-0">
+              <input type="checkbox" id="fbkAnonim" class="sr-only peer" onchange="toggleAnonymousFields()">
+              <div class="w-14 h-7 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
+            </label>
+          </div>
+
+          <!-- Wrapper Identitas (Akan di-blur saat anonim) -->
+          <div id="fbkIdentityFields" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 ease-out origin-top">
+            <!-- Input Nama -->
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase tracking-widest text-[#59648e]">Nama Lengkap <span class="text-gray-400 lowercase normal-case tracking-normal">(Opsional)</span></label>
+              <div class="relative">
+                <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400"></i>
+                <input id="fbkNama" type="text" class="dir-input pl-11 bg-white/50 focus:bg-white transition-colors" placeholder="Nama Anda">
+              </div>
+            </div>
+
+            <!-- Input Divisi -->
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase tracking-widest text-[#59648e]">Divisi</label>
+              <div class="relative">
+                <i class="fa-solid fa-sitemap absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400"></i>
+                <input id="fbkDivisi" type="text" class="dir-input pl-11 bg-white/50 focus:bg-white transition-colors" placeholder="Contoh: Marketing">
+              </div>
+            </div>
+
+            <!-- Input Jabatan -->
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase tracking-widest text-[#59648e]">Jabatan / Posisi</label>
+              <div class="relative">
+                <i class="fa-solid fa-briefcase absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400"></i>
+                <input id="fbkJabatan" type="text" class="dir-input pl-11 bg-white/50 focus:bg-white transition-colors" placeholder="Contoh: UI/UX Designer">
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Lama Bergabung (Diluar wrapper karena tetap wajib diisi walau anonim) -->
+          <div class="space-y-2 mt-2">
+            <label class="text-[11px] font-black uppercase tracking-widest text-[#59648e]">Lama Bergabung <span class="text-pink-500">* Wajib</span></label>
+            <div class="relative md:w-1/2">
+              <i class="fa-solid fa-hourglass-half absolute left-4 top-1/2 -translate-y-1/2 text-indigo-400"></i>
+              <select id="fbkLamaJoin" class="dir-select pl-11 bg-white/50 focus:bg-white transition-colors appearance-none cursor-pointer" required>
+                <option value="">Pilih durasi kerja Anda di tim...</option>
+                <option value="< 1 bulan">< 1 bulan</option>
+                <option value="1-3 bulan">1-3 bulan</option>
+                <option value="3-6 bulan">3-6 bulan</option>
+                <option value="> 6 bulan">> 6 bulan</option>
+              </select>
+              <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PART B: Penilaian -->
+      <div class="glass-soft p-8 md:p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.08)] relative overflow-hidden group mb-10">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-blue-500/20 transition-all duration-700 z-0"></div>
+        
+        <div class="relative z-10 flex items-center gap-5 mb-6 border-b border-white/40 pb-6">
+          <div class="w-14 h-14 rounded-[22px] bg-gradient-to-br from-blue-400 to-teal-500 text-white flex items-center justify-center shadow-[0_10px_25px_rgba(59,130,246,0.4)] text-[22px] font-black flex-none">
+            B
+          </div>
+          <div>
+            <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-none">Penilaian Umum</h3>
+            <p class="text-[13px] font-bold text-[#667092] mt-1.5">Skala <span class="text-pink-500 font-black">1</span> (Sangat Tidak Setuju) s/d <span class="text-indigo-500 font-black">5</span> (Sangat Setuju).</p>
+          </div>
+        </div>
+
+        <div class="relative z-10 mt-8 space-y-3" id="partB_Container">
+          <!-- Di-generate otomatis oleh JavaScript -->
+        </div>
+      </div>
+
+      <!-- PART C: Pilihan -->
+      <!-- PART C: Pilihan -->
+      <div class="glass-soft p-8 md:p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.08)] relative overflow-hidden group mb-10">
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-orange-500/20 transition-all duration-700 z-0"></div>
+
+        <div class="relative z-10 flex items-center gap-5 mb-8 border-b border-white/40 pb-6">
+          <div class="w-14 h-14 rounded-[22px] bg-gradient-to-br from-orange-400 to-pink-500 text-white flex items-center justify-center shadow-[0_10px_25px_rgba(249,115,22,0.4)] text-[22px] font-black flex-none">
+            C
+          </div>
+          <div>
+            <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-none">Evaluasi Spesifik</h3>
+            <p class="text-[13px] font-bold text-[#667092] mt-1.5">Pilih opsi yang paling menggambarkan kondisi kerja Anda saat ini.</p>
+          </div>
+        </div>
+
+        <div class="relative z-10 space-y-10">
+          <!-- C1 -->
+          <div>
+            <h4 class="text-[16px] font-black text-[#2d335b] mb-4">1. Apa kendala terbesar yang paling sering Anda alami? <span class="text-pink-500">*</span></h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="c1Options">
+               <!-- Checkboxes via JS -->
+            </div>
+            
+            <!-- Premium Input Shell "Lainnya" -->
+            <div id="c1LainnyaWrapper" class="hidden mt-4 animate-[viewEnter_0.3s_ease]">
+              <div class="relative p-[1.5px] rounded-[22px] bg-gradient-to-r from-orange-400/40 to-pink-500/40 shadow-sm">
+                <div class="relative flex items-center bg-white/80 backdrop-blur-xl rounded-[20px] overflow-hidden focus-within:bg-white focus-within:ring-4 focus-within:ring-orange-500/20 transition-all duration-300">
+                  <div class="w-12 h-12 flex items-center justify-center text-orange-500 bg-white/50 border-r border-white/80">
+                    <i class="fa-solid fa-pen-nib"></i>
+                  </div>
+                  <input type="text" id="c1LainnyaInput" class="flex-1 h-12 px-4 bg-transparent border-none outline-none text-[13.5px] font-bold text-[#2d335b] placeholder-gray-500" placeholder="Tuliskan kendala spesifik lainnya di sini...">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- C2 -->
+          <div>
+            <h4 class="text-[16px] font-black text-[#2d335b] mb-4">2. Menurut Anda, aspek mana yang paling perlu diperbaiki? <span class="text-pink-500">*</span></h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="c2Options">
+               <!-- Checkboxes via JS -->
+            </div>
+            
+            <!-- Premium Input Shell "Lainnya" -->
+            <div id="c2LainnyaWrapper" class="hidden mt-4 animate-[viewEnter_0.3s_ease]">
+              <div class="relative p-[1.5px] rounded-[22px] bg-gradient-to-r from-orange-400/40 to-pink-500/40 shadow-sm">
+                <div class="relative flex items-center bg-white/80 backdrop-blur-xl rounded-[20px] overflow-hidden focus-within:bg-white focus-within:ring-4 focus-within:ring-orange-500/20 transition-all duration-300">
+                  <div class="w-12 h-12 flex items-center justify-center text-orange-500 bg-white/50 border-r border-white/80">
+                    <i class="fa-solid fa-lightbulb"></i>
+                  </div>
+                  <input type="text" id="c2LainnyaInput" class="flex-1 h-12 px-4 bg-transparent border-none outline-none text-[13.5px] font-bold text-[#2d335b] placeholder-gray-500" placeholder="Tuliskan aspek spesifik lainnya di sini...">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- C3 -->
+          <div>
+            <h4 class="text-[16px] font-black text-[#2d335b] mb-4">3. Seberapa puas Anda terhadap sistem kerja saat ini? <span class="text-pink-500">*</span></h4>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3" id="c3Options">
+               <!-- Radios via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART D: Pertanyaan Terbuka -->
+      <div class="glass-soft p-8 md:p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.08)] relative overflow-hidden group mb-10">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/20 transition-all duration-700 z-0"></div>
+
+        <div class="relative z-10 flex items-center gap-5 mb-8 border-b border-white/40 pb-6">
+          <div class="w-14 h-14 rounded-[22px] bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center shadow-[0_10px_25px_rgba(16,185,129,0.4)] text-[22px] font-black flex-none">
+            D
+          </div>
+          <div>
+            <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-none">Kritik & Saran Terbuka</h3>
+            <p class="text-[13px] font-bold text-[#667092] mt-1.5">Jabarkan pemikiran Anda secara bebas dan rinci.</p>
+          </div>
+        </div>
+
+        <div class="relative z-10 space-y-6">
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">1. Apa yang sudah berjalan dengan baik selama bekerja di tim ini?</label>
+            <textarea id="d1" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">2. Apa kendala yang paling sering Anda alami?</label>
+            <textarea id="d2" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">3. Apa saran Anda agar koordinasi tim menjadi lebih baik?</label>
+            <textarea id="d3" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">4. Apa saran Anda terkait pembagian job desk?</label>
+            <textarea id="d4" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">5. Apakah ada sistem atau proses kerja yang menurut Anda perlu diperbaiki?</label>
+            <textarea id="d5" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">6. Apakah ada tools atau dokumen yang menurut Anda perlu disediakan?</label>
+            <textarea id="d6" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[14px] font-black text-[#2d335b]">7. Masukan atau kritik lainnya (Opsional)</label>
+            <textarea id="d7" class="dir-textarea p-4 bg-white/50 focus:bg-white transition-colors" placeholder="Ketik jawaban Anda..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer (New Ultra Premium Action Card) -->
+      <div class="mt-12 glass-soft p-8 md:p-10 rounded-[40px] border border-white/80 shadow-[0_25px_60px_rgba(83,94,160,0.15)] flex flex-col md:flex-row items-center justify-between gap-8 bg-gradient-to-br from-white/70 via-white/50 to-indigo-50/40 relative overflow-hidden">
+        <!-- Animated Glow inside footer -->
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl"></div>
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-2xl"></div>
+
+        <div class="relative z-10 pl-2 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-3 shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Ready to Submit
+          </div>
+          <h4 class="text-2xl font-black text-[#2d335b] tracking-tight">Kirim Evaluasi Anda</h4>
+          <p class="text-[13px] font-bold text-[#59648e] mt-1.5 max-w-[420px]">
+            Pastikan semua data sudah sesuai. Laporan ini akan diproses secara rahasia oleh sistem untuk peningkatan kualitas tim.
+          </p>
+        </div>
+
+        <button type="submit" id="btnSubmitFeedback" class="relative z-10 w-full md:w-auto min-h-[64px] px-14 rounded-[24px] bg-gradient-to-br from-indigo-600 to-pink-500 text-white font-black text-[15px] shadow-[0_15px_30px_rgba(139,92,246,0.35)] hover:shadow-[0_20px_40px_rgba(139,92,246,0.5)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden group">
+          <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+          <i class="fa-solid fa-paper-plane text-lg relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></i>
+          <span class="relative z-10 tracking-wide">Kirim Sekarang</span>
+        </button>
+      </div>
+      
+    </form>
+  </div>
+
+  <!-- ================= TAB 2: HISTORY FEEDBACK ================= -->
+ <!-- ================= TAB 2: HISTORY FEEDBACK (ULTRA PREMIUM) ================= -->
+  <div id="fdbkHistoryArea" class="hidden animate-[viewEnter_0.4s_ease] relative">
+    
+    <!-- Ambient Background Glow untuk Area History -->
+    <div class="absolute -top-10 -left-10 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none z-[-1]"></div>
+    <div class="absolute top-1/3 -right-10 w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[80px] pointer-events-none z-[-1]"></div>
+
+    <!-- Executive Floating Toolbar -->
+    <div class="relative z-10 mb-10 p-5 md:p-6 rounded-[36px] border border-white/60 shadow-[0_24px_60px_rgba(83,94,160,0.08)] flex flex-col md:flex-row items-center justify-between gap-5 bg-gradient-to-r from-white/60 via-white/40 to-white/60 backdrop-blur-2xl">
+      
+      <!-- Bagian Kiri: Ikon & Judul -->
+      <div class="flex items-center gap-5 w-full md:w-auto">
+        <!-- 3D Animated Icon Box -->
+        <div class="w-14 h-14 rounded-[22px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-[1.5px] shadow-[0_12px_30px_rgba(139,92,246,0.25)] flex-none group">
+          <div class="w-full h-full rounded-[20px] bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xl border border-white/30 group-hover:bg-white/10 transition-colors">
+            <i class="fa-solid fa-clock-rotate-left group-hover:-rotate-45 transition-transform duration-500"></i>
+          </div>
+        </div>
+        
+        <div class="min-w-0">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/50 border border-white/70 text-[#59648e] text-[9px] font-black uppercase tracking-[0.2em] shadow-sm mb-1.5">
+            <i class="fa-solid fa-box-archive text-indigo-500"></i> Evaluation Archive
+          </span>
+          <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-none">Riwayat Pengisian</h3>
+        </div>
+      </div>
+
+      <!-- Bagian Kanan: Lencana & Tombol Sync -->
+      <div class="flex items-center gap-4 w-full md:w-auto">
+        
+        <!-- Security Badge (Hanya tampil di layar agak besar) -->
+        <div class="hidden sm:flex items-center gap-3 px-5 h-[56px] rounded-[20px] bg-white/40 border border-white/60 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)]">
+           <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-sm">
+             <i class="fa-solid fa-shield-check"></i>
+           </div>
+           <div class="flex flex-col justify-center">
+             <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Status Data</span>
+             <span class="text-[12.5px] font-bold text-[#2d335b] leading-none">Encrypted</span>
+           </div>
+        </div>
+
+        <!-- Premium Sync Button -->
+        <button onclick="loadFeedbackHistory()" class="group w-full md:w-auto h-[56px] px-8 rounded-[20px] bg-white/70 hover:bg-white border border-white/80 text-indigo-600 font-black text-[13.5px] shadow-[0_8px_20px_rgba(83,94,160,0.06)] hover:shadow-[0_15px_30px_rgba(139,92,246,0.15)] hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2.5">
+          <i class="fa-solid fa-rotate group-hover:rotate-180 transition-transform duration-500 text-base"></i>
+          <span>Sinkronisasi</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Grid Layout untuk Card -->
+    <div id="fdbkGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 pb-12 relative z-10">
+       <!-- Card History JS Render -->
+    </div>
+  </div>
+
 </section>
 <!-- Facility & Room Booking View -->
 <section id="roomBookingView" class="view-section">
@@ -21366,6 +21983,7 @@ let leaveRequestLoading = false;
       initLeaveRequestControls();
 initAttendanceControls();
       bootDashboard();
+      initFeedbackControls();
     });
 async function openReportAdminComplaintModal() {
   const user = getReportComplaintUserData();
@@ -21424,6 +22042,489 @@ async function openReportAdminComplaintModal() {
               </div>
             `;
           }).join('')}
+        </div>
+      </div>
+    `
+  });
+}
+/****************************************************
+ * FEEDBACK FORM JAVASCRIPT ENGINE
+ ****************************************************/
+
+let feedbackHistoryRaw = [];
+
+// Data Struktur Pertanyaan
+const partB_Questions = [
+  "Saya memahami job desk dan tanggung jawab saya dengan baik.",
+  "Pembagian tugas sudah jelas.",
+  "Beban kerja yang diberikan sudah sesuai.",
+  "Target pekerjaan yang diberikan cukup jelas.",
+  "Saya mengetahui prioritas pekerjaan yang harus dikerjakan.",
+  "Koordinasi dengan atasan berjalan dengan baik.",
+  "Koordinasi dengan rekan satu tim berjalan dengan baik.",
+  "Informasi pekerjaan disampaikan dengan jelas.",
+  "Saya mendapatkan arahan ketika mengalami kesulitan.",
+  "Alur komunikasi dalam tim sudah efektif.",
+  "Proses monitoring pekerjaan sudah berjalan dengan baik.",
+  "Feedback terhadap hasil pekerjaan diberikan secara jelas.",
+  "Sistem kerja saat ini membantu saya bekerja lebih efektif.",
+  "Tools atau platform kerja yang digunakan sudah memadai.",
+  "Saya merasa nyaman bekerja di dalam tim."
+];
+
+const c1_List = ["Job desk kurang jelas", "Komunikasi kurang efektif", "Koordinasi lambat", "Target pekerjaan kurang jelas", "Terlalu banyak pekerjaan", "Kurangnya arahan", "Dokumentasi kurang lengkap", "Tidak ada kendala", "Lainnya"];
+const c2_List = ["Job Desk", "Pembagian Tugas", "Komunikasi", "Koordinasi", "Monitoring", "SOP", "Dokumentasi", "Manajemen Waktu", "Sistem Kerja", "Penggunaan Tools", "Lainnya"];
+const c3_List = ["Sangat Puas", "Puas", "Cukup", "Kurang Puas", "Tidak Puas"];
+
+// Inisialisasi UI saat DOM Ready
+document.addEventListener('DOMContentLoaded', () => {
+  renderPartB();
+  
+  renderPartC(c1_List, 'c1Options', 'C1', 'checkbox', 'c1LainnyaWrapper');
+  renderPartC(c2_List, 'c2Options', 'C2', 'checkbox', 'c2LainnyaWrapper');
+  renderPartC(c3_List, 'c3Options', 'C3', 'radio', null);
+});
+
+// Pendaftaran ke switchView
+// *CATATAN: Pastikan Anda menambahkan ini ke dalam mapping viewMap di fungsi switchView yang ada di file Anda:
+// 'feedback': 'feedbackView', 
+// dan di pengecekan view === 'feedback' panggil loadFeedbackHistory();
+
+// 1. RENDER QUESTIONS UI
+function renderPartB() {
+  const container = document.getElementById('partB_Container');
+  if(!container) return;
+  
+  container.innerHTML = partB_Questions.map((q, idx) => `
+    <div class="rating-row">
+      <p class="text-[13.5px] font-bold text-[#2d335b] leading-snug lg:w-2/3 pr-4">${idx + 1}. ${q}</p>
+      <div class="rating-scale-group mt-3 lg:mt-0">
+        ${[1,2,3,4,5].map(num => `
+          <label class="relative cursor-pointer">
+            <input type="radio" name="Q${idx+1}" value="${num}" class="rating-input sr-only" required>
+            <div class="rating-circle">${num}</div>
+          </label>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+// Fungsi interaktif efek Kaca (Glassmorphism Blur) saat mode Anonim dihidupkan
+function toggleAnonymousFields() {
+  const isAnon = document.getElementById('fbkAnonim').checked;
+  const identityFields = document.getElementById('fbkIdentityFields');
+  const inputs = identityFields.querySelectorAll('input');
+  
+  if (isAnon) {
+    // Terapkan efek Blur, Grayscale, dan matikan akses klik
+    identityFields.style.opacity = '0.35';
+    identityFields.style.filter = 'blur(2px) grayscale(100%)';
+    identityFields.style.pointerEvents = 'none';
+    identityFields.style.transform = 'scale(0.98)';
+    
+    // Kosongkan dan kunci inputan
+    inputs.forEach(input => {
+        input.value = ''; 
+        input.disabled = true;
+    });
+  } else {
+    // Kembalikan ke normal
+    identityFields.style.opacity = '1';
+    identityFields.style.filter = 'none';
+    identityFields.style.pointerEvents = 'auto';
+    identityFields.style.transform = 'scale(1)';
+    
+    // Buka kunci inputan
+    inputs.forEach(input => {
+        input.disabled = false;
+    });
+  }
+}
+function renderPartC(list, containerId, nameGroup, type, triggerOtherId) {
+  const container = document.getElementById(containerId);
+  if(!container) return;
+
+  container.innerHTML = list.map((opt, idx) => `
+    <label class="relative block cursor-pointer group">
+      <input type="${type}" name="${nameGroup}" value="${opt}" class="choice-card-input sr-only" 
+             onchange="handleOtherTrigger('${opt}', '${triggerOtherId}', this.checked)">
+      <div class="choice-card flex items-center gap-3 p-4 rounded-[18px] bg-white/40 border border-white/60 transition-all group-hover:bg-white/60">
+        <div class="choice-icon w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center text-[10px] text-transparent transition-all">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <span class="text-[13px] font-bold text-[#2d335b]">${opt}</span>
+      </div>
+    </label>
+  `).join('');
+}
+
+function handleOtherTrigger(val, wrapperId, isChecked) {
+  if(!wrapperId) return;
+  const wrapperEl = document.getElementById(wrapperId);
+  if(val === 'Lainnya') {
+    if (isChecked) {
+      // Munculkan wrapper elegan
+      wrapperEl.classList.remove('hidden');
+    } else {
+      // Sembunyikan dan kosongkan isinya
+      wrapperEl.classList.add('hidden');
+      const inputEl = document.getElementById(wrapperId + 'Input');
+      if (inputEl) inputEl.value = '';
+    }
+  }
+}
+function initFeedbackControls() {
+  // Render elemen form otomatis saat web dimuat
+  renderPartB();
+ // Ganti baris ini di dalam fungsi initFeedbackControls()
+  renderPartC(c1_List, 'c1Options', 'C1', 'checkbox', 'c1LainnyaWrapper');
+  renderPartC(c2_List, 'c2Options', 'C2', 'checkbox', 'c2LainnyaWrapper');
+  renderPartC(c3_List, 'c3Options', 'C3', 'radio', null);
+  
+  // (Opsional) Jika nanti Anda ingin menambahkan fitur Search/Filter di history
+  // const searchInput = document.getElementById('feedbackSearch');
+  // if (searchInput) searchInput.addEventListener('input', debounce(applyFeedbackFilter, 200));
+}
+// 2. TAB SWITCHER
+function switchFeedbackTab(tab) {
+  const isForm = tab === 'form';
+  document.getElementById('tabFdbkForm').classList.toggle('active', isForm);
+  document.getElementById('tabFdbkHistory').classList.toggle('active', !isForm);
+  
+  document.getElementById('fdbkFormArea').style.display = isForm ? 'block' : 'none';
+  document.getElementById('fdbkHistoryArea').style.display = !isForm ? 'block' : 'none';
+
+  if(!isForm && feedbackHistoryRaw.length === 0) loadFeedbackHistory();
+}
+
+// 3. SUBMIT LOGIC
+async function submitFeedback(e) {
+  e.preventDefault();
+  
+  // Collect Part B
+  let partB = {};
+  for(let i=1; i<=15; i++) {
+    const el = document.querySelector(`input[name="Q${i}"]:checked`);
+    if(!el) return showToast('Belum Lengkap', `Pertanyaan Part B nomor ${i} belum diisi.`, 'fa-solid fa-xmark');
+    partB[`Q${i}`] = el.value;
+  }
+
+  // Collect Part C Checkboxes
+  const getChecks = (name, otherId) => {
+    let vals = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(e => e.value);
+    if(vals.includes('Lainnya')) {
+      vals = vals.filter(v => v !== 'Lainnya');
+      const otherVal = document.getElementById(otherId).value;
+      if(otherVal) vals.push(otherVal);
+    }
+    return vals.join(', ');
+  };
+ const c1 = getChecks('C1', 'c1LainnyaInput');
+  const c2 = getChecks('C2', 'c2LainnyaInput');
+
+  const c3 = document.querySelector(`input[name="C3"]:checked`)?.value;
+
+  if(!c1 || !c2 || !c3) return showToast('Belum Lengkap', 'Bagian C (Pilihan) wajib diisi.', 'fa-solid fa-xmark');
+
+  const payload = {
+    Is_Anonymous: document.getElementById('fbkAnonim').checked,
+    Lama_Bergabung: document.getElementById('fbkLamaJoin').value,
+    ...partB,
+    C1_Kendala: c1,
+    C2_Perbaikan: c2,
+    C3_Kepuasan: c3,
+    D1_Baik: document.getElementById('d1').value,
+    D2_Kendala: document.getElementById('d2').value,
+    D3_SaranKoor: document.getElementById('d3').value,
+    D4_SaranJobdesk: document.getElementById('d4').value,
+    D5_SaranSistem: document.getElementById('d5').value,
+    D6_SaranTools: document.getElementById('d6').value,
+    D7_Lainnya: document.getElementById('d7').value
+  };
+
+  const btn = document.getElementById('btnSubmitFeedback');
+  const origText = btn.innerHTML;
+  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-2"></i> Mengirim...`;
+  btn.disabled = true;
+
+  try {
+    const res = await sendToBackend({ action: 'submit_feedback', token: getToken(), feedbackData: payload });
+    if(res.status === 'success') {
+      Swal.fire({ icon: 'success', title: 'Terkirim', text: res.message });
+      document.getElementById('teamFeedbackForm').reset();
+      document.querySelectorAll('.choice-card-input').forEach(i => i.checked = false);
+      switchFeedbackTab('history');
+    } else throw new Error(res.message);
+  } catch(e) {
+    showBackendError(e);
+  } finally {
+    btn.innerHTML = origText;
+    btn.disabled = false;
+  }
+}
+
+// 4. LOAD HISTORY
+async function loadFeedbackHistory() {
+  const grid = document.getElementById('fdbkGrid');
+  grid.innerHTML = `<div class="col-span-full text-center py-10"><i class="fa-solid fa-circle-notch fa-spin text-3xl text-indigo-500"></i></div>`;
+
+  try {
+    const res = await sendToBackend({ action: 'get_my_feedback_history', token: getToken() });
+    if(res.status === 'success') {
+      feedbackHistoryRaw = res.data || [];
+      renderHistoryGrid();
+      
+      // Update Top Stats
+      document.getElementById('statFdbkTotal').textContent = feedbackHistoryRaw.length;
+      if(feedbackHistoryRaw.length) {
+        const avg = feedbackHistoryRaw.reduce((s, r) => s + parseFloat(r.Rata_Rata_Skala), 0) / feedbackHistoryRaw.length;
+        document.getElementById('statFdbkScore').textContent = avg.toFixed(1);
+      }
+    }
+  } catch(e) {
+    grid.innerHTML = `<div class="col-span-full text-center text-red-500 font-bold">Gagal memuat riwayat.</div>`;
+  }
+}
+
+function renderHistoryGrid() {
+  const grid = document.getElementById('fdbkGrid');
+  if(!feedbackHistoryRaw.length) {
+    grid.innerHTML = `<div class="col-span-full empty-state glass-soft p-12 text-center">
+      <i class="fa-solid fa-box-open text-4xl text-gray-400 mb-4 opacity-50"></i>
+      <h3 class="font-black text-lg text-[#2d335b]">Belum ada riwayat.</h3>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = feedbackHistoryRaw.map(f => {
+    const scoreColor = f.Rata_Rata_Skala >= 4 ? '#10b981' : f.Rata_Rata_Skala >= 3 ? '#f59e0b' : '#ef4444';
+    
+    // Encoded JSON for modal
+    const safeData = encodeURIComponent(JSON.stringify(f.Full_Data));
+
+  return `
+      <div class="group relative flex flex-col h-full rounded-[36px] bg-gradient-to-b from-white/95 via-white/80 to-indigo-50/20 border border-white/80 shadow-[0_15px_40px_rgba(83,94,160,0.06)] hover:shadow-[0_25px_70px_rgba(139,92,246,0.15)] hover:-translate-y-2 transition-all duration-500 overflow-hidden cursor-pointer backdrop-blur-2xl" onclick="openFeedbackDetail('${safeData}')">
+        
+        <!-- Accent Glow di dalam Kartu -->
+        <div class="absolute -top-12 -right-12 w-36 h-36 rounded-full blur-[40px] opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none z-0" style="background-color: ${scoreColor};"></div>
+        
+        <div class="p-8 flex flex-col h-full relative z-10">
+            <!-- Header Kartu -->
+            <div class="flex justify-between items-start mb-6">
+              <div class="w-14 h-14 rounded-[22px] bg-white border border-gray-100 shadow-[0_10px_25px_rgba(0,0,0,0.05)] flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300" style="color: ${scoreColor};">
+                <i class="fa-solid fa-comment-dots"></i>
+              </div>
+              <span class="px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border shadow-sm backdrop-blur-md bg-emerald-50/80 text-emerald-600 border-emerald-200/60">
+                <i class="fa-solid fa-check-double mr-1"></i> ${f.Status_Feedback}
+              </span>
+            </div>
+
+            <!-- Identity Info -->
+            <div class="mb-8">
+              <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1.5">Disubmit pada</p>
+              <h4 class="font-black text-[22px] text-[#2d335b] tracking-tight leading-none mb-3">${f.Created_At}</h4>
+              <p class="text-[11.5px] font-bold text-[#667092] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/60 border border-gray-200/80 shadow-sm">
+                <i class="fa-solid ${f.Nama_Disubmit === 'Anonim' ? 'fa-user-secret text-indigo-500' : 'fa-user text-blue-500'}"></i>
+                Mode: ${f.Nama_Disubmit}
+              </p>
+            </div>
+
+            <!-- Spacer -->
+            <div class="flex-1"></div>
+
+            <!-- Footer Metrics -->
+            <div class="pt-5 border-t border-dashed border-gray-200/80 flex items-end justify-between mt-auto">
+              <div>
+                <p class="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">Skor Kepuasan</p>
+                <div class="flex items-baseline gap-1">
+                  <strong class="text-[32px] font-black tracking-tighter leading-none" style="color:${scoreColor}">${f.Rata_Rata_Skala}</strong>
+                  <span class="text-[12px] font-bold text-gray-400">/ 5.0</span>
+                </div>
+              </div>
+              <div class="w-12 h-12 rounded-[18px] bg-gray-50 border border-gray-100 group-hover:bg-gradient-to-br group-hover:from-indigo-500 group-hover:to-pink-500 group-hover:text-white transition-all duration-300 flex items-center justify-center text-gray-400 shadow-sm group-hover:shadow-[0_10px_20px_rgba(139,92,246,0.3)]">
+                <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+              </div>
+            </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// 5. DETAIL MODAL (READ ONLY)
+function openFeedbackDetail(encodedData) {
+  const d = JSON.parse(decodeURIComponent(encodedData));
+  
+  // 1. Helper Format Tanggal agar elegan (Bukan format ISO mentah)
+  let dateFormatted = d.Created_At;
+  if (String(d.Created_At).includes('T') && String(d.Created_At).includes('Z')) {
+    const dateObj = new Date(d.Created_At);
+    dateFormatted = new Intl.DateTimeFormat('id-ID', {
+      day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Jakarta'
+    }).format(dateObj) + ' WIB';
+  }
+
+  // 2. Helper untuk Hitung Rata-Rata Part B
+  const qScores = [
+    d.Q1_PahamJobdesk, d.Q2_PembagianTugas, d.Q3_BebanKerja, d.Q4_TargetJelas, d.Q5_Prioritas,
+    d.Q6_KoorAtasan, d.Q7_KoorRekan, d.Q8_InfoJelas, d.Q9_ArahanDiterima, d.Q10_AlurKomunikasi,
+    d.Q11_MonitoringKerja, d.Q12_FeedbackHasil, d.Q13_SistemEfektif, d.Q14_ToolsMemadai, d.Q15_NyamanBekerja
+  ].map(Number);
+  const totalScore = qScores.reduce((sum, val) => sum + (val || 0), 0);
+  const avgScore = (totalScore / 15).toFixed(1);
+
+  // 3. Helper Komponen UI Mewah untuk Jawaban Teks Panjang (Part C & D)
+  const drawRow = (label, val) => `
+    <div class="p-4 bg-white/60 border border-white/80 rounded-[24px] mb-3 shadow-[0_4px_15px_rgba(83,94,160,0.04)] transition-all hover:bg-white/80 hover:-translate-y-0.5">
+      <p class="text-[10px] font-black uppercase tracking-[0.15em] text-indigo-500 mb-1.5 flex items-center gap-1.5"><i class="fa-solid fa-diamond text-[8px] opacity-50"></i> ${escapeHtml(label)}</p>
+      <p class="text-[13.5px] font-bold text-[#2d335b] leading-relaxed pl-1">${escapeHtml(val || '-')}</p>
+    </div>
+  `;
+
+  // 4. Helper Komponen UI Mewah untuk Widget Identitas (Part A)
+  const drawStat = (icon, label, val) => `
+    <div class="flex items-center gap-3.5 p-3.5 bg-white/50 border border-white/80 rounded-[20px] shadow-sm hover:shadow-md transition-shadow">
+      <div class="w-10 h-10 rounded-[14px] bg-gradient-to-br from-indigo-100 to-purple-100 border border-white text-indigo-600 flex items-center justify-center text-sm shrink-0 shadow-inner">
+        <i class="${icon}"></i>
+      </div>
+      <div class="min-w-0">
+        <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">${escapeHtml(label)}</p>
+        <p class="text-[13px] font-black text-[#2d335b] truncate">${escapeHtml(val || '-')}</p>
+      </div>
+    </div>
+  `;
+
+  // 5. Helper Komponen UI Mewah untuk Skala Penilaian (Part B)
+  const getRatingColor = (val) => {
+    const v = Number(val);
+    if (v >= 4) return 'bg-emerald-100 text-emerald-600 border-emerald-200 shadow-[0_0_10px_rgba(16,185,129,0.3)]';
+    if (v === 3) return 'bg-amber-100 text-amber-600 border-amber-200 shadow-[0_0_10px_rgba(245,158,11,0.3)]';
+    return 'bg-pink-100 text-pink-600 border-pink-200 shadow-[0_0_10px_rgba(236,72,153,0.3)]';
+  };
+
+  const drawRating = (num, label, val) => `
+    <div class="flex items-center justify-between gap-3 p-3.5 bg-white/50 border border-white/80 rounded-[20px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(83,94,160,0.08)] hover:-translate-y-0.5 transition-all">
+      <p class="text-[12px] font-bold text-[#59648e] leading-snug pl-1"><span class="text-indigo-400 font-black mr-1">${num}.</span> ${escapeHtml(label)}</p>
+      <div class="w-9 h-9 rounded-[12px] flex items-center justify-center text-[14px] font-black shrink-0 border ${getRatingColor(val)}">
+        ${val || 0}
+      </div>
+    </div>
+  `;
+
+  // Launch Super Premium Modal
+  Swal.fire({
+    title: '',
+    width: 950,
+    background: 'transparent',
+    showConfirmButton: true,
+    confirmButtonText: '<i class="fa-solid fa-check-double mr-2"></i> Selesai Review',
+    customClass: { 
+      popup: 'swal-directory-premium p-0',
+      confirmButton: 'primary-btn !h-[52px] !px-10 !rounded-[20px] !text-[13.5px] !shadow-indigo-500/30 hover:!scale-105 transition-all'
+    },
+    html: `
+      <div class="relative overflow-hidden text-left flex flex-col h-full bg-gradient-to-br from-[#f8f9ff]/95 to-white/90 backdrop-blur-3xl rounded-[40px] border border-white/60 shadow-[0_35px_120px_rgba(31,38,135,0.22)]">
+        
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute -top-32 -right-32 w-[400px] h-[400px] bg-indigo-500/15 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute top-1/2 -left-32 w-[300px] h-[300px] bg-pink-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <!-- Sticky Elegant Header -->
+        <div class="relative z-10 px-8 py-7 border-b border-white/40 bg-white/40 backdrop-blur-2xl flex items-center justify-between flex-none shadow-sm">
+           <div class="flex items-center gap-5">
+             <div class="w-16 h-16 rounded-[22px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-[26px] shadow-[0_12px_30px_rgba(139,92,246,0.3)] flex-none">
+               <i class="fa-solid fa-comment-dots"></i>
+             </div>
+             <div>
+               <div class="flex items-center gap-2 mb-1.5">
+                 <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 text-[9px] font-black uppercase tracking-widest border border-indigo-200/40 shadow-sm">
+                   <i class="fa-solid fa-shield-halved mr-1"></i> Data Evaluasi
+                 </span>
+                 <span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[9px] font-black uppercase tracking-widest border border-emerald-200/40 shadow-sm">
+                   ${escapeHtml(d.Status_Feedback || 'Terkirim')}
+                 </span>
+               </div>
+               <h3 class="text-[30px] font-black text-[#2d335b] tracking-tight leading-none">Detail Feedback Tim</h3>
+               <p class="text-[12px] font-bold text-gray-500 mt-1.5 flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Disubmit pada ${dateFormatted}</p>
+             </div>
+           </div>
+
+           <!-- Skor Rata-rata Lingkaran -->
+           <div class="hidden sm:flex flex-col items-center justify-center w-[72px] h-[72px] rounded-[24px] bg-white border border-gray-100 shadow-[0_15px_35px_rgba(83,94,160,0.1)]">
+             <span class="text-[24px] font-black text-indigo-600 leading-none">${avgScore}</span>
+             <span class="text-[8px] font-black text-gray-400 uppercase tracking-widest mt-1">Avg Score</span>
+           </div>
+        </div>
+
+        <!-- Scrollable Body Content -->
+        <div class="relative z-10 flex-1 overflow-y-auto max-h-[65vh] custom-scrollbar p-8 space-y-10">
+           
+           <!-- PART A: Identitas Grid -->
+           <div>
+             <h4 class="flex items-center gap-2.5 font-black text-[18px] text-[#2d335b] mb-4 pb-2 border-b border-indigo-100/50">
+               <span class="w-7 h-7 rounded-lg bg-indigo-500 text-white flex items-center justify-center text-xs shadow-md">A</span> 
+               Informasi Responden
+             </h4>
+             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                ${drawStat(d.Nama_Responden === 'Anonim' ? 'fa-solid fa-user-secret' : 'fa-solid fa-user', 'Nama', d.Nama_Responden)}
+                ${drawStat('fa-solid fa-sitemap', 'Divisi', d.Divisi)}
+                ${drawStat('fa-solid fa-briefcase', 'Jabatan', d.Jabatan)}
+                ${drawStat('fa-solid fa-hourglass-half', 'Lama Bergabung', d.Lama_Bergabung)}
+             </div>
+           </div>
+
+           <!-- PART B: Penilaian Umum Grid -->
+           <div>
+             <h4 class="flex items-center gap-2.5 font-black text-[18px] text-[#2d335b] mb-4 pb-2 border-b border-indigo-100/50">
+               <span class="w-7 h-7 rounded-lg bg-blue-500 text-white flex items-center justify-center text-xs shadow-md">B</span> 
+               Penilaian Umum
+             </h4>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+               ${drawRating(1, 'Memahami job desk & tanggung jawab', d.Q1_PahamJobdesk)}
+               ${drawRating(2, 'Pembagian tugas sudah jelas', d.Q2_PembagianTugas)}
+               ${drawRating(3, 'Beban kerja sudah sesuai', d.Q3_BebanKerja)}
+               ${drawRating(4, 'Target pekerjaan cukup jelas', d.Q4_TargetJelas)}
+               ${drawRating(5, 'Mengetahui prioritas pekerjaan', d.Q5_Prioritas)}
+               ${drawRating(6, 'Koordinasi dengan atasan baik', d.Q6_KoorAtasan)}
+               ${drawRating(7, 'Koordinasi dengan tim baik', d.Q7_KoorRekan)}
+               ${drawRating(8, 'Informasi pekerjaan disampaikan jelas', d.Q8_InfoJelas)}
+               ${drawRating(9, 'Mendapat arahan saat kesulitan', d.Q9_ArahanDiterima)}
+               ${drawRating(10, 'Alur komunikasi efektif', d.Q10_AlurKomunikasi)}
+               ${drawRating(11, 'Monitoring pekerjaan berjalan baik', d.Q11_MonitoringKerja)}
+               ${drawRating(12, 'Feedback hasil diberikan jelas', d.Q12_FeedbackHasil)}
+               ${drawRating(13, 'Sistem kerja saat ini efektif', d.Q13_SistemEfektif)}
+               ${drawRating(14, 'Tools & platform memadai', d.Q14_ToolsMemadai)}
+               ${drawRating(15, 'Nyaman bekerja dalam tim', d.Q15_NyamanBekerja)}
+             </div>
+           </div>
+
+           <!-- PART C: Pilihan -->
+           <div>
+             <h4 class="flex items-center gap-2.5 font-black text-[18px] text-[#2d335b] mb-4 pb-2 border-b border-indigo-100/50">
+               <span class="w-7 h-7 rounded-lg bg-orange-500 text-white flex items-center justify-center text-xs shadow-md">C</span> 
+               Evaluasi Spesifik
+             </h4>
+             ${drawRow('Kendala Terbesar', d.C1_KendalaTerbesar)}
+             ${drawRow('Aspek Perlu Perbaikan', d.C2_AspekPerbaikan)}
+             ${drawRow('Tingkat Kepuasan', d.C3_KepuasanSistem)}
+           </div>
+
+           <!-- PART D: Kritik & Saran -->
+           <div>
+             <h4 class="flex items-center gap-2.5 font-black text-[18px] text-[#2d335b] mb-4 pb-2 border-b border-indigo-100/50">
+               <span class="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-xs shadow-md">D</span> 
+               Kritik & Saran Terbuka
+             </h4>
+             ${drawRow('Berjalan dengan baik', d.D1_BerjalanBaik)}
+             ${drawRow('Kendala Dialami', d.D2_SeringDialami)}
+             ${drawRow('Saran Koordinasi', d.D3_SaranKoor)}
+             ${drawRow('Saran Job Desk', d.D4_SaranJobdesk)}
+             ${drawRow('Saran Sistem/Proses', d.D5_SaranSistem)}
+             ${drawRow('Saran Tools', d.D6_SaranTools)}
+             ${drawRow('Kritik Lainnya', d.D7_KritikLainnya)}
+           </div>
+
         </div>
       </div>
     `
@@ -30059,6 +31160,7 @@ function showDocumentBackendError(error) {
     'profile': 'profileView',
     'directory': 'directoryView',
     'mindMap': 'mindMapView ',
+    'feedback': 'feedbackView',
     'ideaPockets': 'ideaPocketsView' ,
     'teamAvailability': 'teamAvailabilityView',
     'matrix': 'matrixView'
@@ -30140,6 +31242,12 @@ if (view === 'roomBooking') {
         setTimeout(() => bookingCalendarInstance.updateSize(), 100);
       }
     }
+  }
+  if (view === 'feedback') {
+    document.getElementById('feedbackView').classList.add('active');
+    document.getElementById('topbarTitle').textContent = 'Team Feedback & Evaluation';
+    // Load history jika belum ada
+    if(feedbackHistoryRaw.length === 0) loadFeedbackHistory();
   }
 if (view === 'aiAssistant') {
     document.getElementById('aiAssistantView').classList.add('active');
