@@ -27758,6 +27758,13 @@ function renderDailyWorkPlanCard(item) {
             <i class="fa-solid ${priorityMeta.icon}"></i>
             ${dwpEscapeHtml(item.Priority_Level || 'Medium')}
           </span>
+
+          <!-- TAMBAHAN: Tombol Buka Link -->
+          ${item.Related_Task_Link ? `
+            <a href="${dwpEscapeAttribute(item.Related_Task_Link)}" target="_blank" class="dwp-priority-pill" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.1); cursor: pointer; text-decoration: none;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Link
+            </a>
+          ` : ''}
         </div>
 
         <div class="dwp-card-date">
@@ -27792,39 +27799,36 @@ function renderDailyWorkPlanCard(item) {
       </div>
 
      <div class="dwp-time-grid dwp-premium-info-grid">
-  <div class="dwp-time-card">
-    <div class="dwp-time-icon">
-      <i class="fa-solid fa-play"></i>
-    </div>
+      <div class="dwp-time-card">
+        <div class="dwp-time-icon">
+          <i class="fa-solid fa-play"></i>
+        </div>
+        <div>
+          <span>Start Time</span>
+          <strong>${dwpEscapeHtml(formatDwpTime(item.Planned_Start_Time))}</strong>
+        </div>
+      </div>
 
-    <div>
-      <span>Start Time</span>
-      <strong>${dwpEscapeHtml(formatDwpTime(item.Planned_Start_Time))}</strong>
-    </div>
-  </div>
+      <div class="dwp-time-card">
+        <div class="dwp-time-icon end">
+          <i class="fa-solid fa-flag-checkered"></i>
+        </div>
+        <div>
+          <span>End Time</span>
+          <strong>${dwpEscapeHtml(formatDwpTime(item.Planned_End_Time))}</strong>
+        </div>
+      </div>
 
-  <div class="dwp-time-card">
-    <div class="dwp-time-icon end">
-      <i class="fa-solid fa-flag-checkered"></i>
+      <div class="dwp-time-card">
+        <div class="dwp-time-icon estimate">
+          <i class="fa-solid fa-hourglass-half"></i>
+        </div>
+        <div>
+          <span>Estimate</span>
+          <strong>${Number(item.Estimated_Hours || 0)} jam</strong>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <span>End Time</span>
-      <strong>${dwpEscapeHtml(formatDwpTime(item.Planned_End_Time))}</strong>
-    </div>
-  </div>
-
-  <div class="dwp-time-card">
-    <div class="dwp-time-icon estimate">
-      <i class="fa-solid fa-hourglass-half"></i>
-    </div>
-
-    <div>
-      <span>Estimate</span>
-      <strong>${Number(item.Estimated_Hours || 0)} jam</strong>
-    </div>
-  </div>
-</div>
 
       <div class="dwp-progress dwp-premium-progress">
         <div class="dwp-progress-top">
@@ -28305,10 +28309,19 @@ function openDailyWorkPlanDetail(planId) {
     return;
   }
 
+  // Siapkan HTML untuk link jika ada
+  const linkHtml = item.Related_Task_Link 
+    ? `<a href="${dwpEscapeAttribute(item.Related_Task_Link)}" target="_blank" style="color: #6f8cff; text-decoration: underline;"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Buka Link Dokumen/Task</a>` 
+    : '<span style="color: #667092;">Belum ada link yang dilampirkan</span>';
+
   Swal.fire({
     title: 'Daily Work Plan Detail',
-    width: 860,
+    width: 940,
     confirmButtonText: 'Tutup',
+    customClass: {
+      popup: 'swal-meeting-popup',
+      confirmButton: 'swal2-confirm'
+    },
     html: `
       <div class="dwp-modal-wrap">
         <div class="dwp-modal-header">
@@ -28318,13 +28331,57 @@ function openDailyWorkPlanDetail(planId) {
 
           <div>
             <h3>${dwpEscapeHtml(item.Plan_Title || '-')}</h3>
-            <p>${dwpEscapeHtml(formatDwpDate(item.Plan_Date))} • ${dwpEscapeHtml(item.Work_Mode || '-')} • ${dwpEscapeHtml(item.Plan_Status || '-')}</p>
+            <p>${dwpEscapeHtml(formatDwpDate(item.Plan_Date))} • ${dwpEscapeHtml(item.Work_Mode || '-')} • <span style="color: #7654dd; font-weight: 900;">${dwpEscapeHtml(item.Plan_Status || '-')}</span></p>
           </div>
         </div>
 
-        <div class="dwp-form-grid">
-          ${buildDwpReadonlyBox('Main Focus', item.Main_Focus)}
-          ${buildDwpReadonlyBox('Plan Items', item.Plan_Items)}
+        <div class="dwp-form-grid" style="margin-top: 24px;">
+          
+          <!-- INFO BARIS 1 -->
+          <div class="dwp-form-group">
+            <label><span>Prioritas</span></label>
+            <div class="dwp-input-shell">
+              <i class="fa-solid fa-flag text-indigo-400"></i>
+              <input type="text" class="premium-input" style="background: rgba(255,255,255,0.4);" readonly value="${dwpEscapeHtml(item.Priority_Level || '-')}">
+            </div>
+          </div>
+
+          <div class="dwp-form-group">
+            <label><span>Beban Kerja</span></label>
+            <div class="dwp-input-shell">
+              <i class="fa-solid fa-gauge-high text-indigo-400"></i>
+              <input type="text" class="premium-input" style="background: rgba(255,255,255,0.4);" readonly value="${dwpEscapeHtml(item.Workload_Level || '-')}">
+            </div>
+          </div>
+
+          <div class="dwp-form-group">
+            <label><span>Jam Mulai</span></label>
+            <div class="dwp-input-shell">
+              <i class="fa-solid fa-play text-emerald-500"></i>
+              <input type="text" class="premium-input" style="background: rgba(255,255,255,0.4);" readonly value="${dwpEscapeHtml(formatDwpTime(item.Planned_Start_Time) || '-')}">
+            </div>
+          </div>
+
+          <div class="dwp-form-group">
+            <label><span>Jam Selesai</span></label>
+            <div class="dwp-input-shell">
+              <i class="fa-solid fa-flag-checkered text-pink-500"></i>
+              <input type="text" class="premium-input" style="background: rgba(255,255,255,0.4);" readonly value="${dwpEscapeHtml(formatDwpTime(item.Planned_End_Time) || '-')}">
+            </div>
+          </div>
+
+          <!-- KOLOM LINK -->
+          <div class="dwp-form-group full">
+            <label><span>Link Task / Dokumen</span></label>
+            <div class="dwp-input-shell" style="min-height: 56px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.40); background: rgba(255,255,255,0.4); padding: 16px 46px; display: flex; align-items: center;">
+              <i class="fa-solid fa-link" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: rgba(118, 84, 221, 0.75);"></i>
+              <div style="font-size: 13px; font-weight: 850; word-break: break-all;">${linkHtml}</div>
+            </div>
+          </div>
+
+          <!-- TEXTAREA PANJANG -->
+          ${buildDwpReadonlyBox('Fokus Utama Hari Ini', item.Main_Focus)}
+          ${buildDwpReadonlyBox('Daftar Rencana Pekerjaan', item.Plan_Items)}
           ${buildDwpReadonlyBox('Expected Output', item.Expected_Output)}
           ${buildDwpReadonlyBox('Potential Blockers', item.Potential_Blockers || '-')}
           ${buildDwpReadonlyBox('Support Needed', item.Support_Needed || '-')}
@@ -28333,7 +28390,6 @@ function openDailyWorkPlanDetail(planId) {
     `
   });
 }
-
 function buildDwpReadonlyBox(label, value) {
   return `
     <div class="dwp-form-group full">
