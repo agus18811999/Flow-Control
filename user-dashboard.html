@@ -15914,6 +15914,572 @@ input[list]::-webkit-calendar-picker-indicator {
   color: #ffffff;
   box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6);
 }
+/* ==================================================
+   ULTRA PREMIUM OKR (OBJECTIVES & KEY RESULTS) STYLES
+   ================================================== */
+
+.okr-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.4), transparent 40%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 20px 60px rgba(83, 94, 160, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  isolation: isolate;
+  margin-bottom: 24px;
+}
+
+.okr-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.65);
+}
+
+/* Accent Glow di belakang Card */
+.okr-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+.okr-card:hover .okr-glow { opacity: 0.8; transform: scale(1.1); }
+
+/* Header OKR (Dapat Diklik) */
+.okr-header {
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.okr-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.4);
+}
+
+.okr-main-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.okr-progress-container {
+  width: 100%;
+  margin-top: 14px;
+}
+.okr-progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+.okr-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.okr-progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  animation: shimmerProgress 2s infinite;
+}
+
+@keyframes shimmerProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Accordion Body untuk KRs */
+.okr-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.okr-card.open .okr-body {
+  grid-template-rows: 1fr;
+}
+.okr-body-inner {
+  overflow: hidden;
+}
+
+.kr-list-wrapper {
+  padding: 0 32px 32px 32px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  margin-top: 4px;
+  position: relative;
+}
+
+/* Garis Kiri Penghubung KR */
+.kr-timeline-line {
+  position: absolute;
+  top: 32px;
+  bottom: 50px;
+  left: 48px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(232, 115, 170, 0.2));
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.kr-item {
+  position: relative;
+  z-index: 2;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(83, 94, 160, 0.05);
+  margin-left: 40px; /* Jarak dari garis timeline */
+  transition: all 0.3s ease;
+}
+.kr-item:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateX(4px);
+  border-color: white;
+}
+
+/* Bulatan Timeline */
+.kr-dot {
+  position: absolute;
+  left: -48px; /* Sesuaikan dengan margin-left kr-item */
+  top: 34px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid #8b5cf6;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  z-index: 3;
+}
+
+.kr-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.4);
+}
+
+.kr-meta-box {
+  background: rgba(255,255,255,0.3);
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Status Colors */
+.status-ontrack { background: rgba(16, 185, 129, 0.15); color: #059669; border-color: rgba(16, 185, 129, 0.3); }
+.status-atrisk { background: rgba(245, 158, 11, 0.15); color: #d97706; border-color: rgba(245, 158, 11, 0.3); }
+.status-offtrack { background: rgba(239, 68, 68, 0.15); color: #dc2626; border-color: rgba(239, 68, 68, 0.3); }
+.status-completed { background: rgba(99, 102, 241, 0.15); color: #4f46e5; border-color: rgba(99, 102, 241, 0.3); }
+
+/* Chevron Animasi */
+.okr-chevron {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.3);
+  color: #7654dd;
+  transition: transform 0.4s ease, background 0.3s ease;
+}
+.okr-card.open .okr-chevron {
+  transform: rotate(180deg);
+  background: #7654dd;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .okr-header { padding: 20px; flex-direction: column; align-items: flex-start; }
+  .okr-icon-box { width: 54px; height: 54px; font-size: 20px; }
+  .kr-item { margin-left: 24px; padding: 20px; }
+  .kr-timeline-line { left: 32px; }
+  .kr-dot { left: -32px; }
+}
+/* ==================================================
+   ULTRA PREMIUM USER KPI GLASS CARD
+   ================================================== */
+.kpi-user-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255,255,255,0.34), transparent 34%),
+    radial-gradient(circle at 88% 78%, rgba(232,115,170,0.12), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.09));
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 28px 82px rgba(83, 94, 160, 0.13),
+    inset 0 1px 0 rgba(255,255,255,0.24);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  isolation: isolate;
+}
+
+.kpi-user-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.56);
+  box-shadow:
+    0 36px 105px rgba(83, 94, 160, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+.kpi-user-card-glow {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(6px);
+}
+
+/* Bento Box Mini di Dalam Kartu KPI */
+.kpi-user-bento-item {
+  border-radius: 22px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255,255,255,0.24), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+  transition: all 0.25s ease;
+}
+.kpi-user-bento-item:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+}
+
+/* Animasi Progress Bar Halus */
+.kpi-progress-fill-premium {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 22px rgba(111,140,255,0.22);
+}
+/* ==================================================
+   KONSULTASI MASALAH (LIVE CHAT) - ULTRA PREMIUM
+   ================================================== */
+
+.consultation-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  height: calc(100vh - 120px);
+  min-height: 600px;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.4), transparent 40%),
+    linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+  border-radius: 40px;
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 30px 90px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Panel Kiri (Daftar Kontak) */
+.chat-sidebar {
+  background: rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.chat-search-box {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+}
+.chat-search-box:focus-within {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+.chat-contact-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.contact-item.active {
+  background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(111,140,255,0.1));
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 10px 25px rgba(83, 94, 160, 0.08);
+}
+
+.contact-avatar-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.contact-online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 10;
+}
+.dot-online { background-color: #10b981; box-shadow: 0 0 10px rgba(16,185,129,0.5); }
+.dot-offline { background-color: #9ca3af; }
+
+.contact-unread-badge {
+  background: linear-gradient(135deg, #f43f5e, #e873aa);
+  color: white;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(244, 63, 94, 0.3);
+}
+
+/* Panel Kanan (Ruang Chat) */
+.chat-room {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.chat-room-header {
+  padding: 20px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 10;
+}
+
+.chat-messages-area {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* WhatsApp Doodle Background Style (Subtle) */
+  background-image: radial-gradient(rgba(45, 51, 91, 0.04) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.chat-input-area {
+  padding: 20px 32px;
+  background: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(20px);
+}
+
+.chat-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  background: rgba(255,255,255,0.8);
+  padding: 10px 16px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: 0 10px 30px rgba(83, 94, 160, 0.08);
+}
+
+.chat-input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #2d335b;
+  font-size: 14.5px;
+  font-weight: 600;
+  max-height: 120px;
+  resize: none;
+  padding: 8px 0;
+}
+
+.chat-send-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6);
+  color: white;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+.chat-send-btn:hover {
+  transform: scale(1.05) rotate(-5deg);
+  box-shadow: 0 12px 25px rgba(139, 92, 246, 0.4);
+}
+
+/* Chat Bubbles */
+.msg-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+.msg-mine {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.msg-theirs {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.msg-bubble {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  position: relative;
+  word-wrap: break-word;
+}
+
+.msg-mine .msg-bubble {
+  background: linear-gradient(135deg, #6f8cff, #8b5cf6);
+  color: white;
+  border-radius: 20px 20px 4px 20px;
+}
+
+.msg-theirs .msg-bubble {
+  background: rgba(255,255,255,0.9);
+  color: #2d335b;
+  border: 1px solid rgba(255,255,255,1);
+  border-radius: 20px 20px 20px 4px;
+}
+
+.msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 4px;
+  padding: 0 4px;
+}
+
+.msg-mine .msg-meta {
+  color: #8a94b6;
+  justify-content: flex-end;
+}
+.msg-theirs .msg-meta {
+  color: #8a94b6;
+  justify-content: flex-start;
+}
+
+/* Tick Colors */
+.tick-sent { color: #9ca3af; }
+.tick-delivered { color: #6b7280; }
+.tick-read { color: #3b82f6; } /* Centang Biru */
+
+/* Responsive Mobile */
+@media (max-width: 980px) {
+  .consultation-layout {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 100px);
+  }
+  .chat-sidebar {
+    display: flex;
+  }
+  .chat-room {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    background: #f8f9ff; /* Solid bg for mobile chat room */
+  }
+  .chat-room.active-mobile {
+    display: flex;
+  }
+}
+.chat-input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #2d335b;
+  font-size: 14.5px;
+  font-weight: 600;
+  max-height: 120px;
+  resize: none;
+  padding: 10px 0; /* Padding diperbesar agar sejajar dengan tombol */
+  height: 44px; /* Tinggi dasar dikunci ke 44px */
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+/* Sembunyikan track scrollbar jika belum penuh */
+.chat-input-field::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-input-field::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-input-field::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+}
   </style>
 </head>
 
@@ -15961,6 +16527,14 @@ input[list]::-webkit-calendar-picker-indicator {
           <button class="menu-item active" data-view="leaderboard">
             <i class="fa-solid fa-ranking-star"></i>
             <span>Leaderboard</span>
+          </button>
+          <button class="menu-item" data-view="consultation">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span>Konsultasi Masalah</span>
+</button>
+            <button class="menu-item" data-view="okr">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>My OKR</span>
           </button>
           <button class="menu-item" data-view="meeting">
   <i class="fa-solid fa-users"></i>
@@ -16011,6 +16585,10 @@ input[list]::-webkit-calendar-picker-indicator {
 <button class="menu-item" data-view="attendance">
   <i class="fa-solid fa-calendar-check"></i>
   <span>Absensi</span>
+</button>
+<button class="menu-item" data-view="kpiUser">
+  <i class="fa-solid fa-chart-column"></i>
+  <span>My KPI Tracker</span>
 </button>
 <button class="menu-item" data-view="leave_request">
   <i class="fa-solid fa-person-walking-arrow-right"></i>
@@ -16852,6 +17430,133 @@ input[list]::-webkit-calendar-picker-indicator {
       <p class="text-sm font-bold text-[#667092] mt-2">Data history task sedang diproses.</p>
     </div>
   </div>
+</section>
+<!-- OKR View Section -->
+<section id="okrView" class="view-section">
+  
+  <!-- Premium Hero -->
+  <div class="hero-dashboard glass-deep mb-10 overflow-hidden relative p-10 md:p-12 rounded-[48px] border border-white/40 shadow-[0_40px_100px_rgba(26,31,61,0.12)] flex-none mt-6">
+  
+  <!-- ================================================== -->
+  <!-- PREMIUM AMBIENT LIGHTING (MESH NEON GLOW)          -->
+  <!-- ================================================== -->
+  <div class="absolute top-[-25%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-[#6f8cff]/15 via-[#8b5cf6]/10 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-[#10b981]/12 via-[#65d7c5]/8 to-transparent rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <!-- Pattern Grid Arsitektur Presisi -->
+  <div class="absolute inset-0 opacity-[0.025] pointer-events-none z-0" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 26px 26px;"></div>
+
+  <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    
+    <!-- ================================================== -->
+    <!-- LEFT PANEL: EXCLUSIVE CONTENT & SUBTITLES         -->
+    <!-- ================================================== -->
+    <div class="lg:col-span-7 space-y-8">
+      
+      <!-- Crystal Floating Badge -->
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 border border-white/60 text-[#7654dd] backdrop-blur-xl shadow-[0_12px_32px_rgba(111,140,255,0.08)]">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#6f8cff]"></span>
+        </span>
+        <span class="text-[10px] font-black uppercase tracking-[0.25em] text-[#29304f]/80">Strategic Alignment</span>
+      </div>
+      
+      <!-- Editorial Title -->
+      <div class="space-y-4">
+        <h1 class="page-title text-[48px] md:text-[56px] font-black leading-[1.08] tracking-[-0.05em] text-[#29304f] pb-1 overflow-visible font-display">
+    Track & Accelerate My <br />
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6f8cff] via-[#8b5cf6] to-[#e873aa] block pb-2 overflow-visible">Strategic Objectives (OKR).</span>
+  </h1>
+        <p class="max-w-[540px] text-[16px] md:text-[17px] font-medium text-[#59648e] leading-[1.8] tracking-[-0.01em]">
+          Pantau arah strategis dan target utama Anda. Setiap Objective dilengkapi dengan Key Results yang terukur secara transparan. <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-[#8b5cf6] to-pink-500 font-extrabold">Data ini bersifat eksklusif untuk Anda.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- RIGHT PANEL: STRATEGIC ANALYTICS HUB               -->
+    <!-- ================================================== -->
+    <div class="lg:col-span-5 flex lg:justify-end">
+      <div class="group relative w-full lg:w-auto min-w-[340px]">
+        <!-- Volumetric aura hover glow -->
+        <div class="absolute inset-0 bg-[#6f8cff]/8 blur-[45px] rounded-[44px] group-hover:bg-[#6f8cff]/15 transition-all duration-700 pointer-events-none"></div>
+        
+        <!-- Glass Terminal Panel -->
+        <div class="relative bg-gradient-to-b from-white/40 to-white/10 border border-white/70 shadow-[0_30px_90px_rgba(83,94,160,0.12)] backdrop-blur-2xl p-10 rounded-[44px] overflow-hidden">
+          
+          <!-- Floating Glowing Bullseye Widget -->
+          <div class="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-white/30 border border-white/60 flex items-center justify-center text-indigo-500/40 text-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+            <i class="fa-solid fa-bullseye animate-pulse"></i>
+          </div>
+
+          <div class="space-y-8">
+            <!-- Header of Panel -->
+            <div>
+              <p class="text-[9px] font-black uppercase tracking-[0.2em] text-[#8b5cf6] mb-1.5">Performance Focus</p>
+              <h4 class="text-xl font-black text-[#29304f] tracking-tight">Overall Goals</h4>
+            </div>
+
+            <!-- Bento-style telemetry cards -->
+            <div class="grid grid-cols-2 gap-4 relative z-10">
+              <!-- Total Objectives -->
+              <div class="p-4 rounded-[22px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/75 transition-colors duration-300">
+                <p class="text-[9px] font-black text-[#8a94b6] uppercase tracking-widest mb-2.5">Objectives</p>
+                <div class="flex items-baseline gap-1">
+                  <h3 id="statOkrTotal" class="text-5xl font-black text-[#2d335b] tracking-tighter leading-none">0</h3>
+                  <span class="text-[11px] font-bold text-[#8a94b6]">goals</span>
+                </div>
+              </div>
+
+              <!-- On Track Active -->
+              <div class="p-4 rounded-[22px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/75 transition-colors duration-300">
+                <p class="text-[9px] font-black text-[#8a94b6] uppercase tracking-widest mb-2.5">On Track</p>
+                <div class="flex items-baseline gap-1">
+                  <h3 id="statOkrOnTrack" class="text-5xl font-black text-emerald-500 tracking-tighter leading-none">0</h3>
+                  <span class="text-[11px] font-bold text-emerald-500">active</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Re-engineered Warning Card (At Risk / Off Track) -->
+            <div class="p-5 rounded-[24px] bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/20 flex items-center justify-between shadow-inner relative overflow-hidden group/warning hover:border-amber-500/35 transition-all duration-300">
+              <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.8)] animate-pulse"></div>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-black uppercase tracking-wider text-[#2d335b]">At Risk / Off Track</span>
+                  <span class="text-[11.5px] font-semibold text-gray-500 mt-0.5 leading-none">Requires near-term strategy</span>
+                </div>
+              </div>
+              <!-- Pulse Indicator counter -->
+              <span id="statOkrAtRisk" class="text-sm font-black text-amber-600 bg-white/85 border border-amber-500/30 w-11 h-9 flex items-center justify-center rounded-xl shadow-sm z-10 hover:scale-105 transition-transform duration-300">0</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+  <!-- Toolbar -->
+  <div class="relative z-10 mb-8 p-4 md:p-5 rounded-[32px] border border-white/60 shadow-[0_15px_40px_rgba(83,94,160,0.08)] flex flex-col sm:flex-row items-center justify-between gap-5 bg-gradient-to-r from-white/50 via-white/30 to-white/50 backdrop-blur-2xl">
+    <div class="relative w-full sm:w-[400px] group">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-indigo-500">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <input id="okrSearchInput" type="text" class="w-full h-[56px] pl-11 pr-4 bg-white/60 hover:bg-white/80 border border-white/80 rounded-[20px] text-[13.5px] font-black text-[#2d335b] outline-none focus:ring-4 focus:ring-indigo-500/15 focus:border-indigo-400 transition-all shadow-sm placeholder-gray-400" placeholder="Cari nama objective, KR, atau status...">
+    </div>
+    
+    <button onclick="safeReloadOkr()" class="h-[56px] w-full sm:w-auto px-8 flex items-center justify-center rounded-[20px] bg-white/60 border border-white/80 text-indigo-600 font-black hover:bg-white hover:text-indigo-700 hover:shadow-md transition-all">
+      <i class="fa-solid fa-rotate mr-2"></i> Refresh Data
+    </button>
+  </div>
+
+  <!-- List Data OKR -->
+  <div id="okrGridArea" class="flex flex-col pb-12">
+    <!-- Di-render melalui JavaScript -->
+  </div>
+
 </section>
 <!-- Team Feedback View -->
 <section id="feedbackView" class="view-section">
@@ -18216,6 +18921,209 @@ input[list]::-webkit-calendar-picker-indicator {
   </div>
   
 <!-- Idea Pockets View -->
+
+</section>
+<!-- KONSULTASI MASALAH (WHATSAPP CLONE) -->
+<section id="consultationView" class="view-section h-full">
+  
+  <!-- Layout Utama: Flex Container dengan tinggi tetap untuk mengunci scroll -->
+  <div class="consultation-layout flex w-full h-[calc(100vh-120px)] min-h-[600px] rounded-[40px] border border-white/50 shadow-[0_30px_90px_rgba(31,38,135,0.15)] bg-gradient-to-br from-white/40 to-white/5 backdrop-blur-2xl overflow-hidden relative isolate">
+    
+    <!-- KOLOM KIRI: Daftar Kontak -->
+    <!-- flex-col dan h-full memastikan sidebar mengambil tinggi penuh -->
+    <div class="chat-sidebar w-full md:w-[360px] flex-none border-r border-white/30 flex flex-col h-full bg-white/20" id="chatSidebarPanel">
+      
+      <!-- Header Sidebar: flex-none agar ukurannya tetap -->
+      <div class="chat-sidebar-header p-6 border-b border-white/20 flex-none">
+        <h2 class="text-2xl font-black text-[#2d335b] tracking-tight mb-4">Konsultasi</h2>
+        <div class="chat-search-box flex items-center gap-3 px-4 h-12 bg-white/50 border border-white/60 rounded-[20px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.02)] focus-within:bg-white/80 focus-within:border-[#8b5cf6] focus-within:ring-4 focus-within:ring-[#8b5cf6]/15 transition-all">
+          <i class="fa-solid fa-magnifying-glass text-indigo-400"></i>
+          <input type="text" id="chatSearchInput" class="bg-transparent border-none outline-none w-full text-sm font-bold text-[#2d335b] placeholder-gray-400" placeholder="Cari rekan kerja...">
+        </div>
+      </div>
+      
+      <!-- Contact List: flex-1 dan overflow-y-auto MENGAKTIFKAN SCROLL -->
+      <div class="chat-contact-list custom-scrollbar overflow-y-auto flex-1 p-3 space-y-1" id="chatContactList">
+        <!-- Rendered by JS -->
+        <div class="flex flex-col items-center justify-center h-full text-gray-400 opacity-70">
+          <i class="fa-solid fa-spinner fa-spin text-2xl mb-2"></i>
+          <span class="text-xs font-bold">Memuat Kontak...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KOLOM KANAN: Ruang Obrolan -->
+    <div class="chat-room flex-1 flex flex-col h-full relative bg-white/5 overflow-hidden" id="chatRoomPanel">
+      
+      <!-- Empty State (Saat belum ada chat yang dipilih) -->
+      <div id="chatEmptyState" class="absolute inset-0 flex flex-col items-center justify-center bg-white/10 backdrop-blur-sm z-20">
+        <div class="w-32 h-32 rounded-[40px] bg-gradient-to-br from-indigo-500/10 to-pink-500/10 border border-white/50 flex items-center justify-center mb-6 shadow-[0_20px_50px_rgba(139,92,246,0.1)]">
+          <i class="fa-brands fa-whatsapp text-6xl text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-pink-500"></i>
+        </div>
+        <h3 class="text-3xl font-black text-[#2d335b] tracking-tight">Koneksi Tim Internal</h3>
+        <p class="text-[14px] font-bold text-[#667092] mt-3 max-w-sm text-center leading-relaxed">
+          Pilih salah satu kontak di menu samping untuk memulai percakapan rahasia secara real-time.
+        </p>
+        <div class="mt-8 flex items-center gap-4 text-[11px] font-black uppercase tracking-widest text-gray-400">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-lock text-emerald-500"></i> End-to-End Privacy</span>
+        </div>
+      </div>
+
+      <!-- Active Chat Interface -->
+      <!-- HARUS flex-col & overflow-hidden agar input menempel di bawah -->
+      <div id="chatActiveInterface" class="hidden flex-col h-full w-full overflow-hidden">
+        
+        <!-- Header Chat (flex-none) -->
+        <div class="chat-room-header flex-none px-8 py-5 border-b border-white/20 flex items-center justify-between bg-white/30 backdrop-blur-xl z-10">
+          <div class="flex items-center gap-4">
+            <!-- Back button for mobile -->
+            <button onclick="closeChatMobile()" class="md:hidden w-10 h-10 rounded-full bg-white/50 flex items-center justify-center text-gray-600 hover:bg-white shadow-sm">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <!-- Avatar -->
+            <div class="contact-avatar-wrapper relative w-[46px] h-[46px] rounded-[16px] shadow-[0_8px_20px_rgba(0,0,0,0.08)] shrink-0">
+              <div id="activeChatAvatar" class="w-full h-full rounded-[16px] bg-gradient-to-br from-indigo-400 to-purple-500 text-white flex items-center justify-center text-lg font-black shadow-inner">
+                U
+              </div>
+              <div id="activeChatOnlineDot" class="contact-online-dot absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-white z-10 dot-offline"></div>
+            </div>
+            <div>
+              <h3 id="activeChatName" class="text-[18px] font-black text-[#2d335b] leading-tight">Nama Kontak</h3>
+              <p id="activeChatStatus" class="text-[11px] font-black uppercase tracking-widest text-gray-500 mt-0.5">Offline</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3">
+             <button onclick="loadChatMessages(currentChatUserId, true)" class="w-10 h-10 rounded-xl bg-white/40 hover:bg-white border border-white/60 text-indigo-500 flex items-center justify-center transition-all shadow-sm" title="Refresh/Sync Chat">
+               <i class="fa-solid fa-rotate"></i>
+             </button>
+          </div>
+        </div>
+
+        <!-- Area Balon Chat (flex-1 dan overflow-y-auto untuk scrolling chat) -->
+        <div class="chat-messages-area flex-1 overflow-y-auto p-8 flex flex-col gap-3 custom-scrollbar relative" id="chatMessagesArea" style="background-image: radial-gradient(rgba(45, 51, 91, 0.04) 1.5px, transparent 1.5px); background-size: 24px 24px;">
+          <!-- Balon chat akan dirender JS di sini -->
+        </div>
+
+        <!-- Area Input (flex-none menjaga form chat selalu di bawah) -->
+        <div class="chat-input-area flex-none p-5 sm:px-8 sm:py-5 bg-white/40 border-t border-white/30 backdrop-blur-xl">
+          <div class="chat-input-wrapper flex items-end gap-4 bg-white/80 p-2.5 px-4 rounded-[28px] border border-white/90 shadow-[0_10px_30px_rgba(83,94,160,0.08)]">
+            <textarea id="chatInputBox" class="chat-input-field" rows="1" placeholder="Ketik pesan konsultasi Anda..."></textarea>
+            
+            
+            <!-- Tombol Kirim Pesan -->
+            <button onclick="sendChatMessage()" id="btnSendChat" class="chat-send-btn w-11 h-11 rounded-[20px] bg-gradient-to-br from-[#6f8cff] to-[#8b5cf6] text-white grid place-items-center flex-shrink-0 shadow-[0_8px_20px_rgba(139,92,246,0.3)] hover:scale-105 hover:-rotate-6 transition-all duration-200">
+              <i class="fa-solid fa-paper-plane text-[15px] ml-[-2px] mt-[2px]"></i>
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ========================================== -->
+<!-- VIEW: PERSONAL KPI TRACKER (READ ONLY)     -->
+<!-- ========================================== -->
+<section id="kpiUserView" class="view-section">
+  
+  <!-- PREMIUM GLASS HERO SECTION -->
+  <div class="hero-dashboard glass mb-10 overflow-hidden relative p-10 md:p-12 rounded-[48px] border border-white/40 shadow-[0_32px_120px_rgba(31,38,135,0.15)] flex-none mt-6">
+    <!-- Ambient Glow Orbs -->
+    <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-[#10b981]/15 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-gradient-to-tr from-pink-400/15 to-orange-300/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 30px 34px;"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Kiri: Tipografi Editorial -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/10 border border-white/25 text-[#10b981] backdrop-blur-md shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
+          </span>
+          <span class="text-[10px] font-black uppercase tracking-[0.25em]">Personal Metrics Hub</span>
+        </div>
+        
+        <div class="space-y-4">
+          <h1 class="page-title text-[52px] md:text-[68px] font-black leading-[1.08] tracking-[-0.05em] text-[#29304f] pb-1 overflow-visible font-display">
+            My Personal <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#10b981] via-[#3b82f6] to-[#8b5cf6] block pb-2 overflow-visible">KPI Performance.</span>
+          </h1>
+          <p class="max-w-[580px] text-[15.5px] md:text-[16.5px] font-medium text-[#59648e] leading-[1.85] tracking-[-0.01em]">
+            Evaluasi capaian Key Performance Indicators harian dan bulanan Anda secara personal. Setiap metrik operasional dipetakan secara akurat demi mendukung strategi pertumbuhan organisasi. <span class="text-indigo-600 font-bold">Data performa ini bersifat privat.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Kanan: Telemetry Board -->
+      <div class="lg:col-span-5 flex lg:justify-end">
+        <div class="group relative w-full lg:w-auto min-w-[320px]">
+          <div class="absolute inset-0 bg-[#10b981]/10 blur-[40px] rounded-[42px] group-hover:bg-[#10b981]/20 transition-all duration-700 pointer-events-none"></div>
+          
+          <div class="relative glass-soft p-10 rounded-[42px] border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] backdrop-blur-2xl overflow-hidden">
+            <div class="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-white/20 border border-white/40 flex items-center justify-center text-emerald-500/30 text-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <div class="space-y-8">
+              <div>
+                <p class="text-[10px] font-black uppercase tracking-[0.2em] text-[#10b981] mb-2">Performance Analytics</p>
+                <h4 class="text-xl font-black text-[#2d335b]">Total Achievement</h4>
+              </div>
+
+              <div class="relative z-10 grid grid-cols-2 gap-8">
+                <div class="relative">
+                  <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">KPI Assigned</p>
+                  <div class="flex items-baseline gap-1">
+                    <h3 id="statUserKpiTotal" class="text-5xl font-black text-[#2d335b] tracking-tighter">0</h3>
+                    <span class="text-sm font-bold text-gray-400">units</span>
+                  </div>
+                </div>
+                <div class="relative pl-8 border-l border-white/40">
+                  <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Avg Success</p>
+                  <div class="flex items-baseline gap-1">
+                    <h3 id="statUserKpiAvg" class="text-5xl font-black text-[#10b981] tracking-tighter">0</h3>
+                    <span class="text-sm font-bold text-emerald-500">%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Security Indicator -->
+              <div class="p-5 rounded-[24px] bg-white/20 border border-white/40 flex items-center justify-between group-hover:bg-white/30 transition-colors">
+                <div class="flex items-center gap-3">
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                  <span class="text-xs font-black text-[#2d335b] uppercase tracking-wider">End-to-End Crypt</span>
+                </div>
+                <span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm">Verified</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="relative z-10 mb-8 p-4 md:p-5 rounded-[32px] border border-white/60 shadow-[0_15px_40px_rgba(83,94,160,0.08)] flex flex-col sm:flex-row items-center justify-between gap-5 bg-gradient-to-r from-white/50 via-white/30 to-white/50 backdrop-blur-2xl">
+    <div class="relative w-full sm:w-[400px] group">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-emerald-500">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <input id="userKpiSearchInput" type="text" class="w-full h-[56px] pl-11 pr-4 bg-white/60 hover:bg-white/80 border border-white/80 rounded-[20px] text-[13.5px] font-black text-[#2d335b] outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-400 transition-all shadow-sm placeholder-gray-400" placeholder="Cari nama kpi, target, frekuensi, atau status...">
+    </div>
+    
+    <button onclick="safeReloadUserKpi()" class="h-[56px] w-full sm:w-auto px-8 flex items-center justify-center rounded-[20px] bg-white/60 border border-white/80 text-emerald-600 font-black hover:bg-white hover:text-emerald-700 hover:shadow-md transition-all">
+      <i class="fa-solid fa-rotate mr-2"></i> Sync My Metrics
+    </button>
+  </div>
+
+  <!-- DYNAMIC DATA GRID -->
+  <div id="userKpiGridArea" class="flex flex-col pb-12 gap-8">
+    <!-- Di-render oleh JS -->
+  </div>
 
 </section>
 <!-- Client / Vendor Logbook View -->
@@ -21963,6 +22871,7 @@ let leaveRequestLoading = false;
       initLeaderboardControls();
       initCollabPocketsControls()
       initProfileEvents();
+       initConsultationControls(); 
        initAiAssistantControls(); 
       initDailyWorkPlanFeature();
       initDirectoryControls(); 
@@ -21982,6 +22891,8 @@ let leaveRequestLoading = false;
       initRefresh();
       initLeaveRequestControls();
 initAttendanceControls();
+ initUserKpiEvents(); 
+initOkrControls(); // Tambahkan ini di bawah init lainnya
       bootDashboard();
       initFeedbackControls();
     });
@@ -22050,7 +22961,1025 @@ async function openReportAdminComplaintModal() {
 /****************************************************
  * FEEDBACK FORM JAVASCRIPT ENGINE
  ****************************************************/
+/****************************************************
+ * OKR FEATURE (USER DASHBOARD) - JAVASCRIPT ENGINE
+ ****************************************************/
+/****************************************************
+ * KONSULTASI MASALAH (WHATSAPP CLONE) - JAVASCRIPT ENGINE
+ ****************************************************/
 
+let chatContactsRaw = [];
+let currentChatUserId = null;
+let chatMessagesRaw = [];
+let chatPollInterval = null;
+let lastChatSyncTime = null; // Waktu terakhir sync dari server
+let isChatSending = false;
+
+// 1. INIT EVENTS
+function initConsultationControls() {
+  const searchInput = document.getElementById('chatSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', debounce(renderChatContacts, 200));
+  }
+
+  // Cari bagian ini di dalam initConsultationControls()
+  const chatBox = document.getElementById('chatInputBox');
+  if (chatBox) {
+    chatBox.addEventListener('input', function() {
+      this.style.height = '44px'; // Reset dulu ke base height
+      this.style.height = (this.scrollHeight) + 'px';
+      if(!this.value) this.style.height = '44px';
+    });
+    chatBox.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendChatMessage();
+      }
+    });
+  }
+}
+
+// 2. INTEGRASI DENGAN ROUTER UTAMA (PENTING)
+// Sisipkan pemanggilan fungsi ini ke dalam fungsi switchView(view) yang sudah ada:
+// if (view === 'consultation') {
+//    document.getElementById('consultationView').classList.add('active');
+//    document.getElementById('topbarTitle').textContent = 'Konsultasi Masalah';
+//    openConsultationFeature();
+// } else {
+//    stopChatPolling(); // Hentikan polling jika user keluar dari tab ini
+// }
+
+function openConsultationFeature() {
+  loadChatContacts();
+  startChatPolling(); // Mulai detak jantung polling
+}
+
+// 3. LOAD KONTAK DARI SERVER
+async function loadChatContacts() {
+  try {
+    const res = await sendToBackend({ action: 'chat_get_contacts', token: getToken() });
+    if (res.status === 'success') {
+      chatContactsRaw = res.data || [];
+      renderChatContacts();
+    }
+  } catch (e) {
+    console.error("Gagal load kontak:", e);
+  }
+}
+
+function renderChatContacts() {
+  const container = document.getElementById('chatContactList');
+  const keyword = lower(document.getElementById('chatSearchInput')?.value || '');
+  
+  const filtered = chatContactsRaw.filter(c => 
+    !keyword || lower(c.Nama_User).includes(keyword) || lower(c.Divisi).includes(keyword)
+  );
+
+  if (!filtered.length) {
+    container.innerHTML = `<div class="text-center p-4 text-xs font-bold text-gray-400">Tidak ada kontak ditemukan.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(c => {
+    const isActive = c.User_ID === currentChatUserId;
+    const dotClass = c.Is_Online ? 'dot-online' : 'dot-offline';
+    
+    // Potong pesan terakhir
+    let lastMsgText = c.Last_Message ? c.Last_Message.text : 'Belum ada percakapan';
+    if (lastMsgText.length > 25) lastMsgText = lastMsgText.substring(0, 25) + '...';
+    
+    // Ikon status centang untuk pesan terakhir jika kita yang kirim
+    let tickHtml = '';
+    if (c.Last_Message && c.Last_Message.isMine) {
+      if (c.Last_Message.status === 'SENT') tickHtml = `<i class="fa-solid fa-check text-gray-400 text-[10px] mr-1"></i>`;
+      else if (c.Last_Message.status === 'DELIVERED') tickHtml = `<i class="fa-solid fa-check-double text-gray-400 text-[10px] mr-1"></i>`;
+      else if (c.Last_Message.status === 'READ') tickHtml = `<i class="fa-solid fa-check-double text-blue-500 text-[10px] mr-1"></i>`;
+    }
+
+    const unreadBadge = c.Unread_Count > 0 ? `<div class="contact-unread-badge">${c.Unread_Count}</div>` : '';
+    const timeStr = c.Last_Message ? `<span class="text-[9px] font-black text-gray-400">${c.Last_Message.time.split('T')[1].substring(0,5)}</span>` : '';
+
+    return `
+      <div class="contact-item ${isActive ? 'active' : ''}" onclick="openChatRoom('${c.User_ID}')">
+        <div class="contact-avatar-wrapper">
+          <div class="w-full h-full rounded-[18px] bg-gradient-to-br from-indigo-100 to-purple-200 text-indigo-600 flex items-center justify-center text-xl font-black shadow-inner border border-white">
+            ${getInitial(c.Nama_User)}
+          </div>
+          <div class="contact-online-dot ${dotClass}"></div>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-center mb-1">
+            <h4 class="text-[14px] font-black text-[#2d335b] truncate">${escapeHtml(c.Nama_User)}</h4>
+            ${timeStr}
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-[12px] font-bold text-[#667092] truncate flex-1">${tickHtml}${escapeHtml(lastMsgText)}</p>
+            ${unreadBadge}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// 4. BUKA RUANG OBROLAN (LOAD PESAN)
+async function openChatRoom(targetUserId) {
+  currentChatUserId = targetUserId;
+  renderChatContacts(); // Update kelas aktif di sidebar
+
+  // Tampilan Mobile: Sembunyikan sidebar, tampilkan room
+  if (window.innerWidth <= 980) {
+    document.getElementById('chatRoomPanel').classList.add('active-mobile');
+  }
+
+  // Sembunyikan empty state, munculkan interface chat
+  document.getElementById('chatEmptyState').classList.add('hidden');
+  document.getElementById('chatActiveInterface').classList.remove('hidden');
+  document.getElementById('chatActiveInterface').classList.add('flex');
+
+  // Update Header Chat
+  const targetUser = chatContactsRaw.find(c => c.User_ID === targetUserId);
+  if (targetUser) {
+    document.getElementById('activeChatAvatar').textContent = getInitial(targetUser.Nama_User);
+    document.getElementById('activeChatName').textContent = targetUser.Nama_User;
+    
+    const statusEl = document.getElementById('activeChatStatus');
+    const dotEl = document.getElementById('activeChatOnlineDot');
+    if (targetUser.Is_Online) {
+      statusEl.textContent = 'Online'; statusEl.classList.add('text-emerald-500'); statusEl.classList.remove('text-gray-500');
+      dotEl.className = 'contact-online-dot dot-online';
+    } else {
+      statusEl.textContent = 'Offline'; statusEl.classList.remove('text-emerald-500'); statusEl.classList.add('text-gray-500');
+      dotEl.className = 'contact-online-dot dot-offline';
+    }
+
+    // Reset unread count lokal
+    targetUser.Unread_Count = 0;
+    renderChatContacts();
+  }
+
+  // PERBAIKAN: KOSONGKAN ARRAY CHAT LAMA SEBELUM LOAD YANG BARU!
+  chatMessagesRaw = []; 
+  document.getElementById('chatMessagesArea').innerHTML = `<div class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-2xl text-indigo-400"></i></div>`;
+
+  await loadChatMessages(targetUserId);
+}
+function closeChatMobile() {
+  document.getElementById('chatRoomPanel').classList.remove('active-mobile');
+  currentChatUserId = null;
+  renderChatContacts();
+}
+
+async function loadChatMessages(targetUserId, forceLoader = false) {
+  const container = document.getElementById('chatMessagesArea');
+  if (forceLoader) container.innerHTML = `<div class="text-center py-10"><i class="fa-solid fa-spinner fa-spin text-2xl text-indigo-400"></i></div>`;
+
+  try {
+    const res = await sendToBackend({ action: 'chat_get_messages', token: getToken(), targetUserId: targetUserId });
+    
+    // PERBAIKAN: Jika user nge-klik kontak lain sangat cepat (sebelum data ini datang), batalkan render ini!
+    if (currentChatUserId !== targetUserId) return; 
+
+    if (res.status === 'success') {
+      chatMessagesRaw = res.data || [];
+      renderChatMessages();
+    }
+  } catch (e) {
+    if (currentChatUserId === targetUserId) {
+      container.innerHTML = `<div class="text-center text-red-400 font-bold py-10">Gagal memuat percakapan.</div>`;
+    }
+  }
+}
+function renderChatMessages() {
+  const container = document.getElementById('chatMessagesArea');
+  
+  if (!chatMessagesRaw.length) {
+    container.innerHTML = `<div class="flex flex-col items-center justify-center h-full opacity-60">
+      <div class="px-4 py-2 bg-indigo-50 text-indigo-500 rounded-lg text-xs font-bold border border-indigo-100 mb-4">
+        <i class="fa-solid fa-lock mr-1"></i> Pesan dilindungi Enkripsi Privasi Dashboard
+      </div>
+      <p class="text-sm font-bold text-gray-400">Kirim pesan pertama Anda.</p>
+    </div>`;
+    return;
+  }
+
+  let lastDate = '';
+
+  container.innerHTML = chatMessagesRaw.map(msg => {
+    const isMine = msg.Sender_ID !== currentChatUserId;
+    const alignClass = isMine ? 'msg-mine' : 'msg-theirs';
+    
+    // Formatting Jam (Contoh: "10:30")
+    const dateObj = new Date(msg.Created_At);
+    const timeStr = dateObj.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const dateStr = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Pembatas Tanggal (Jika hari berganti)
+    let dateDivider = '';
+    if (dateStr !== lastDate) {
+      dateDivider = `<div class="text-center my-4"><span class="px-3 py-1 bg-white/50 border border-white/60 rounded-full text-[10px] font-black text-gray-500 uppercase tracking-widest shadow-sm">${dateStr}</span></div>`;
+      lastDate = dateStr;
+    }
+
+    // Indikator Centang (Hanya untuk pesan yang kita kirim)
+    let tickHtml = '';
+    if (isMine) {
+      if (msg.Status === 'SENT') tickHtml = `<i class="fa-solid fa-check tick-sent"></i>`;
+      else if (msg.Status === 'DELIVERED') tickHtml = `<i class="fa-solid fa-check-double tick-delivered"></i>`;
+      else if (msg.Status === 'READ') tickHtml = `<i class="fa-solid fa-check-double tick-read"></i>`;
+    }
+
+    return `
+      ${dateDivider}
+      <div class="msg-bubble-wrap ${alignClass}">
+        <div class="msg-bubble">
+          ${escapeHtml(msg.Message_Text).replace(/\n/g, '<br>')}
+        </div>
+        <div class="msg-meta">
+          <span>${timeStr}</span>
+          ${tickHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Scroll otomatis ke bawah setiap render pesan baru
+  container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+}
+
+// 5. KIRIM PESAN BARU (OPTIMISTIC UI)
+async function sendChatMessage() {
+  if (isChatSending || !currentChatUserId) return;
+  
+  const inputBox = document.getElementById('chatInputBox');
+  const text = inputBox.value.trim();
+  if (!text) return;
+
+  // A. Optimistic Render (Langsung tampil di layar tanpa nunggu loading server)
+  isChatSending = true;
+  inputBox.value = '';
+  inputBox.style.height = '44px'; // Reset textarea height
+
+  const tempId = 'TEMP-' + Date.now();
+  const nowStr = new Date().toISOString();
+  
+  chatMessagesRaw.push({
+    Chat_ID: tempId,
+    Sender_ID: 'ME', // Hanya penanda logika di JS
+    Receiver_ID: currentChatUserId,
+    Message_Text: text,
+    Status: 'SENT', // Centang 1 awal
+    Created_At: nowStr
+  });
+  renderChatMessages();
+
+  // B. Panggil Backend
+  try {
+    const res = await sendToBackend({
+      action: 'chat_send_message',
+      token: getToken(),
+      targetUserId: currentChatUserId,
+      messageText: text
+    });
+
+    if (res.status === 'success') {
+      // Tukar ID temp dengan ID asli dari DB
+      const idx = chatMessagesRaw.findIndex(m => m.Chat_ID === tempId);
+      if (idx !== -1) chatMessagesRaw[idx] = res.data;
+      
+      // Update snippet last message di sidebar
+      loadChatContacts(); 
+    }
+  } catch (e) {
+    showToast('Gagal', 'Pesan tidak terkirim', 'fa-solid fa-triangle-exclamation');
+    chatMessagesRaw = chatMessagesRaw.filter(m => m.Chat_ID !== tempId);
+    renderChatMessages();
+  } finally {
+    isChatSending = false;
+  }
+}
+
+// 6. SMART POLLING (Jantung Fitur Realtime)
+// 6. SMART POLLING (Jantung Fitur Realtime)
+function startChatPolling() {
+  if (chatPollInterval) clearInterval(chatPollInterval);
+  
+  // Update data setiap 4 detik
+  chatPollInterval = setInterval(async () => {
+    if (document.hidden) return;
+
+    try {
+      const res = await sendToBackend({
+        action: 'chat_poll_updates',
+        token: getToken(),
+        activeTargetUserId: currentChatUserId,
+        lastSyncTime: lastChatSyncTime
+      });
+
+      if (res.status === 'success') {
+        const data = res.data;
+        lastSyncTime = data.syncTime;
+
+        // A. Update Status Online/Offline Kontak
+        chatContactsRaw.forEach(c => {
+          c.Is_Online = data.onlineUsers.includes(String(c.User_ID));
+          if (data.unreadCounts[c.User_ID] !== undefined) {
+             c.Unread_Count = data.unreadCounts[c.User_ID];
+          }
+        });
+
+        // B. Jika ada pesan masuk / update status centang
+        if (data.updatedMessages && data.updatedMessages.length > 0) {
+          
+          let chatRoomNeedsRender = false;
+
+          data.updatedMessages.forEach(newMsg => {
+            // PERBAIKAN: HANYA proses pesan jika berkaitan dengan ruang obrolan YANG SEDANG DIBUKA!
+            const isRelevantToCurrentRoom = currentChatUserId && 
+              (String(newMsg.Sender_ID) === currentChatUserId || String(newMsg.Receiver_ID) === currentChatUserId);
+
+            if (isRelevantToCurrentRoom) {
+              const existingIdx = chatMessagesRaw.findIndex(m => m.Chat_ID === newMsg.Chat_ID);
+              if (existingIdx !== -1) {
+                // Update status centang (SENT -> DELIVERED -> READ)
+                chatMessagesRaw[existingIdx].Status = newMsg.Status;
+              } else {
+                // Pesan baru masuk ke room yang sedang aktif
+                chatMessagesRaw.push(newMsg);
+              }
+              chatRoomNeedsRender = true;
+            }
+          });
+
+          if (chatRoomNeedsRender) renderChatMessages();
+          renderChatContacts(); // Render ulang sidebar untuk update lencana/snippet
+        } else {
+          // Hanya update indikator hijau/abu di sidebar jika tidak ada pesan baru
+          renderChatContacts();
+          
+          // Update status teks di header ruang chat (jika sedang dibuka)
+          if (currentChatUserId) {
+            const targetUser = chatContactsRaw.find(c => c.User_ID === currentChatUserId);
+            const statusEl = document.getElementById('activeChatStatus');
+            const dotEl = document.getElementById('activeChatOnlineDot');
+            if (targetUser && targetUser.Is_Online) {
+              statusEl.textContent = 'Online'; statusEl.className = 'text-[11px] font-black uppercase tracking-widest text-emerald-500 mt-0.5';
+              dotEl.className = 'contact-online-dot dot-online';
+            } else {
+              statusEl.textContent = 'Offline'; statusEl.className = 'text-[11px] font-black uppercase tracking-widest text-gray-500 mt-0.5';
+              dotEl.className = 'contact-online-dot dot-offline';
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn("Polling error (Abaikan jika koneksi lemah):", e);
+    }
+  }, 4000); 
+}
+function stopChatPolling() {
+  if (chatPollInterval) {
+    clearInterval(chatPollInterval);
+    chatPollInterval = null;
+  }
+}
+let okrDataRaw = [];
+let okrLoading = false;
+
+// 1. INIT CONTROLS
+function initOkrControls() {
+  const searchInput = document.getElementById('okrSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', debounce(applyOkrFilters, 200));
+  }
+}
+
+// 2. LOAD DATA
+async function loadMyOkr(options = {}) {
+  if (okrLoading) return;
+  okrLoading = true;
+
+  const container = document.getElementById('okrGridArea');
+  if (!options.silent && container) {
+    container.innerHTML = `
+      <div class="flex flex-col items-center justify-center p-20 glass-soft rounded-[40px] border border-white/50 text-center">
+        <i class="fa-solid fa-bullseye fa-beat-fade text-5xl text-indigo-500 mb-6"></i>
+        <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Menyinkronkan Objective...</h3>
+        <p class="font-bold text-gray-500 mt-2">Mengambil data Key Results yang ditugaskan kepada Anda.</p>
+      </div>`;
+  }
+
+  try {
+    const res = await sendToBackend({ action: 'user_get_my_okr', token: getToken() });
+    if (res.status === 'unauthorized') return handleUnauthorized(res.message);
+    if (res.status !== 'success') throw new Error(res.message);
+
+    okrDataRaw = res.data || [];
+    window.__okrLoadedOnce = true;
+    
+    updateOkrStats();
+    applyOkrFilters();
+
+  } catch (e) {
+    if (container) {
+      container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold bg-red-50 rounded-[30px]">Gagal memuat OKR: ${e.message}</div>`;
+    }
+    showBackendError(e);
+  } finally {
+    okrLoading = false;
+  }
+}
+
+async function safeReloadOkr() {
+  showToast('Menyinkronkan OKR', 'Mohon tunggu sebentar...', 'fa-solid fa-rotate fa-spin');
+  await loadMyOkr({ silent: true });
+}
+/****************************************************
+ * KPI TRACKER USER - JAVASCRIPT ENGINE (READ ONLY)
+ ****************************************************/
+
+let userKpiRaw = [];
+let userKpiLoading = false;
+
+// 1. INITIALIZE EVENTS
+function initUserKpiEvents() {
+  const searchInput = document.getElementById('userKpiSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', debounce(applyUserKpiFilters, 200));
+  }
+}
+
+// Tambahkan inisialisasi event ini di DOMContentLoaded Anda jika diperlukan
+document.addEventListener('DOMContentLoaded', () => {
+  initUserKpiEvents();
+});
+
+// 2. LOAD DATA FROM BACKEND
+async function loadUserKpi(options = {}) {
+  if (userKpiLoading) return;
+  userKpiLoading = true;
+
+  const container = document.getElementById('userKpiGridArea');
+  if (!options.silent && container) {
+    container.innerHTML = `
+      <div class="flex flex-col items-center justify-center p-20 glass rounded-[40px] border border-white/50 text-center">
+        <i class="fa-solid fa-chart-column fa-beat-fade text-5xl text-emerald-500 mb-6"></i>
+        <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Menyinkronkan Metrik KPI...</h3>
+        <p class="font-bold text-gray-500 mt-2">Mengambil riwayat pencapaian operasional Anda dari server Spreadsheet.</p>
+      </div>`;
+  }
+
+  try {
+    const res = await sendToBackend({ action: 'user_get_my_kpi', token: getToken() });
+    
+    if (res.status === 'unauthorized') {
+      return handleUnauthorized(res.message);
+    }
+    if (res.status !== 'success') {
+      throw new Error(res.message);
+    }
+
+    userKpiRaw = res.data || [];
+    window.__userKpiLoadedOnce = true;
+    
+    updateUserKpiStats();
+    applyUserKpiFilters();
+
+  } catch (e) {
+    if (container) {
+      container.innerHTML = `<div class="p-10 text-center text-red-500 font-bold bg-red-50 rounded-[30px]">Gagal memuat KPI: ${e.message}</div>`;
+    }
+    showBackendError(e);
+  } finally {
+    userKpiLoading = false;
+  }
+}
+
+async function safeReloadUserKpi() {
+  showToast('Menyinkronkan KPI', 'Mohon tunggu sebentar...', 'fa-solid fa-rotate fa-spin');
+  await loadUserKpi({ silent: true });
+  showToast('Capaian Terkini', 'Dashboard KPI berhasil dimutakhirkan.', 'fa-solid fa-circle-check');
+}
+
+// 3. UPDATE TOP CARD METRICS
+function updateUserKpiStats() {
+  const totalKpis = userKpiRaw.reduce((sum, g) => sum + g.KPI_Items.length, 0);
+  document.getElementById('statUserKpiTotal').textContent = totalKpis;
+  
+  if (userKpiRaw.length > 0) {
+    const avg = userKpiRaw.reduce((sum, g) => sum + g.Avg_Achievement, 0) / userKpiRaw.length;
+    document.getElementById('statUserKpiAvg').textContent = Math.round(avg);
+  } else {
+    document.getElementById('statUserKpiAvg').textContent = '0';
+  }
+}
+
+// 4. FILTERING LOGIC
+function applyUserKpiFilters() {
+  const keyword = lower(document.getElementById('userKpiSearchInput')?.value || '');
+  
+  const filtered = userKpiRaw.filter(group => {
+    let match = lower(group.Objective_Goal).includes(keyword) || lower(group.Frequency).includes(keyword);
+    if (!match) {
+      match = group.KPI_Items.some(kpi => 
+        lower(kpi.KPI_Name).includes(keyword) || 
+        lower(kpi.Description).includes(keyword) || 
+        lower(kpi.Status).includes(keyword)
+      );
+    }
+    return match;
+  });
+
+  renderUserKpiGrid(filtered);
+}
+
+// 5. RENDER THE BENTO GLASS GRID
+// Render Bento Glass Grid untuk KPI Pribadi User (Premium Edition)
+function renderUserKpiGrid(data) {
+  const container = document.getElementById('userKpiGridArea');
+  if (!container) return;
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="empty-state glass-soft p-16 text-center rounded-[40px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.05)]">
+        <div class="w-24 h-24 mx-auto rounded-[30px] grid place-items-center bg-gradient-to-br from-indigo-300 to-pink-300 text-white mb-6 shadow-[0_15px_30px_rgba(139,92,246,0.25)]">
+           <i class="fa-solid fa-chart-column text-[40px]"></i>
+        </div>
+        <h3 class="font-black text-[28px] text-[#2d335b] tracking-tight">Belum Ada KPI Ditugaskan</h3>
+        <p class="text-[#667092] text-[15px] font-bold mt-2 max-w-md mx-auto leading-relaxed">Admin belum menetapkan metrik sasaran KPI untuk akun Anda pada periode ini. Jika ada kekeliruan, hubungi admin divisi Anda.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(group => {
+    // 1. TEMA WARNA DINAMIS BERDASARKAN STATUS CAPAIAN RATU-RATU GROUP KPI
+    const theme = {
+      'Completed': { 
+        color: '#10b981', // <--- Tambahkan properti color ini
+        gradient: 'from-emerald-400 to-teal-500', 
+        glow: 'bg-emerald-400/20',
+        pill: 'text-emerald-700 bg-emerald-500/10 border-emerald-500/20',
+        icon: 'text-emerald-500',
+        progress: 'bg-gradient-to-r from-emerald-400 to-teal-400'
+      },
+      'At Risk': { 
+        color: '#f59e0b', // <--- Tambahkan properti color ini
+        gradient: 'from-amber-400 to-orange-500', 
+        glow: 'bg-amber-400/20',
+        pill: 'text-amber-700 bg-amber-500/10 border-amber-500/20',
+        icon: 'text-amber-500',
+        progress: 'bg-gradient-to-r from-amber-400 to-orange-400'
+      },
+      'Off Track': { 
+        color: '#ef4444', // <--- Tambahkan properti color ini
+        gradient: 'from-red-400 to-pink-500', 
+        glow: 'bg-red-400/20',
+        pill: 'text-red-700 bg-red-500/10 border-red-500/20',
+        icon: 'text-red-500',
+        progress: 'bg-gradient-to-r from-red-400 to-pink-400'
+      },
+      'On Track': { 
+        color: '#6366f1', // <--- Tambahkan properti color ini
+        gradient: 'from-[#6f8cff] to-[#8b5cf6]', 
+        glow: 'bg-indigo-500/20',
+        pill: 'text-indigo-700 bg-indigo-500/10 border-indigo-500/20',
+        icon: 'text-indigo-500',
+        progress: 'bg-gradient-to-r from-[#6f8cff] to-[#8b5cf6]'
+      }
+    };
+
+    const currentTheme = theme[group.Overall_Status] || theme['On Track'];
+    
+    // ==========================================
+    // DEKLARASIKAN VARIABEL DI BAWAH INI:
+    // ==========================================
+    const colorTheme = currentTheme.color;
+
+  return `
+      <!-- MASTER CARD TARGET BOX -->
+      <div class="kpi-user-card relative w-full p-8 md:p-10 mb-10 bg-white/40 border border-white/60 shadow-lg">
+        
+        <!-- Ambient Internal Glow Orb (Mesh Gradient Dinamis) -->
+        <div class="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full blur-[100px] ${currentTheme.glow} pointer-events-none transition-all duration-700"></div>
+        <div class="absolute inset-0 opacity-[0.025] pointer-events-none" style="background-image: radial-gradient(#2d335b 1.2px, transparent 1px); background-size: 24px 24px;"></div>
+        
+        <!-- Header Group Section (3D Glass Icon & Badges) -->
+        <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/40">
+          <div class="flex items-start gap-6 flex-1 min-w-0">
+            <!-- Glass Icon Container with Inner Specular Highlight -->
+            <div class="w-[68px] h-[64px] rounded-[22px] bg-gradient-to-br ${currentTheme.gradient} text-white flex items-center justify-center text-[26px] shadow-[0_16px_36px_rgba(111,140,255,0.22)] flex-none border border-white/20 relative overflow-hidden">
+              <div class="absolute inset-x-0 top-0 h-1/2 bg-white/15"></div>
+              <i class="fa-solid fa-chart-line relative z-10 animate-pulse"></i>
+            </div>
+            
+            <div class="flex-1 min-w-0 pt-1">
+              <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                <span class="px-3.5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border shadow-sm backdrop-blur-md flex items-center gap-1.5 ${currentTheme.pill}">
+                  <span class="w-1.5 h-1.5 rounded-full bg-current"></span> ${group.Overall_Status}
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/70 text-[#59648e] border border-white shadow-sm backdrop-blur-md flex items-center gap-1.5">
+                  <i class="fa-regular fa-clock"></i> Frekuensi: ${group.Frequency}
+                </span>
+              </div>
+              <h3 class="text-[26px] font-black text-[#2d335b] tracking-tight leading-tight">${escapeHtml(group.Objective_Goal)}</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rata-rata Progres Group (Frosted Gauge Panel) -->
+        <div class="relative z-10 w-full bg-white/40 p-6 rounded-[28px] border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_15px_35px_rgba(83,94,160,0.03)] mb-8">
+           <div class="flex justify-between items-end mb-3">
+             <span class="text-[11px] font-black uppercase tracking-[0.2em] text-[#59648e]">Akumulasi Performa Capaian</span>
+             <strong class="text-[24px] font-black leading-none" style="color: ${colorTheme};">${group.Avg_Achievement}%</strong>
+           </div>
+           <div class="w-full h-3 bg-white/60 rounded-full overflow-hidden border border-white/80 shadow-inner">
+             <div class="h-full rounded-full transition-all duration-1000 ${currentTheme.progress} relative" style="width: ${group.Avg_Achievement}%;">
+                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/35 to-transparent -translate-x-full animate-[shimmerProgress_2.5s_infinite]"></div>
+             </div>
+           </div>
+        </div>
+
+        <!-- KPI Grid Cards Area -->
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-6 pl-2 flex-none">
+            <div class="w-1.5 h-6 rounded-full" style="background-color: ${colorTheme}"></div>
+            <h4 class="text-[13px] font-black uppercase tracking-[0.25em] text-[#2d335b]">Metrik Operasional Personal</h4>
+            <span class="px-2.5 py-0.5 rounded-full bg-white/50 border border-white/60 text-[11px] font-black text-gray-500 shadow-sm">${group.KPI_Items.length}</span>
+          </div>
+          
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            ${group.KPI_Items.map((kpi, idx) => {
+              let kpiColor = '#10b981';
+              let kpiStatClass = 'text-emerald-600 bg-emerald-50 border-emerald-100';
+              if (kpi.Status === 'At Risk') { kpiColor = '#f59e0b'; kpiStatClass = 'text-amber-600 bg-amber-50 border-amber-100'; }
+              if (kpi.Status === 'Off Track') { kpiColor = '#ef4444'; kpiStatClass = 'text-red-600 bg-red-50 border-red-100'; }
+
+              const safeData = encodeURIComponent(JSON.stringify(kpi));
+
+              return `
+                <!-- INDIVIDUAL KPI CARD -->
+                <div class="kpi-item-box flex flex-col h-full overflow-hidden justify-between relative group/item p-6 rounded-[28px] bg-gradient-to-b from-white/65 to-white/25 border border-white/60 shadow-[0_8px_32px_rgba(83,94,160,0.04)] hover:shadow-[0_20px_50px_rgba(83,94,160,0.12)] transition-all duration-300">
+                  <!-- Hover Ambient Shimmer Spot -->
+                  <div class="absolute -top-12 -right-12 w-28 h-28 rounded-full blur-[24px] opacity-0 group-hover/item:opacity-20 transition-all duration-500 pointer-events-none" style="background-color: ${kpiColor};"></div>
+                  
+                  <div>
+                    <!-- Top Badge Row -->
+                    <div class="flex justify-between items-start mb-5 border-b border-gray-200/50 pb-4 relative z-10">
+                      <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-[10px] text-[10px] font-black text-[#59648e] bg-white border border-gray-100 shadow-sm flex items-center gap-1">
+                          <i class="fa-solid fa-hash text-indigo-400"></i> ${String(idx+1).padStart(2, '0')}
+                        </span>
+                        <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border shadow-sm ${kpiStatClass}">${kpi.Status}</span>
+                      </div>
+                      <span class="text-[10px] font-black bg-white/70 px-2.5 py-1 rounded-md border border-white text-gray-400 shadow-sm">Bobot: ${kpi.Weight}%</span>
+                    </div>
+
+                    <!-- Title & Description (Line Clamped & Tooltipped) -->
+                    <h5 class="text-[16px] font-black text-[#2d335b] leading-[1.35] line-clamp-2 h-[44px]" title="${escapeHtml(kpi.KPI_Name)}">${escapeHtml(kpi.KPI_Name)}</h5>
+                    <p class="text-[12.5px] font-semibold text-[#59648e] line-clamp-2 mt-1.5 h-[38px] leading-relaxed" title="${escapeHtml(kpi.Description)}">${escapeHtml(kpi.Description || 'Tidak ada deskripsi tambahan untuk indikator ini.')}</p>
+                    
+                    <!-- Bento Metric Columns -->
+                    <div class="grid grid-cols-2 gap-4 my-5 relative z-10">
+                      <!-- Target Box -->
+                      <div class="p-4 rounded-[20px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/70 transition-colors duration-300">
+                        <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Target / Baseline</p>
+                        <p class="text-[16px] font-black text-[#2d335b] truncate">
+                          <span class="text-[11px] font-bold text-gray-400 mr-0.5">${escapeHtml(kpi.Measurement_Metric)}</span>${kpi.Target}
+                          <span class="text-[10px] text-gray-400 font-bold ml-1">(${kpi.Baseline})</span>
+                        </p>
+                      </div>
+                      <!-- Actual Result Box -->
+                      <div class="p-4 rounded-[20px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/70 transition-colors duration-300 flex flex-col items-end text-right">
+                        <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-1">Actual Result</p>
+                        <p class="text-[16px] font-black text-[#2d335b] truncate">
+                          <span class="text-[11px] font-bold text-gray-400 mr-0.5">${escapeHtml(kpi.Measurement_Metric)}</span>${kpi.Actual_Result}
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="mb-5 relative z-10">
+                      <div class="flex justify-between text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1.5">
+                        <span>Pencapaian Indikator</span>
+                        <strong style="color: ${kpiColor}">${kpi.Achievement}%</strong>
+                      </div>
+                      <div class="w-full h-2 bg-white/50 rounded-full overflow-hidden border border-white/70 shadow-inner">
+                        <div class="h-full rounded-full transition-all duration-1000" style="width: ${Math.min(kpi.Achievement, 100)}%; background-color: ${kpiColor};"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Action Plan Box -->
+                  <div class="p-4 rounded-[22px] bg-indigo-50/30 border border-indigo-100/50 mb-6 relative overflow-hidden flex-none">
+                    <div class="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-[22px]" style="background-color: ${kpiColor}; opacity: 0.8;"></div>
+                    <p class="text-[10px] font-black uppercase tracking-[0.15em] mb-1.5 flex items-center gap-1.5 pl-1" style="color: ${kpiColor};">
+                      <i class="fa-solid fa-rocket animate-pulse"></i> Action Plan / Initiative
+                    </p>
+                    <p class="text-[12.5px] font-bold text-[#59648e] leading-relaxed line-clamp-2 pl-1" title="${escapeHtml(kpi.Initiative || '')}">
+                      ${escapeHtml(kpi.Initiative || 'Belum ada rencana aksi harian yang ditentukan.')}
+                    </p>
+                  </div>
+
+                  <!-- Action Footer (High-end Hover Fill Button) -->
+                  <div class="pt-4 mt-auto border-t border-dashed border-gray-300/60 flex justify-end relative z-10">
+                    <button onclick="openUserKpiDetailModal('${safeData}', '${escapeAttribute(group.Objective_Goal)}')" class="h-11 px-6 rounded-[16px] bg-white hover:bg-gradient-to-r hover:${currentTheme.progress} border border-white text-indigo-600 hover:text-white hover:border-transparent font-black text-[12px] shadow-sm hover:shadow-[0_10px_25px_rgba(99,102,241,0.22)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2">
+                      <i class="fa-solid fa-circle-info text-[11px]"></i> Detail Insights
+                    </button>
+                  </div>
+
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+      </div>
+    `;
+  }).join('');
+}
+// 6. OPEN HIGH-END CORE DETAIL MODAL (READ ONLY)
+function openUserKpiDetailModal(encodedKpi, objectiveGoal) {
+  const kpi = JSON.parse(decodeURIComponent(encodedKpi));
+  
+  let statusThemeClass = 'text-indigo-600 bg-indigo-50 border-indigo-100';
+  let iconColor = 'text-indigo-500';
+  if(kpi.Status === 'Completed') { statusThemeClass = 'text-emerald-600 bg-emerald-50 border-emerald-100'; iconColor = 'text-emerald-500'; }
+  if(kpi.Status === 'At Risk') { statusThemeClass = 'text-amber-600 bg-amber-50 border-amber-100'; iconColor = 'text-amber-500'; }
+  if(kpi.Status === 'Off Track') { statusThemeClass = 'text-red-600 bg-red-50 border-red-100'; iconColor = 'text-red-500'; }
+
+  const buildFieldBox = (icon, label, value) => `
+    <div class="p-4 bg-white/50 border border-white/70 rounded-[22px] shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-start gap-3.5">
+        <div class="w-9 h-9 rounded-xl bg-indigo-50/50 border border-indigo-100 text-indigo-500 flex items-center justify-center text-sm shrink-0 shadow-inner">
+          <i class="${icon}"></i>
+        </div>
+        <div class="min-w-0">
+          <p class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400 mb-0.5">${escapeHtml(label)}</p>
+          <p class="text-[13.5px] font-black text-[#2d335b] leading-tight">${escapeHtml(value || '-')}</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  Swal.fire({
+    title: '',
+    width: 820,
+    background: 'transparent',
+    showConfirmButton: true,
+    confirmButtonText: 'Selesai Review',
+    customClass: { 
+      popup: 'swal-directory-premium p-0', 
+      confirmButton: 'primary-btn !h-[50px] !px-8 !rounded-[16px] !text-[13px] shadow-lg transition-transform hover:scale-105' 
+    },
+    html: `
+      <div class="relative overflow-hidden text-left flex flex-col h-full bg-gradient-to-br from-white/95 to-[#f8f9ff]/90 backdrop-blur-3xl rounded-[40px] border border-white/60 shadow-[0_35px_120px_rgba(31,38,135,0.22)]">
+        
+        <!-- Background Glowing Decorative Orbs -->
+        <div class="absolute -top-32 -right-32 w-80 h-80 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <!-- Header -->
+        <div class="relative z-10 px-8 py-6 border-b border-white/30 bg-white/20 backdrop-blur-xl flex justify-between items-start">
+          <div class="flex items-center gap-5">
+            <div class="w-14 h-14 rounded-[20px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center text-2xl shadow-[0_10px_25px_rgba(139,92,246,0.35)] flex-none">
+              <i class="fa-solid fa-chart-column"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-600 text-[9px] font-black uppercase tracking-widest border border-indigo-200/40 shadow-inner">
+                  <i class="fa-solid fa-user-lock mr-1"></i> Private Telemetry
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border shadow-sm ${statusThemeClass}">
+                  <span class="w-1 h-1 rounded-full bg-current mr-1"></span> ${kpi.Status}
+                </span>
+              </div>
+              <h3 class="text-[25px] font-black text-[#2d335b] tracking-tight leading-none truncate max-w-md" title="${escapeHtml(kpi.KPI_Name)}">${escapeHtml(kpi.KPI_Name)}</h3>
+              <p class="text-xs font-bold text-gray-500 mt-1.5"><i class="fa-solid fa-compass mr-1 text-indigo-400"></i> ${escapeHtml(objectiveGoal)}</p>
+            </div>
+          </div>
+          <button onclick="Swal.close()" class="w-10 h-10 rounded-[14px] bg-white/40 hover:bg-white hover:text-red-500 border border-white/60 text-[#59648e] flex items-center justify-center transition-all shadow-sm flex-none group">
+            <i class="fa-solid fa-xmark text-lg group-hover:rotate-90 transition-transform"></i>
+          </button>
+        </div>
+
+        <!-- Body Detail Grid -->
+        <div class="relative z-10 p-8 overflow-y-auto max-h-[60vh] custom-scrollbar space-y-6">
+          
+          <!-- Deskripsi Metrik -->
+          <div class="p-5 rounded-[24px] bg-white/40 border border-white/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] relative overflow-hidden">
+            <i class="fa-solid fa-quote-left absolute top-4 left-4 text-4xl text-indigo-500/5"></i>
+            <p class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 mb-2">Description / Parameter</p>
+            <p class="text-[13.5px] font-semibold text-[#59648e] leading-relaxed italic pl-1">${escapeHtml(kpi.Description || 'Tidak ada deskripsi tambahan untuk indikator kinerja ini.')}</p>
+          </div>
+
+          <!-- Parameter Detil Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${buildFieldBox('fa-solid fa-calculator', 'Formula Kalkulasi', kpi.Formula || 'Actual / Target')}
+            ${buildFieldBox('fa-solid fa-database', 'Sumber Data (Source)', kpi.Data_Source)}
+            ${buildFieldBox('fa-solid fa-weight', 'Bobot Kontribusi', kpi.Weight + '%')}
+            ${buildFieldBox('fa-solid fa-chart-line', 'Target Utama', kpi.Target + ' ' + kpi.Measurement_Metric)}
+            ${buildFieldBox('fa-solid fa-chart-pie', 'Baseline Dasar', kpi.Baseline + ' ' + kpi.Measurement_Metric)}
+            ${buildFieldBox('fa-solid fa-star', 'Realisasi Aktual', kpi.Actual_Result + ' ' + kpi.Measurement_Metric)}
+          </div>
+
+          <!-- Capaian Terkini Bar -->
+          <div class="p-5 rounded-[24px] bg-white/40 border border-white/60 shadow-inner">
+             <div class="flex justify-between items-center mb-3 text-[10px] font-black uppercase tracking-[0.15em] text-gray-400">
+               <span>Evaluasi Persentase Capaian</span>
+               <strong class="${iconColor} text-[18px] leading-none">${kpi.Achievement}%</strong>
+             </div>
+             <div class="w-full h-3 bg-white/60 rounded-full overflow-hidden border border-white/80 shadow-inner">
+                <div class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-emerald-400" style="width: ${Math.min(kpi.Achievement, 100)}%;"></div>
+             </div>
+          </div>
+
+          <!-- Action Plan / Improvement Plan (Actionable Section) -->
+          <div class="p-5 rounded-[24px] bg-emerald-50/40 border border-emerald-100/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] relative overflow-hidden">
+            <!-- Neon Edge Accent -->
+            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-emerald-400"></div>
+            <p class="text-[10px] font-black uppercase tracking-[0.15em] text-emerald-600 mb-2 flex items-center gap-1.5 pl-1"><i class="fa-solid fa-circle-info"></i> Rencana Aksi (Improvement Plan)</p>
+            <p class="text-[13.5px] font-bold text-[#59648e] leading-relaxed pl-1">${escapeHtml(kpi.Improvement_Plan || 'Belum ada catatan rencana perbaikan dari Admin. Pertahankan capaian indikator kerja harian Anda.')}</p>
+          </div>
+
+        </div>
+
+      </div>
+    `
+  });
+}
+// 3. UPDATE STATS
+function updateOkrStats() {
+  document.getElementById('statOkrTotal').textContent = okrDataRaw.length;
+  
+  const onTrack = okrDataRaw.filter(o => o.Overall_Status === 'On Track' || o.Overall_Status === 'Completed').length;
+  document.getElementById('statOkrOnTrack').textContent = onTrack;
+  
+  const atRisk = okrDataRaw.filter(o => o.Overall_Status === 'At Risk' || o.Overall_Status === 'Off Track').length;
+  document.getElementById('statOkrAtRisk').textContent = atRisk;
+}
+
+// 4. FILTERING & RENDER (Accordion Ultra Premium)
+function applyOkrFilters() {
+  const keyword = lower(document.getElementById('okrSearchInput')?.value || '');
+  
+  const filtered = okrDataRaw.filter(o => {
+    // Cari di judul objective
+    let match = lower(o.Objective_Name).includes(keyword) || lower(o.Timeline).includes(keyword);
+    // Cari di dalam KR
+    if(!match) {
+      match = o.Key_Results.some(kr => 
+        lower(kr.Key_Result).includes(keyword) || 
+        lower(kr.Initiative).includes(keyword) || 
+        lower(kr.Status).includes(keyword)
+      );
+    }
+    return match;
+  });
+
+  renderOkrList(filtered);
+}
+
+function renderOkrList(data) {
+  const container = document.getElementById('okrGridArea');
+  
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="empty-state glass-soft p-16 text-center rounded-[40px] border border-white/50">
+        <div class="w-20 h-20 mx-auto rounded-[24px] grid place-items-center bg-gradient-to-br from-indigo-300 to-pink-300 text-white mb-5 shadow-xl">
+           <i class="fa-solid fa-bullseye text-3xl"></i>
+        </div>
+        <h3 class="font-black text-[26px] text-[#2d335b] tracking-tight">Belum Ada OKR</h3>
+        <p class="text-[#667092] text-[14px] font-bold mt-2">Admin belum menugaskan Objective untuk Anda, atau tidak ada yang sesuai pencarian.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map((obj, index) => {
+    // Tentukan warna berdasarkan status overall
+    let colorHex = '#8b5cf6'; // Default Indigo
+    let gradIcon = 'from-indigo-400 to-purple-600';
+    let statusPillClass = 'status-ontrack';
+    
+    if (obj.Overall_Status === 'Completed') { colorHex = '#6366f1'; gradIcon = 'from-blue-400 to-indigo-600'; statusPillClass = 'status-completed'; }
+    if (obj.Overall_Status === 'At Risk') { colorHex = '#f59e0b'; gradIcon = 'from-amber-400 to-orange-500'; statusPillClass = 'status-atrisk'; }
+    if (obj.Overall_Status === 'Off Track') { colorHex = '#ef4444'; gradIcon = 'from-red-400 to-pink-600'; statusPillClass = 'status-offtrack'; }
+
+    return `
+      <div class="okr-card" id="okrCard_${obj.Objective_ID}">
+        <div class="okr-glow" style="background-color: ${colorHex}; top: -50px; right: -50px; width: 250px; height: 250px;"></div>
+        
+        <!-- Header (Clickable for Accordion) -->
+        <div class="okr-header" onclick="toggleOkrAccordion('${obj.Objective_ID}')">
+          <div class="okr-icon-box bg-gradient-to-br ${gradIcon}">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          
+          <div class="okr-main-info">
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border shadow-sm backdrop-blur-md ${statusPillClass}">
+                <i class="fa-solid fa-circle-dot mr-1"></i> ${obj.Overall_Status}
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.15em] bg-gray-100 text-gray-500 border border-gray-200 shadow-sm">
+                <i class="fa-solid fa-calendar-days mr-1"></i> ${escapeHtml(obj.Timeline)}
+              </span>
+            </div>
+            <h3 class="text-[24px] font-black text-[#2d335b] tracking-tight leading-tight">${escapeHtml(obj.Objective_Name)}</h3>
+            
+            <div class="okr-progress-container">
+              <div class="flex justify-between text-[11px] font-black text-gray-500 mb-1">
+                <span>Rata-rata Pencapaian KR</span>
+                <span style="color: ${colorHex}">${obj.Avg_Progress}%</span>
+              </div>
+              <div class="okr-progress-bar">
+                <div class="okr-progress-fill" style="width: ${obj.Avg_Progress}%; background: linear-gradient(90deg, ${colorHex}, #e873aa);"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="okr-chevron shadow-sm border border-white/50">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+
+        <!-- Body (KRs) -->
+        <div class="okr-body">
+          <div class="okr-body-inner">
+            <div class="kr-list-wrapper">
+              <!-- Garis konektor visual -->
+              <div class="kr-timeline-line"></div>
+              
+              ${obj.Key_Results.map((kr, idx) => {
+                let krStatClass = 'status-ontrack';
+                if(kr.Status === 'Completed') krStatClass = 'status-completed';
+                if(kr.Status === 'At Risk') krStatClass = 'status-atrisk';
+                if(kr.Status === 'Off Track') krStatClass = 'status-offtrack';
+
+                return `
+                  <div class="kr-item">
+                    <div class="kr-dot"></div>
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+                      <div>
+                        <span class="px-2.5 py-1 rounded-md text-[9px] font-black uppercase tracking-[0.15em] border ${krStatClass} shadow-sm inline-block mb-2">KR ${idx + 1} • ${escapeHtml(kr.Status)}</span>
+                        <h4 class="text-[17px] font-black text-[#2d335b] leading-snug">${escapeHtml(kr.Key_Result)}</h4>
+                      </div>
+                      
+                      <!-- Lingkaran Progress Individu KR -->
+                      <div class="w-14 h-14 rounded-full border-[3px] border-indigo-100 flex flex-col items-center justify-center shrink-0 relative overflow-hidden bg-white shadow-inner">
+                        <div class="absolute bottom-0 left-0 right-0 bg-indigo-500/20" style="height: ${kr.Progress}%"></div>
+                        <span class="relative z-10 text-[13px] font-black text-indigo-700 leading-none">${kr.Progress}%</span>
+                      </div>
+                    </div>
+
+                    <p class="text-[13px] font-bold text-[#59648e] leading-relaxed mb-4 p-3 bg-white/40 border border-white/60 rounded-xl shadow-sm"><strong class="text-[#2d335b]">Action Plan:</strong><br>${escapeHtml(kr.Initiative || '-')}</p>
+
+                    <div class="kr-meta-grid">
+                      <div class="kr-meta-box">
+                        <span class="block text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">Score</span>
+                        <strong class="text-[14px] font-black text-[#2d335b]">${kr.Score}</strong>
+                      </div>
+                      <div class="kr-meta-box">
+                        <span class="block text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">Priority</span>
+                        <strong class="text-[13px] font-bold text-[#2d335b]">${escapeHtml(kr.Priority)}</strong>
+                      </div>
+                      <div class="kr-meta-box">
+                        <span class="block text-[9px] font-black uppercase tracking-widest text-gray-400 mb-1">Dependencies</span>
+                        <strong class="text-[13px] font-bold text-[#2d335b] truncate block" title="${escapeHtml(kr.Dependencies)}">${escapeHtml(kr.Dependencies || '-')}</strong>
+                      </div>
+                    </div>
+
+                    ${kr.Check_In_Notes ? `
+                      <div class="mt-4 p-3 rounded-xl bg-amber-50/60 border border-amber-100/60">
+                        <p class="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-1"><i class="fa-solid fa-message mr-1"></i> Admin Note</p>
+                        <p class="text-[12px] font-semibold text-amber-900">${escapeHtml(kr.Check_In_Notes)}</p>
+                      </div>
+                    ` : ''}
+
+                    ${kr.Evidence_Link ? `
+                      <a href="${escapeAttribute(kr.Evidence_Link)}" target="_blank" class="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-[14px] bg-white/70 border border-white hover:bg-white text-indigo-600 text-[12px] font-black shadow-sm transition-all">
+                        <i class="fa-solid fa-link"></i> Buka Bukti (Evidence)
+                      </a>
+                    ` : ''}
+
+                  </div>
+                `;
+              }).join('')}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// 5. ACCORDION TOGGLE LOGIC
+function toggleOkrAccordion(id) {
+  const card = document.getElementById(`okrCard_${id}`);
+  if(card) {
+    card.classList.toggle('open');
+  }
+}
 let feedbackHistoryRaw = [];
 
 // Data Struktur Pertanyaan
@@ -31143,6 +33072,7 @@ function showDocumentBackendError(error) {
     'project': 'projectView',
     'statusTask': 'statusTaskView',
     'roomBooking': 'roomBookingView' ,
+     'kpiUser': 'kpiUserView' ,
     'historyTask': 'historyTaskView',
     'collabPockets': 'collabPocketsView',
     'reportTask': 'reportTaskView',
@@ -31151,6 +33081,7 @@ function showDocumentBackendError(error) {
     'stickyNotes': 'stickyNotesView',
     'aiAssistant': 'aiAssistantView',
     'tools': 'toolsView',
+    'okr': 'okrView',
     'announcement': 'announcementView',
     'attendance': 'attendanceView',
     'leave_request': 'leaveRequestView',
@@ -31163,7 +33094,8 @@ function showDocumentBackendError(error) {
     'feedback': 'feedbackView',
     'ideaPockets': 'ideaPocketsView' ,
     'teamAvailability': 'teamAvailabilityView',
-    'matrix': 'matrixView'
+    'matrix': 'matrixView',
+     'consultation': 'consultationView' 
   };
 
   const targetId = viewMap[view];
@@ -31197,6 +33129,29 @@ if (view === 'mindMap') {
   // Jalankan load list peta pikiran
   loadMindMaps();
 }
+if (view === 'kpiUser') {
+    document.getElementById('kpiUserView').classList.add('active');
+    document.getElementById('kpiUserView').style.display = 'block';
+    document.getElementById('topbarTitle').textContent = 'My KPI Tracker';
+    
+    // 2. JALANKAN LOGIK LOAD KPI USER
+    if (!window.__userKpiLoadedOnce) {
+      loadUserKpi();
+    } else {
+      applyUserKpiFilters();
+    }
+  }
+// TAMBAHKAN BLOK INI DI DALAM switchView
+  if (view === 'consultation') {
+    document.getElementById('consultationView').classList.add('active');
+    document.getElementById('consultationView').style.display = 'block';
+    document.getElementById('topbarTitle').textContent = 'Koneksi Tim Internal';
+    openConsultationFeature();
+  } else {
+    // SANGAT PENTING: Matikan polling jika user pindah ke menu lain
+    // Agar kuota Google Apps Script dan baterai/RAM perangkat tidak terkuras
+    if (typeof stopChatPolling === 'function') stopChatPolling();
+  }
 if (view === 'collabPockets') {
     document.getElementById('collabPocketsView').classList.add('active');
     document.getElementById('collabPocketsView').style.display = 'block';
@@ -31207,6 +33162,17 @@ if (view === 'collabPockets') {
       loadCollabPockets();
     } else {
       applyCollabFilters(); // Render ulang jika sudah pernah di-load
+    }
+  }
+  if (view === 'okr') {
+    document.getElementById('okrView').classList.add('active');
+    document.getElementById('okrView').style.display = 'block';
+    document.getElementById('topbarTitle').textContent = 'My OKR';
+    
+    if (!window.__okrLoadedOnce) {
+      loadMyOkr();
+    } else {
+      applyOkrFilters(); // Render ulang dari lokal memori
     }
   }
 if (view === 'clientLogbook') {
@@ -31466,15 +33432,6 @@ if (view === 'reportTask') {
     function closeSidebarMobile() {
       document.getElementById('sidebar').classList.remove('open');
     }
-/****************************************************
- * ANNOUNCEMENT BOARD FEATURE
- ****************************************************/
-/****************************************************
- * DAILY ATTENDANCE FEATURE - FRONTEND
- ****************************************************/
-/****************************************************
- * LEAVE REQUEST FEATURE - USER DASHBOARD
- ****************************************************/
 
 function initLeaveRequestControls() {
   const searchInput = document.getElementById('leaveSearchInput');
