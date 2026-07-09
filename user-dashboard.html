@@ -16492,6 +16492,99 @@ input[list]::-webkit-calendar-picker-indicator {
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.2);
 }
+/* ==================================================
+   ULTRA PREMIUM WEALTH HUB STYLES
+   ================================================== */
+
+.finance-pocket-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 36px;
+  padding: 28px;
+  isolation: isolate;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.finance-pocket-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 25px 60px rgba(83, 94, 160, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Progress Bar Tabungan */
+.finance-progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+.finance-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.finance-progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmerProgress 2.5s infinite;
+}
+
+/* Transaksi List Card */
+.finance-tx-item {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(83, 94, 160, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.finance-tx-item:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(83, 94, 160, 0.08);
+}
+/* ==================================================
+   SMART TIMER CSS & GLOW EFFECTS
+   ================================================== */
+.timer-glow-running {
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.4), inset 0 0 20px rgba(16, 185, 129, 0.2) !important;
+  animation: pulse-ring-green 2s infinite ease-in-out;
+}
+.timer-glow-paused {
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.1) !important;
+}
+
+@keyframes pulse-ring-green {
+  0% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 10px rgba(16, 185, 129, 0.1); }
+  50% { box-shadow: 0 0 50px rgba(16, 185, 129, 0.6), inset 0 0 25px rgba(16, 185, 129, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), inset 0 0 10px rgba(16, 185, 129, 0.1); }
+}
+
+.timer-history-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(83, 94, 160, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.timer-history-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(83, 94, 160, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
   </style>
 </head>
 
@@ -16662,6 +16755,14 @@ input[list]::-webkit-calendar-picker-indicator {
 <button class="menu-item" data-view="creativeBrief">
   <i class="fa-solid fa-pen-nib"></i>
   <span>Creative Briefs</span>
+</button>
+<button class="menu-item" data-view="finance">
+  <i class="fa-solid fa-wallet"></i>
+  <span>Kantong Keuangan</span>
+</button>
+<button class="menu-item" data-view="timer">
+  <i class="fa-solid fa-stopwatch"></i>
+  <span>Focus Timer</span>
 </button>
 
           <button class="menu-item" data-view="profile">
@@ -18003,6 +18104,184 @@ input[list]::-webkit-calendar-picker-indicator {
     </div>
   </div>
 
+</section>
+<!-- ================================================== -->
+<!-- VIEW: KANTONG KEUANGAN (WEALTH HUB)                -->
+<!-- ================================================== -->
+<section id="financePocketsView" class="view-section relative">
+  
+  <!-- === AREA GALERI UTAMA === -->
+  <div id="financeGalleryArea" class="h-full flex flex-col transition-all duration-500 pb-10">
+    
+    <!-- Hero Dashboard Premium -->
+    <div class="hero-dashboard glass-deep mb-8 overflow-hidden relative p-10 md:p-12 rounded-[48px] border border-white/40 shadow-[0_32px_120px_rgba(31,38,135,0.15)] flex-none mt-6">
+      <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-emerald-500/20 to-teal-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-gradient-to-tr from-indigo-500/15 to-purple-400/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 30px 34px;"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Kiri: Tipografi -->
+        <div class="lg:col-span-7 space-y-8">
+          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 border border-white/60 text-emerald-600 backdrop-blur-xl shadow-sm">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            </span>
+            <span class="text-[10px] font-black uppercase tracking-[0.25em] text-[#29304f]/80">Personal Wealth Hub</span>
+          </div>
+          
+          <div class="space-y-4">
+            <h1 class="page-title text-[56px] md:text-[76px] font-black leading-[1.02] tracking-[-0.06em] text-[#1a1f3d] font-display pb-1 overflow-visible">
+              Kantong <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500 block pb-2 overflow-visible">Keuangan.</span>
+            </h1>
+            <p class="max-w-[540px] text-[16px] md:text-[17px] font-medium text-[#59648e] leading-[1.8]">
+              Pusat kendali finansial Anda. Pecah dana ke dalam berbagai kantong spesifik, catat pengeluaran harian, alokasikan tabungan, dan lacak investasi secara privat dan komprehensif.
+            </p>
+          </div>
+        </div>
+
+        <!-- Kanan: Telemetry Board (Total Kekayaan) -->
+        <div class="lg:col-span-5 flex lg:justify-end">
+          <div class="group relative w-full lg:w-auto min-w-[340px]">
+            <div class="absolute inset-0 bg-emerald-500/10 blur-[45px] rounded-[44px] group-hover:bg-emerald-500/20 transition-all duration-700 pointer-events-none"></div>
+            
+            <div class="relative bg-gradient-to-b from-white/40 to-white/10 p-9 rounded-[42px] border border-white/70 shadow-[0_20px_50px_rgba(0,0,0,0.05)] backdrop-blur-2xl overflow-hidden">
+              <div class="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-white/30 border border-white/60 flex items-center justify-center text-emerald-500/40 text-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                <i class="fa-solid fa-vault animate-pulse"></i>
+              </div>
+
+              <div class="space-y-8">
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 mb-1.5">Net Worth Summary</p>
+                  <h4 class="text-xl font-black text-[#2d335b]">Total Kekayaan</h4>
+                  <div class="mt-3 flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-gray-500">Rp</span>
+                    <h3 id="statNetWorth" class="text-5xl font-black text-[#2d335b] tracking-tighter leading-none">0</h3>
+                  </div>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-2 gap-4">
+                  <!-- Income Bulan Ini -->
+                  <div class="p-3.5 rounded-[20px] bg-white/50 border border-white/80 shadow-sm">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px]"><i class="fa-solid fa-arrow-down"></i></div>
+                      <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest">In (Bulan Ini)</p>
+                    </div>
+                    <h4 id="statIncome" class="text-[17px] font-black text-emerald-600 truncate">Rp 0</h4>
+                  </div>
+                  <!-- Expense Bulan Ini -->
+                  <div class="p-3.5 rounded-[20px] bg-white/50 border border-white/80 shadow-sm">
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[10px]"><i class="fa-solid fa-arrow-up"></i></div>
+                      <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest">Out (Bulan Ini)</p>
+                    </div>
+                    <h4 id="statExpense" class="text-[17px] font-black text-rose-600 truncate">Rp 0</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toolbar & Filter -->
+    <div class="relative z-10 mb-8 p-4 md:p-5 rounded-[32px] border border-white/60 shadow-[0_15px_40px_rgba(83,94,160,0.08)] flex flex-col lg:flex-row items-center justify-between gap-5 bg-gradient-to-r from-white/50 via-white/30 to-white/50 backdrop-blur-2xl flex-none">
+      <div class="flex-1 flex flex-col sm:flex-row items-center gap-4 w-full">
+        <!-- Search Box -->
+        <div class="relative w-full sm:flex-1 group">
+          <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 z-10"></i>
+          <input id="financeSearchInput" type="text" class="w-full h-[56px] pl-12 pr-4 bg-white/60 hover:bg-white/80 border border-white rounded-[20px] text-[13.5px] font-black text-[#2d335b] outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-400 transition-all shadow-sm placeholder-gray-400" placeholder="Cari nama kantong atau catatan...">
+        </div>
+        <!-- Kategori Kantong -->
+        <div class="relative w-full sm:w-[240px] group">
+          <i class="fa-solid fa-filter absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 z-10"></i>
+          <select id="financeTypeFilter" class="w-full h-[56px] pl-12 pr-10 appearance-none bg-white/60 hover:bg-white/80 border border-white/80 rounded-[20px] text-[13.5px] font-black text-[#2d335b] outline-none focus:ring-4 focus:ring-emerald-500/15 focus:border-emerald-400 transition-all shadow-sm cursor-pointer" onchange="applyFinanceFilters()">
+            <option value="">Semua Tipe Kantong</option>
+            <option value="Liquid">Liquid (Uang Harian)</option>
+            <option value="Saving">Saving (Tabungan/Goals)</option>
+            <option value="Investment">Investment (Aset/Investasi)</option>
+          </select>
+          <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full lg:w-auto">
+        <button onclick="safeReloadFinancePockets()" class="h-[56px] w-full sm:w-[56px] flex items-center justify-center rounded-[20px] bg-white/60 border border-white text-emerald-600 hover:text-emerald-700 transition-all group shadow-sm flex-none">
+          <i class="fa-solid fa-rotate group-hover:rotate-180 transition-transform duration-500 text-lg"></i>
+        </button>
+        <button onclick="openFinancePocketModal()" class="flex-1 lg:flex-none h-[56px] px-8 rounded-[20px] bg-gradient-to-br from-emerald-400 via-teal-500 to-indigo-500 text-white font-black text-[13.5px] border border-white/20 shadow-[0_12px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_16px_32px_rgba(16,185,129,0.45)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5">
+          <i class="fa-solid fa-wallet text-lg"></i>
+          <span>Buat Kantong</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid Area untuk Kantong Keuangan -->
+    <div id="financeGridArea" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <!-- Di-render oleh JS -->
+    </div>
+  </div>
+
+  <!-- === LACI GESER (WORKSPACE PANEL) UNTUK TRANSAKSI === -->
+  <div id="financeWorkspacePanel" class="fixed top-[20px] bottom-[20px] right-[20px] w-[calc(100%-40px)] md:w-[480px] lg:w-[600px] xl:w-[680px] bg-gradient-to-br from-[#f8f9ff]/95 to-white/95 backdrop-blur-3xl border border-white shadow-[-30px_0_100px_rgba(31,38,135,0.15)] flex flex-col translate-x-[120%] z-[100] rounded-[40px] opacity-0 pointer-events-none overflow-hidden transition-all duration-500 ease-out">
+    
+    <div class="absolute left-3 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-full bg-gray-300/50 backdrop-blur-sm z-50"></div>
+
+    <!-- Dynamic Header -->
+    <div id="fwHeader" class="relative px-10 py-8 flex-none overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b border-white/40">
+       <div class="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full blur-2xl -mt-10 -mr-10 pointer-events-none"></div>
+
+       <div class="relative z-10 flex justify-between items-start gap-4">
+         <div class="flex-1 min-w-0 pr-4">
+           <div class="flex items-center gap-2 mb-3">
+             <span id="fwType" class="px-3.5 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/40 bg-white/25 text-white shadow-sm backdrop-blur-md">
+               <i class="fa-solid fa-tag mr-1"></i> Type
+             </span>
+           </div>
+         <h2 id="fwTitle" class="text-[34px] font-black text-white tracking-tight leading-[1.1] drop-shadow-md truncate">Pocket Name</h2>
+<p id="fwBalance" class="text-[18px] font-black text-white/90 mt-1 drop-shadow-sm">Rp 0</p>
+<!-- TAMBAHKAN BARIS INI -->
+<p id="fwDesc" class="text-[13px] font-medium text-white/85 mt-2.5 max-w-md line-clamp-2 leading-relaxed drop-shadow-sm">Keterangan...</p>
+         </div>
+         
+         <button onclick="closeFinanceWorkspace()" class="w-12 h-12 rounded-[18px] bg-white/20 hover:bg-white/40 border border-white/40 text-white flex items-center justify-center transition-all flex-none shadow-sm backdrop-blur-md hover:rotate-90 duration-300">
+           <i class="fa-solid fa-xmark text-xl"></i>
+         </button>
+       </div>
+    </div>
+
+    <!-- Toolbar Action (Catat Uang) -->
+    <div class="px-10 pt-6 pb-2 flex justify-between items-end flex-none relative z-20">
+      <h4 class="text-[15px] font-black text-[#2d335b] flex items-center gap-2"><i class="fa-solid fa-money-check-dollar text-emerald-500"></i> Mutasi Rekening</h4>
+    </div>
+
+    <!-- Daftar Transaksi -->
+    <div id="fwTxList" class="flex-1 overflow-y-auto custom-scrollbar px-10 py-4 space-y-4 relative">
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 20px 20px;"></div>
+      <!-- Items rendered via JS -->
+    </div>
+
+    <!-- Bottom Action Panel (Ultra Premium Buttons) -->
+    <div class="px-8 py-6 border-t border-white/50 bg-white/50 backdrop-blur-2xl flex-none relative z-20">
+      <div class="grid grid-cols-3 gap-3">
+         <button onclick="openFinanceTxModal('Income')" class="flex flex-col items-center justify-center gap-1.5 h-16 rounded-[20px] bg-white border border-gray-200 hover:border-emerald-300 hover:shadow-[0_8px_20px_rgba(16,185,129,0.15)] transition-all group">
+            <div class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-plus"></i></div>
+            <span class="text-[10px] font-black text-gray-500 group-hover:text-emerald-700 uppercase tracking-widest">Pemasukan</span>
+         </button>
+         <button onclick="openFinanceTxModal('Expense')" class="flex flex-col items-center justify-center gap-1.5 h-16 rounded-[20px] bg-white border border-gray-200 hover:border-rose-300 hover:shadow-[0_8px_20px_rgba(244,63,94,0.15)] transition-all group">
+            <div class="w-7 h-7 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-minus"></i></div>
+            <span class="text-[10px] font-black text-gray-500 group-hover:text-rose-700 uppercase tracking-widest">Pengeluaran</span>
+         </button>
+         <button onclick="openFinanceTxModal('Transfer')" class="flex flex-col items-center justify-center gap-1.5 h-16 rounded-[20px] bg-white border border-gray-200 hover:border-blue-300 hover:shadow-[0_8px_20px_rgba(59,130,246,0.15)] transition-all group">
+            <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-right-left"></i></div>
+            <span class="text-[10px] font-black text-gray-500 group-hover:text-blue-700 uppercase tracking-widest">Transfer</span>
+         </button>
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- Facility & Room Booking View -->
 <section id="roomBookingView" class="view-section">
@@ -20213,6 +20492,203 @@ input[list]::-webkit-calendar-picker-indicator {
     </div>
 
   </div>
+</section>
+<!-- ================================================== -->
+<!-- VIEW: SMART WORK TIMER (FOCUS TRACKER)             -->
+<!-- ================================================== -->
+<section id="timerView" class="view-section relative">
+  
+  <!-- === 1. PREMIUM HERO SECTION & TIMER WIDGET === -->
+  <div class="hero-dashboard glass-deep mb-8 overflow-hidden relative p-8 md:p-12 rounded-[48px] border border-white/40 shadow-[0_32px_120px_rgba(31,38,135,0.15)] flex-none">
+    <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-emerald-500/20 to-teal-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-gradient-to-tr from-indigo-500/15 to-purple-400/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 30px 34px;"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- KIRI: Pengaturan Sesi & Teks -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 border border-white/60 text-emerald-600 backdrop-blur-xl shadow-sm">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-[10px] font-black uppercase tracking-[0.25em] text-[#29304f]/80">Productivity Engine</span>
+        </div>
+        
+        <div class="space-y-4">
+          <h1 class="page-title text-[52px] md:text-[68px] font-black leading-[1.02] tracking-[-0.06em] text-[#1a1f3d] font-display pb-1 overflow-visible">
+            Deep Focus <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500 block pb-2 overflow-visible">Time Tracker.</span>
+          </h1>
+          <p class="max-w-[540px] text-[15.5px] font-medium text-[#59648e] leading-[1.8]">
+            Lacak waktu kerja bersih Anda. Hubungkan dengan tugas dari daftar proyek untuk mengukur akurasi estimasi, menganalisis efisiensi harian, dan menghindari distraksi.
+          </p>
+        </div>
+
+        <!-- Timer Configuration Form -->
+        <div class="p-6 rounded-[32px] bg-white/30 border border-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-xl space-y-5">
+          <div class="space-y-2">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Nama Aktivitas / Pekerjaan <span class="text-pink-500">*</span></label>
+            <div class="relative group/input">
+              <i class="fa-solid fa-keyboard absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500"></i>
+              <input id="timerInputName" type="text" class="w-full h-12 pl-12 pr-4 rounded-[18px] bg-white/70 border border-white focus:border-emerald-400 outline-none text-[13.5px] font-bold text-[#2d335b] transition-all shadow-sm" placeholder="Contoh: Membuat Wireframe UI/UX">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Kategori Pekerjaan</label>
+              <div class="relative group/input">
+                <i class="fa-solid fa-layer-group absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 z-10"></i>
+                <select id="timerInputCategory" class="w-full h-12 pl-12 pr-4 rounded-[18px] bg-white/70 border border-white focus:border-emerald-400 outline-none text-[13px] font-bold text-[#2d335b] appearance-none cursor-pointer">
+                  <option value="General">General / Lainnya</option>
+                  <option value="Creative & Design">Creative & Design</option>
+                  <option value="Coding & Dev">Coding & Dev</option>
+                  <option value="Admin & Report">Admin & Report</option>
+                  <option value="Meeting & Call">Meeting & Call</option>
+                  <option value="Research & Strategy">Research & Strategy</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+              </div>
+            </div>
+            
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Link ke Project Card</label>
+              <div class="relative group/input">
+                <i class="fa-solid fa-link absolute left-5 top-1/2 -translate-y-1/2 text-indigo-400 z-10"></i>
+                <select id="timerInputProject" class="w-full h-12 pl-12 pr-4 rounded-[18px] bg-white/70 border border-white focus:border-indigo-400 outline-none text-[13px] font-bold text-[#2d335b] appearance-none cursor-pointer">
+                  <option value="">-- Tidak Ditautkan --</option>
+                  <!-- Diisi Otomatis oleh JS -->
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KANAN: The Master Chronometer Widget -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative flex flex-col items-center">
+          
+          <!-- Outer Pulsing Aura -->
+          <div id="timerAura" class="absolute w-[360px] h-[360px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[50px] opacity-10 transition-all duration-1000 bg-gray-400"></div>
+
+          <!-- The Glass Ring -->
+          <div id="timerRing" class="relative z-10 w-[300px] h-[300px] rounded-full border-[6px] border-white/60 bg-white/20 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] flex flex-col items-center justify-center transition-all duration-700">
+            <!-- Digital Clock Display -->
+            <div class="text-center mt-4">
+              <span id="timerStatusLabel" class="text-[11px] font-black uppercase tracking-[0.3em] text-gray-500 mb-2 block transition-colors duration-300">IDLE</span>
+              <h2 id="timerDisplay" class="text-[56px] font-display font-black tracking-tighter text-[#2d335b] leading-none" style="font-variant-numeric: tabular-nums;">
+                00:00:00
+              </h2>
+            </div>
+            
+            <!-- Controls Inside Ring -->
+            <div class="flex items-center gap-4 mt-8" id="timerControls">
+              <!-- Tombol Start Pertama Kali -->
+              <button id="btnTimerStart" onclick="startTimerSession()" class="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl shadow-[0_10px_25px_rgba(16,185,129,0.4)] hover:scale-105 transition-transform duration-300">
+                <i class="fa-solid fa-play ml-1"></i>
+              </button>
+              
+              <!-- Tombol Pause & Stop (Sembunyi by Default) -->
+              <button id="btnTimerPause" onclick="pauseTimerSession()" class="w-14 h-14 rounded-full bg-amber-400 text-white flex items-center justify-center text-lg shadow-[0_10px_20px_rgba(245,158,11,0.3)] hover:scale-105 transition-transform duration-300 hidden">
+                <i class="fa-solid fa-pause"></i>
+              </button>
+              <button id="btnTimerResume" onclick="resumeTimerSession()" class="w-14 h-14 rounded-full bg-emerald-400 text-white flex items-center justify-center text-lg shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:scale-105 transition-transform duration-300 hidden">
+                <i class="fa-solid fa-play ml-1"></i>
+              </button>
+              <button id="btnTimerStop" onclick="finishTimerSession()" class="w-14 h-14 rounded-full bg-rose-500 text-white flex items-center justify-center text-lg shadow-[0_10px_20px_rgba(244,63,94,0.3)] hover:scale-105 transition-transform duration-300 hidden">
+                <i class="fa-solid fa-stop"></i>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- === 2. METRICS & ANALYTICS CHARTS === -->
+  <div class="mb-10">
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-[14px] bg-indigo-500/10 text-indigo-600 flex items-center justify-center text-lg border border-indigo-200"><i class="fa-solid fa-chart-pie"></i></div>
+        <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Time Analytics</h3>
+      </div>
+      <button onclick="safeReloadTimerHistory()" class="secondary-btn !h-[42px] !rounded-[14px] text-xs">
+        <i class="fa-solid fa-rotate"></i> Sync Data
+      </button>
+    </div>
+
+    <!-- Mini Stats Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8">
+      <div class="glass-soft p-5 rounded-[24px] border border-white/60 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl flex-none"><i class="fa-solid fa-briefcase"></i></div>
+        <div><p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Sesi</p><h4 class="text-2xl font-black text-[#2d335b]" id="tmrStatSessions">0</h4></div>
+      </div>
+      <div class="glass-soft p-5 rounded-[24px] border border-white/60 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl flex-none"><i class="fa-solid fa-business-time"></i></div>
+        <div><p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Jam Fokus</p><h4 class="text-2xl font-black text-[#2d335b]" id="tmrStatHours">0</h4></div>
+      </div>
+      <div class="glass-soft p-5 rounded-[24px] border border-white/60 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xl flex-none"><i class="fa-solid fa-bolt"></i></div>
+        <div><p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Avg Sesi</p><h4 class="text-2xl font-black text-[#2d335b]" id="tmrStatAvgMins">0 <span class="text-xs">m</span></h4></div>
+      </div>
+      <div class="glass-soft p-5 rounded-[24px] border border-white/60 shadow-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xl flex-none"><i class="fa-solid fa-fire"></i></div>
+        <div><p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Status Data</p><h4 class="text-lg font-black text-emerald-500 mt-1">Live Sync</h4></div>
+      </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- Chart 1: Daily Focus Trend -->
+      <div class="glass-soft p-6 rounded-[32px] border border-white/60 shadow-sm">
+        <h4 class="text-[15px] font-black text-[#2d335b] mb-1">Daily Focus Trend</h4>
+        <p class="text-[11px] font-bold text-gray-400 mb-5">Total jam kerja aktif per hari (7 hari terakhir).</p>
+        <div class="w-full h-[240px]"><canvas id="tmrChartTrend"></canvas></div>
+      </div>
+
+      <!-- Chart 2: Category Distribution -->
+      <div class="glass-soft p-6 rounded-[32px] border border-white/60 shadow-sm">
+        <h4 class="text-[15px] font-black text-[#2d335b] mb-1">Time Distribution</h4>
+        <p class="text-[11px] font-bold text-gray-400 mb-5">Persentase alokasi waktu berdasarkan kategori tugas.</p>
+        <div class="w-full h-[240px] flex justify-center"><canvas id="tmrChartDist"></canvas></div>
+      </div>
+
+      <!-- Chart 3: Avg Duration By Category -->
+      <div class="glass-soft p-6 rounded-[32px] border border-white/60 shadow-sm">
+        <h4 class="text-[15px] font-black text-[#2d335b] mb-1">Average Duration</h4>
+        <p class="text-[11px] font-bold text-gray-400 mb-5">Rata-rata waktu (menit) untuk menyelesaikan tiap tipe tugas.</p>
+        <div class="w-full h-[240px]"><canvas id="tmrChartAvg"></canvas></div>
+      </div>
+
+      <!-- Chart 4: Efficiency (Real vs Estimated) -->
+      <div class="glass-soft p-6 rounded-[32px] border border-white/60 shadow-sm">
+        <h4 class="text-[15px] font-black text-[#2d335b] mb-1">Task Efficiency Ratio</h4>
+        <p class="text-[11px] font-bold text-gray-400 mb-5">Perbandingan durasi kerja riil vs estimasi awal admin (Jam).</p>
+        <div class="w-full h-[240px]"><canvas id="tmrChartEff"></canvas></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- === 3. HISTORY LOGS === -->
+  <div>
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-[14px] bg-orange-500/10 text-orange-600 flex items-center justify-center text-lg border border-orange-200"><i class="fa-solid fa-list-ul"></i></div>
+      <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Session History</h3>
+    </div>
+
+    <div id="timerHistoryGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Diisi oleh JS -->
+    </div>
+  </div>
+
 </section>
 <!-- ================================================== -->
 <!-- VIEW: CREATIVE BRIEF PORTFOLIO                     -->
@@ -23242,6 +23718,8 @@ initOkrControls(); // Tambahkan ini di bawah init lainnya
       bootDashboard();
       initFeedbackControls();
       initDailyActivities();
+      initFinanceControls();
+      initTimerControls();
     });
 async function openReportAdminComplaintModal() {
   const user = getReportComplaintUserData();
@@ -23305,7 +23783,1138 @@ async function openReportAdminComplaintModal() {
     `
   });
 }
+/****************************************************
+ * WEALTH HUB (FINANCIAL POCKETS) - JAVASCRIPT ENGINE
+ * Ultra Premium & Double Entry Processing
+ ****************************************************/
+/****************************************************
+ * SMART WORK TIMER - JAVASCRIPT ENGINE
+ * Robust LocalStorage Timer & Chart.js Analytics
+ ****************************************************/
 
+let timerInterval = null;
+let timerHistoryRaw = [];
+let tmrCharts = { trend: null, dist: null, avg: null, eff: null };
+
+// Kunci Local Storage
+const LS_STATE = 'cf_timer_state'; // IDLE, RUNNING, PAUSED
+const LS_START = 'cf_timer_start'; // Timestamp (ms)
+const LS_PAUSE_ACC = 'cf_timer_pause_acc'; // Akumulasi pause (ms)
+const LS_LAST_PAUSE = 'cf_timer_last_pause'; // Timestamp mulai pause (ms)
+const LS_PAYLOAD = 'cf_timer_payload'; // Data input form
+
+// 1. INITIALIZATION & RECOVERY MAPPING
+async function initTimerView() {
+  populateTimerProjectDropdown();
+  restoreTimerState();
+  loadTimerHistoryAndAnalytics();
+}
+
+async function safeReloadTimerHistory() {
+  showToast('Menyinkronkan Data', 'Mengambil analitik waktu...', 'fa-solid fa-rotate fa-spin');
+  await loadTimerHistoryAndAnalytics();
+}
+
+// === FUNGSI INISIALISASI KONTROL TIMER ===
+function initTimerControls() {
+  // Melakukan pengecekan & pemulihan status timer seketika saat halaman dimuat (Anti-Loss Data)
+  restoreTimerState();
+  if (typeof populateTimerProjectDropdown === 'function') {
+    populateTimerProjectDropdown();
+  }
+}
+// 2. FETCH PROJECT CARDS UNTUK DROPDOWN
+// === UPDATE: POPULATE DROPDOWN SECARA OTOMATIS & AMAN ===
+async function populateTimerProjectDropdown() {
+  const sel = document.getElementById('timerInputProject');
+  if (!sel) return;
+
+  // KUNCI PERBAIKAN: Jika data proyek kosong, paksa muat dari server terlebih dahulu
+  if (!projectCardsRaw || projectCardsRaw.length === 0) {
+    try {
+      const response = await sendToBackend({
+        action: 'get_project_cards',
+        token: getToken(),
+        timestamp: Date.now()
+      });
+      if (response.status === 'success') {
+        projectCardsRaw = Array.isArray(response.data)
+          ? response.data
+          : Array.isArray(response.projectCards)
+            ? response.projectCards
+            : [];
+      }
+    } catch (e) {
+      console.warn("Gagal mengambil data kartu proyek untuk dropdown Timer:", e);
+    }
+  }
+
+  let options = '<option value="">-- Tidak Ditautkan --</option>';
+  
+  if (Array.isArray(projectCardsRaw) && projectCardsRaw.length > 0) {
+    // Saring dan tampilkan hanya tugas yang belum selesai (Selesai) agar rapi
+    const activeCards = projectCardsRaw.filter(c => {
+      const status = normalizeProjectStatus(c.Status_Tugas || c.status || '');
+      return status !== 'Selesai';
+    });
+    
+    activeCards.forEach(c => {
+      options += `<option value="${escapeAttribute(c.Project_Card_ID)}">${escapeHtml(c.Nama_Tugas)}</option>`;
+    });
+  }
+  
+  sel.innerHTML = options;
+}
+// 3. CORE TIMER ENGINE (START, PAUSE, RESUME, FINISH)
+function startTimerSession() {
+  const name = document.getElementById('timerInputName').value.trim();
+  const category = document.getElementById('timerInputCategory').value;
+  const projId = document.getElementById('timerInputProject').value;
+
+  if (!name) return showToast('Wajib', 'Silakan isi nama aktivitas yang akan dikerjakan.', 'fa-solid fa-xmark');
+
+  // Simpan State ke LocalStorage
+  const now = Date.now();
+  localStorage.setItem(LS_STATE, 'RUNNING');
+  localStorage.setItem(LS_START, now);
+  localStorage.setItem(LS_PAUSE_ACC, 0);
+  localStorage.setItem(LS_PAYLOAD, JSON.stringify({ name, category, projId }));
+
+  applyTimerUIState('RUNNING');
+  runTick();
+}
+
+function pauseTimerSession() {
+  localStorage.setItem(LS_STATE, 'PAUSED');
+  localStorage.setItem(LS_LAST_PAUSE, Date.now());
+  applyTimerUIState('PAUSED');
+  clearInterval(timerInterval);
+}
+
+function resumeTimerSession() {
+  const lastPause = parseInt(localStorage.getItem(LS_LAST_PAUSE) || 0);
+  let pauseAcc = parseInt(localStorage.getItem(LS_PAUSE_ACC) || 0);
+  
+  if (lastPause > 0) {
+    pauseAcc += (Date.now() - lastPause);
+    localStorage.setItem(LS_PAUSE_ACC, pauseAcc);
+  }
+
+  localStorage.setItem(LS_STATE, 'RUNNING');
+  localStorage.setItem(LS_LAST_PAUSE, 0);
+  applyTimerUIState('RUNNING');
+  runTick();
+}
+
+async function finishTimerSession() {
+  // Ambil state sebelum dihapus
+  pauseTimerSession(); // Pause the visual tick
+  
+  const startMs = parseInt(localStorage.getItem(LS_START) || 0);
+  const pauseAcc = parseInt(localStorage.getItem(LS_PAUSE_ACC) || 0);
+  const payloadRaw = localStorage.getItem(LS_PAYLOAD);
+  const payload = payloadRaw ? JSON.parse(payloadRaw) : { name: 'Aktivitas', category: 'General', projId: '' };
+
+  // Hitung End Time
+  const endMs = Date.now();
+  const netMs = endMs - startMs - pauseAcc;
+  
+  if (netMs < 60000) {
+    // Sesi di bawah 1 menit tidak usah disimpan
+    Swal.fire('Sesi Dibatalkan', 'Waktu fokus kurang dari 1 menit. Data tidak disimpan.', 'info');
+    clearTimerStorage();
+    applyTimerUIState('IDLE');
+    return;
+  }
+
+  // Tampilkan Modal Penutup Sesi
+  const { value: formValues } = await Swal.fire({
+    title: 'Sesi Selesai!',
+    html: `
+      <div class="text-left mt-2">
+        <p class="text-sm font-bold text-gray-500 mb-4">Anda bekerja selama <b>${formatDurationText(netMs)}</b> pada tugas <b>${escapeHtml(payload.name)}</b>.</p>
+        <label class="text-[11px] font-black uppercase text-gray-500 tracking-widest block mb-1">Hasil / Catatan (Opsional)</label>
+        <textarea id="swalDescResult" class="w-full min-h-[100px] p-3 rounded-2xl bg-gray-50 border border-gray-200 outline-none text-sm text-[#2d335b] font-medium resize-none" placeholder="Apa yang berhasil diselesaikan?"></textarea>
+        ${payload.projId ? `
+          <div class="mt-4 p-3 bg-indigo-50 border border-indigo-100 rounded-xl">
+             <label class="text-[11px] font-black uppercase text-indigo-500 tracking-widest block mb-1">Update Progress Project (%)</label>
+             <input type="number" id="swalUpdateProg" class="w-full h-10 px-3 rounded-xl border border-indigo-200" placeholder="Biarkan kosong jika tidak ingin update">
+          </div>
+        ` : ''}
+      </div>
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Simpan Jurnal',
+    cancelButtonText: 'Buang Sesi',
+    customClass: { popup: 'swal-meeting-popup', confirmButton: 'swal2-confirm', cancelButton: 'swal2-cancel' },
+    preConfirm: () => {
+      const progEl = document.getElementById('swalUpdateProg');
+      return {
+        desc: document.getElementById('swalDescResult').value.trim(),
+        prog: progEl ? progEl.value : ''
+      };
+    }
+  });
+
+  if (formValues) {
+    showLoading('Menyimpan Jurnal...', 'Data waktu kerja dikirim ke server.');
+    try {
+      const apiPayload = {
+        Nama_Aktivitas: payload.name,
+        Kategori: payload.category,
+        Project_Card_ID: payload.projId,
+        Start_Time: new Date(startMs).toISOString(),
+        End_Time: new Date(endMs).toISOString(),
+        Pause_Duration: Math.floor(pauseAcc / 60000), // convert ms to mins
+        Deskripsi_Hasil: formValues.desc,
+        Update_Progress: formValues.prog
+      };
+
+      const res = await sendToBackend({ action: 'save_timer_session', token: getToken(), timerData: apiPayload });
+      hideLoading();
+      if (res.status === 'success') {
+        showToast('Tersimpan', 'Jurnal fokus kerja ditambahkan.', 'fa-solid fa-check');
+        loadTimerHistoryAndAnalytics(); // Refresh
+      }
+    } catch(e) { hideLoading(); showBackendError(e); }
+  }
+
+  // Clear Form & State
+  clearTimerStorage();
+  applyTimerUIState('IDLE');
+}
+
+// 4. DISPLAY ENGINE
+function runTick() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function updateTimerDisplay() {
+  const state = localStorage.getItem(LS_STATE);
+  if (state !== 'RUNNING') return;
+
+  const startMs = parseInt(localStorage.getItem(LS_START) || 0);
+  const pauseAcc = parseInt(localStorage.getItem(LS_PAUSE_ACC) || 0);
+  
+  const elapsedMs = Date.now() - startMs - pauseAcc;
+  document.getElementById('timerDisplay').textContent = msToHhMmSs(elapsedMs);
+}
+
+function msToHhMmSs(ms) {
+  if (ms < 0) ms = 0;
+  const totalSecs = Math.floor(ms / 1000);
+  const hrs = Math.floor(totalSecs / 3600);
+  const mins = Math.floor((totalSecs % 3600) / 60);
+  const secs = totalSecs % 60;
+  
+  const p = n => String(n).padStart(2, '0');
+  return `${p(hrs)}:${p(mins)}:${p(secs)}`;
+}
+
+function formatDurationText(ms) {
+  const totalMins = Math.floor(ms / 60000);
+  const h = Math.floor(totalMins / 60);
+  const m = totalMins % 60;
+  if(h > 0 && m > 0) return `${h} jam ${m} menit`;
+  if(h > 0) return `${h} jam`;
+  return `${m} menit`;
+}
+
+function clearTimerStorage() {
+  localStorage.removeItem(LS_STATE);
+  localStorage.removeItem(LS_START);
+  localStorage.removeItem(LS_PAUSE_ACC);
+  localStorage.removeItem(LS_LAST_PAUSE);
+  localStorage.removeItem(LS_PAYLOAD);
+}
+
+function restoreTimerState() {
+  const state = localStorage.getItem(LS_STATE);
+  if (!state) {
+    applyTimerUIState('IDLE');
+    return;
+  }
+  
+  const payloadRaw = localStorage.getItem(LS_PAYLOAD);
+  if(payloadRaw) {
+    const payload = JSON.parse(payloadRaw);
+    document.getElementById('timerInputName').value = payload.name || '';
+    document.getElementById('timerInputCategory').value = payload.category || 'General';
+    document.getElementById('timerInputProject').value = payload.projId || '';
+  }
+
+  applyTimerUIState(state);
+
+  if (state === 'RUNNING') {
+    runTick();
+  } else if (state === 'PAUSED') {
+    // Tampilkan waktu terhenti terakhir
+    const startMs = parseInt(localStorage.getItem(LS_START) || 0);
+    const pauseAcc = parseInt(localStorage.getItem(LS_PAUSE_ACC) || 0);
+    const lastPause = parseInt(localStorage.getItem(LS_LAST_PAUSE) || Date.now());
+    const elapsedMs = lastPause - startMs - pauseAcc;
+    document.getElementById('timerDisplay').textContent = msToHhMmSs(elapsedMs);
+  }
+}
+
+function applyTimerUIState(state) {
+  const inputName = document.getElementById('timerInputName');
+  const inputCat = document.getElementById('timerInputCategory');
+  const inputProj = document.getElementById('timerInputProject');
+  
+  const btnStart = document.getElementById('btnTimerStart');
+  const btnPause = document.getElementById('btnTimerPause');
+  const btnResume = document.getElementById('btnTimerResume');
+  const btnStop = document.getElementById('btnTimerStop');
+  
+  const ring = document.getElementById('timerRing');
+  const aura = document.getElementById('timerAura');
+  const label = document.getElementById('timerStatusLabel');
+  
+  // Hapus semua class animasi
+  ring.classList.remove('timer-glow-running', 'timer-glow-paused');
+  aura.className = 'absolute w-[360px] h-[360px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[50px] opacity-10 transition-all duration-1000';
+
+  if (state === 'IDLE') {
+    inputName.disabled = false; inputCat.disabled = false; inputProj.disabled = false;
+    btnStart.classList.remove('hidden');
+    btnPause.classList.add('hidden'); btnResume.classList.add('hidden'); btnStop.classList.add('hidden');
+    
+    label.textContent = 'IDLE';
+    label.className = 'text-[11px] font-black uppercase tracking-[0.3em] text-gray-500 mb-2 block transition-colors duration-300';
+    document.getElementById('timerDisplay').textContent = '00:00:00';
+    aura.classList.add('bg-gray-400');
+  } 
+  else if (state === 'RUNNING') {
+    inputName.disabled = true; inputCat.disabled = true; inputProj.disabled = true;
+    btnStart.classList.add('hidden');
+    btnPause.classList.remove('hidden'); btnResume.classList.add('hidden'); btnStop.classList.remove('hidden');
+    
+    ring.classList.add('timer-glow-running');
+    aura.classList.add('bg-emerald-500', 'opacity-30');
+    aura.classList.remove('bg-gray-400', 'opacity-10');
+    
+    label.textContent = 'FOCUSING';
+    label.className = 'text-[11px] font-black uppercase tracking-[0.3em] text-emerald-500 mb-2 block transition-colors duration-300 animate-pulse';
+  }
+  else if (state === 'PAUSED') {
+    inputName.disabled = true; inputCat.disabled = true; inputProj.disabled = true;
+    btnStart.classList.add('hidden');
+    btnPause.classList.add('hidden'); btnResume.classList.remove('hidden'); btnStop.classList.remove('hidden');
+    
+    ring.classList.add('timer-glow-paused');
+    aura.classList.add('bg-amber-400', 'opacity-20');
+    aura.classList.remove('bg-gray-400', 'bg-emerald-500', 'opacity-10');
+
+    label.textContent = 'PAUSED';
+    label.className = 'text-[11px] font-black uppercase tracking-[0.3em] text-amber-500 mb-2 block transition-colors duration-300';
+  }
+}
+
+// 5. LOAD DATA API & RENDER CHARTS
+async function loadTimerHistoryAndAnalytics() {
+  try {
+    const resH = await sendToBackend({ action: 'get_timer_history', token: getToken() });
+    const resA = await sendToBackend({ action: 'get_timer_analytics', token: getToken() });
+    
+    if (resH.status === 'success') {
+      timerHistoryRaw = resH.data;
+      renderTimerHistoryList();
+    }
+    
+    if (resA.status === 'success') {
+      const aData = resA.data;
+      
+      // Update Top Stats
+      document.getElementById('tmrStatSessions').textContent = aData.summary.totalSessions;
+      document.getElementById('tmrStatHours').textContent = aData.summary.totalHoursFocused;
+      document.getElementById('tmrStatAvgMins').innerHTML = `${aData.summary.avgMinsPerSession} <span class="text-xs">m</span>`;
+      
+      // Render Charts
+      renderTimerCharts(aData.charts);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function renderTimerHistoryList() {
+  const container = document.getElementById('timerHistoryGrid');
+  if (!timerHistoryRaw.length) {
+    container.innerHTML = `<div class="col-span-full p-8 text-center text-gray-500 font-bold bg-white/30 rounded-[28px] border border-white/50">Belum ada riwayat kerja. Mulai sesi fokus pertama Anda!</div>`;
+    return;
+  }
+
+  container.innerHTML = timerHistoryRaw.map(t => {
+    const isProject = t.Project_Card_ID !== '';
+    
+    return `
+      <!-- INDIVIDUAL TIMER LOG CARD (PREMIUM RESIZED Edition) -->
+      <div class="group relative overflow-hidden rounded-[30px] border border-white/50 bg-white/40 p-6 shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/70 hover:shadow-xl hover:bg-white/50">
+        
+        <!-- Holographic Backlight Aura Glow -->
+        <div class="absolute -right-12 -bottom-12 w-28 h-28 rounded-full bg-gradient-to-br from-indigo-500/10 to-pink-500/10 blur-xl pointer-events-none transition-all duration-500 group-hover:scale-125 group-hover:opacity-80"></div>
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 bg-gradient-to-b from-[#6f8cff] to-[#8b5cf6] rounded-r-full transition-all duration-300 group-hover:h-14"></div>
+
+        <!-- Action Overlay (Floating Delete Button) -->
+        <div class="absolute top-4 right-4 flex items-center gap-1.5 opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-20">
+          <button onclick="deleteTimerSession('${t.Timer_ID}')" class="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm" title="Hapus Riwayat">
+            <i class="fa-regular fa-trash-can text-xs"></i>
+          </button>
+        </div>
+
+        <!-- Top Row: Icon, Title, Badges, Metrics -->
+        <div class="flex justify-between items-start gap-4 mb-4 relative z-10 pl-2">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <!-- Glassmorphism Icon Box -->
+            <div class="w-12 h-12 rounded-[16px] bg-gradient-to-br from-white/70 to-white/10 border border-white/60 flex items-center justify-center text-lg text-indigo-500 shadow-sm flex-none">
+              <i class="fa-solid fa-hourglass-half animate-pulse"></i>
+            </div>
+            
+            <div class="min-w-0">
+              <h4 class="text-[15.5px] font-black text-[#2d335b] truncate w-48 leading-tight group-hover:text-indigo-600 transition-colors" title="${escapeHtml(t.Nama_Aktivitas)}">
+                ${escapeHtml(t.Nama_Aktivitas)}
+              </h4>
+              
+              <!-- Badges Group -->
+              <div class="flex items-center gap-1.5 mt-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border bg-white/60 text-[#59648e] border-white/80 shadow-sm backdrop-blur-md">
+                  ${escapeHtml(t.Kategori)}
+                </span>
+                ${isProject ? `
+                  <span class="px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider border bg-indigo-500/10 text-indigo-600 border-indigo-200/40 shadow-sm backdrop-blur-md flex items-center gap-1">
+                    <i class="fa-solid fa-link text-[8px]"></i> Linked
+                  </span>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Measurement Pill & Date -->
+          <div class="text-right flex-none">
+            <div class="inline-flex items-center gap-1 px-3 py-1.5 rounded-[16px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 shadow-sm">
+              <i class="fa-regular fa-clock text-[10px]"></i>
+              <span class="text-base font-black tracking-tighter leading-none" style="font-variant-numeric: tabular-nums;">${t.Net_Duration}</span>
+              <span class="text-[10px] font-black uppercase tracking-wider">min</span>
+            </div>
+            <p class="text-[9.5px] font-black text-gray-400 mt-2 uppercase tracking-widest">${cleanFormatDate(t.Start_Time)}</p>
+           </div>
+        </div>
+
+        <!-- Description Box -->
+        <div class="relative z-10 pl-2">
+          <p class="text-[13px] font-semibold text-[#59648e] bg-white/40 border border-white/60 p-4 rounded-[18px] line-clamp-2 leading-relaxed min-h-[58px] hover:bg-white/60 transition-colors duration-200">
+            ${escapeHtml(t.Deskripsi_Hasil || 'Tidak ada catatan hasil pengerjaan.')}
+          </p>
+        </div>
+
+      </div>
+    `;
+  }).join('');
+}
+async function deleteTimerSession(id) {
+  const r = await Swal.fire({ title:'Hapus Riwayat?', icon:'warning', showCancelButton:true });
+  if(r.isConfirmed) {
+    await sendToBackend({ action:'delete_timer_session', token:getToken(), timerId: id });
+    loadTimerHistoryAndAnalytics();
+  }
+}
+// === HELPER SANGAT AMAN UNTUK FORMAT TANGGAL DI HISTORI TIMER ===
+function cleanFormatDate(startValue) {
+  if (!startValue) return '';
+  const date = new Date(startValue);
+  
+  // Jika browser berhasil melakukan parsing tanggal secara normal
+  if (!isNaN(date.getTime())) {
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MEI', 'JUN', 'JUL', 'AGT', 'SEP', 'OKT', 'NOV', 'DES'];
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  }
+  
+  // JIKA GAGAL (Invalid Date), gunakan fallback ekstraksi dari formatDateTimeID yang sudah terbukti aktif
+  try {
+    const fallbackText = formatDateTimeID(startValue); // "Jum, 10 Juli 2026..."
+    const parts = fallbackText.split(' ');
+    if (parts.length >= 4) {
+      const day = parts[1].padStart(2, '0'); // "10"
+      const monthRaw = parts[2].substring(0, 3).toUpperCase(); // "JUL"
+      const year = parts[3]; // "2026"
+      return `${day} ${monthRaw} ${year}`;
+    }
+  } catch (e) {
+    console.warn("Gagal mengekstrak tanggal cadangan:", e);
+  }
+  
+  return '-'; // Fallback terluar jika data kosong
+}
+// 6. CHART.JS RENDERING LOGIC
+function renderTimerCharts(chartsData) {
+  // Chart 1: Daily Trend (Line)
+  const ctxTrend = document.getElementById('tmrChartTrend');
+  if(tmrCharts.trend) tmrCharts.trend.destroy();
+  const gradTrend = ctxTrend.getContext('2d').createLinearGradient(0, 0, 0, 300);
+  gradTrend.addColorStop(0, 'rgba(16, 185, 129, 0.4)'); gradTrend.addColorStop(1, 'rgba(16, 185, 129, 0)');
+  tmrCharts.trend = new Chart(ctxTrend, {
+    type: 'line',
+    data: { labels: chartsData.dailyTrend.labels, datasets: [{ label: 'Jam Fokus', data: chartsData.dailyTrend.data, borderColor: '#10b981', backgroundColor: gradTrend, fill: true, tension: 0.4 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {display: false} } }
+  });
+
+  // Chart 2: Dist (Doughnut)
+  const ctxDist = document.getElementById('tmrChartDist');
+  if(tmrCharts.dist) tmrCharts.dist.destroy();
+  tmrCharts.dist = new Chart(ctxDist, {
+    type: 'doughnut',
+    data: { labels: chartsData.categoryLabels, datasets: [{ data: chartsData.totalDurationByCategory, backgroundColor: ['#6f8cff', '#f59e0b', '#e873aa', '#10b981', '#a855f7', '#64748b'], borderWidth: 0 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: {usePointStyle: true, boxWidth: 8, font: {size: 10}} } } }
+  });
+
+  // Chart 3: Avg Duration (Bar)
+  const ctxAvg = document.getElementById('tmrChartAvg');
+  if(tmrCharts.avg) tmrCharts.avg.destroy();
+  tmrCharts.avg = new Chart(ctxAvg, {
+    type: 'bar',
+    data: { labels: chartsData.categoryLabels, datasets: [{ label: 'Rata-rata Menit', data: chartsData.avgDurationByCategory, backgroundColor: '#8b5cf6', borderRadius: 6 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {display: false} }, scales: { x: {display: false} } }
+  });
+
+  // Chart 4: Efficiency (Stacked Bar: Real vs Est)
+  const ctxEff = document.getElementById('tmrChartEff');
+  if(tmrCharts.eff) tmrCharts.eff.destroy();
+  tmrCharts.eff = new Chart(ctxEff, {
+    type: 'bar',
+    data: { 
+      labels: chartsData.efficiency.labels, 
+      datasets: [
+        { label: 'Real (Jam)', data: chartsData.efficiency.realHours, backgroundColor: '#e873aa', borderRadius: 4 },
+        { label: 'Estimasi Admin', data: chartsData.efficiency.estimatedHours, backgroundColor: '#cbd5e1', borderRadius: 4 }
+      ] 
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: {position: 'bottom', labels: {boxWidth:10, font:{size:10}}} } }
+  });
+}
+let financePocketsRaw = [];
+let currentFinancePocket = null;
+let currentFinanceTxs = [];
+let financeLoading = false;
+
+// Format Angka ke Rupiah (Rp xxx.xxx)
+function formatRupiah(number) {
+  if (isNaN(number)) return 'Rp 0';
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+}
+
+// 1. DATA LOADING & FILTERING WADAH
+function initFinanceControls() {
+  const searchInput = document.getElementById('financeSearchInput');
+  if (searchInput) searchInput.addEventListener('input', debounce(applyFinanceFilters, 200));
+}
+
+async function loadFinancePockets(options = {}) {
+  if (financeLoading) return;
+  financeLoading = true;
+
+  const container = document.getElementById('financeGridArea');
+  if (!options.silent && container) {
+    container.innerHTML = `
+      <div class="col-span-full flex flex-col items-center justify-center p-20 glass-soft rounded-[40px] border border-white/50 text-center">
+        <i class="fa-solid fa-wallet fa-beat-fade text-5xl text-emerald-500 mb-6"></i>
+        <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Menghitung Aset Keuangan...</h3>
+        <p class="font-bold text-gray-500 mt-2">Menyinkronkan portofolio dan kalkulasi saldo Anda.</p>
+      </div>`;
+  }
+
+  try {
+    const res = await sendToBackend({ action: 'get_finance_pockets', token: getToken() });
+    if (res.status !== 'success') throw new Error(res.message);
+
+    financePocketsRaw = res.data.pockets || [];
+    window.__financeLoadedOnce = true;
+    
+    // Update Stats Hero
+    document.getElementById('statNetWorth').textContent = formatRupiah(res.data.summary.totalNetWorth).replace('Rp', '').trim();
+    document.getElementById('statIncome').textContent = formatRupiah(res.data.summary.incomeThisMonth);
+    document.getElementById('statExpense').textContent = formatRupiah(res.data.summary.expenseThisMonth);
+    
+    applyFinanceFilters();
+  } catch (e) {
+    showBackendError(e);
+  } finally {
+    financeLoading = false;
+  }
+}
+
+async function safeReloadFinancePockets() {
+  showToast('Sinkronisasi', 'Memperbarui data keuangan...', 'fa-solid fa-rotate fa-spin');
+  await loadFinancePockets({ silent: true });
+}
+
+function applyFinanceFilters() {
+  const keyword = lower(document.getElementById('financeSearchInput')?.value || '');
+  const typeFilt = document.getElementById('financeTypeFilter')?.value || '';
+  
+  const filtered = financePocketsRaw.filter(p => {
+    const matchType = !typeFilt || p.Pocket_Type === typeFilt;
+    const matchKey = !keyword || lower(p.Pocket_Name + ' ' + p.Description).includes(keyword);
+    return matchType && matchKey;
+  });
+  renderFinancePocketGrid(filtered);
+}
+
+// 2. RENDER WADAH KANTONG (GRID)
+function renderFinancePocketGrid(data) {
+  const container = document.getElementById('financeGridArea');
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-span-full empty-state glass-soft p-16 text-center rounded-[40px] border border-white/60">
+        <div class="w-24 h-24 mx-auto rounded-[30px] grid place-items-center bg-gradient-to-br from-emerald-400 to-teal-500 text-white mb-6 shadow-xl">
+           <i class="fa-solid fa-wallet text-[40px]"></i>
+        </div>
+        <h3 class="font-black text-[28px] text-[#2d335b] tracking-tight">Belum Ada Kantong</h3>
+        <p class="text-[#667092] text-[15px] font-bold mt-2">Buat kantong pertama Anda untuk mulai mengatur keuangan.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(p => {
+    const color = p.Color_Tag || '#10b981';
+    const bgStyle = `background: linear-gradient(135deg, ${hexToRgba(color, 0.12)} 0%, rgba(255, 255, 255, 0.4) 100%); border-color: ${hexToRgba(color, 0.35)};`;
+    
+    // Tentukan Ikon berdasarkan tipe
+    let iconClass = 'fa-solid fa-wallet';
+    if(p.Pocket_Type === 'Saving') iconClass = 'fa-solid fa-piggy-bank';
+    if(p.Pocket_Type === 'Investment') iconClass = 'fa-solid fa-arrow-trend-up';
+
+    let footerHtml = '';
+    // Jika Tipe Saving, tampilkan progress bar
+    if (p.Pocket_Type === 'Saving') {
+      footerHtml = `
+        <div class="mt-6 pt-5 border-t border-dashed border-gray-400/40 relative z-10">
+          <div class="flex justify-between text-[10px] font-black text-[#2d335b] uppercase tracking-widest mb-2">
+            <span>Progress Tabungan</span>
+            <span style="color: ${color};">${p.Progress_Percentage}%</span>
+          </div>
+          <div class="finance-progress-bar">
+            <div class="finance-progress-fill" style="width: ${p.Progress_Percentage}%; background-color: ${color};"></div>
+          </div>
+          <p class="text-[10px] font-bold text-gray-500 mt-2.5 text-center">Target: ${formatRupiah(p.Target_Amount)}</p>
+        </div>
+      `;
+    } else {
+      footerHtml = `
+        <div class="mt-6 pt-5 border-t border-dashed border-gray-400/40 relative z-10 flex justify-between items-center">
+          <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5"><i class="fa-solid fa-clock-rotate-left"></i> ${p.Total_Transactions} Mutasi</span>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="finance-pocket-card group cursor-pointer" style="${bgStyle}" onclick="openFinanceWorkspace('${p.Pocket_ID}')">
+        <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-[45px] opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none z-0" style="background-color: ${color};"></div>
+        
+        <div class="flex justify-between items-start mb-6 relative z-10">
+          <div class="w-14 h-14 rounded-[20px] flex items-center justify-center text-xl shadow-[0_10px_25px_rgba(0,0,0,0.08)] border border-white/80 group-hover:scale-105 transition-transform duration-500" style="background: linear-gradient(135deg, ${color}, ${hexToRgba(color, 0.6)}); color: white;">
+            <i class="${iconClass}"></i>
+          </div>
+          <button onclick="event.stopPropagation(); deleteFinancePocket('${p.Pocket_ID}')" class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-sm" title="Hapus Kantong">
+            <i class="fa-regular fa-trash-can text-sm"></i>
+          </button>
+        </div>
+
+        <div class="relative z-10 flex-1">
+          <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] border shadow-sm backdrop-blur-md inline-block mb-3" style="background: ${hexToRgba(color, 0.15)}; color: ${color}; border-color: ${hexToRgba(color, 0.3)};">
+            ${p.Pocket_Type}
+          </span>
+          <h3 class="text-[22px] font-black text-[#2d335b] leading-tight mb-2 truncate">${escapeHtml(p.Pocket_Name)}</h3>
+          <h2 class="text-[28px] font-black tracking-tighter" style="color: ${color};">${formatRupiah(p.Balance)}</h2>
+          
+          <!-- TAMBAHKAN BLOK PARAGRAF INI: Menampilkan Deskripsi (Catatan) Kantong -->
+          <p class="text-[13px] font-semibold text-[#59648e] leading-relaxed line-clamp-2 mt-2 h-[40px]">
+            ${escapeHtml(p.Description || 'Belum ada deskripsi untuk kantong ini.')}
+          </p>
+        </div>
+
+        ${footerHtml}
+      </div>
+    `;
+  }).join('');
+}
+// 3. MODAL: CREATE/EDIT WADAH
+async function openFinancePocketModal(id = null) {
+  const isEdit = Boolean(id);
+  const data = isEdit ? financePocketsRaw.find(i => i.Pocket_ID === id) : {};
+
+  const { value: formValues } = await Swal.fire({
+    title: '', width: 760, background: 'transparent',
+    showConfirmButton: false, showCloseButton: false, customClass: { popup: 'p-0' },
+    html: `
+      <div class="relative overflow-hidden text-left flex flex-col h-full bg-gradient-to-br from-[#f8f9ff]/95 to-white/90 backdrop-blur-3xl rounded-[40px] border border-white/80 shadow-[0_40px_120px_rgba(31,38,135,0.25)]">
+        <div class="absolute -top-32 -right-32 w-[400px] h-[400px] bg-emerald-500/15 rounded-full blur-[90px] pointer-events-none z-0"></div>
+        
+        <div class="relative z-10 px-10 py-8 border-b border-white/50 bg-white/30 backdrop-blur-2xl flex items-start justify-between shadow-sm flex-none">
+          <div class="flex items-center gap-6">
+            <div class="w-[72px] h-[72px] rounded-[24px] bg-gradient-to-br from-[#10b981] to-[#3b82f6] text-white flex items-center justify-center text-[28px] shadow-[0_15px_40px_rgba(16,185,129,0.35)] border border-white/20">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[9px] font-black uppercase tracking-[0.25em] border border-emerald-100 shadow-sm mb-2">Setup Wallet</span>
+              <h3 class="text-[32px] font-black text-[#2d335b] tracking-tight leading-none">${isEdit ? 'Edit Kantong' : 'Buat Kantong Baru'}</h3>
+            </div>
+          </div>
+          <button type="button" onclick="Swal.close()" class="w-11 h-11 rounded-[16px] bg-white/50 hover:bg-white border border-white/60 text-[#59648e] hover:text-red-500 flex items-center justify-center transition-all shadow-sm group mt-1">
+            <i class="fa-solid fa-xmark text-xl group-hover:rotate-90 transition-transform"></i>
+          </button>
+        </div>
+
+        <div class="relative z-10 p-10 overflow-y-auto max-h-[60vh] custom-scrollbar space-y-6">
+          <div class="space-y-2">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Nama Kantong <span class="text-pink-500">*</span></label>
+            <div class="relative group/input">
+              <i class="fa-solid fa-signature absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500"></i>
+              <input id="fp_name" type="text" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-emerald-400 outline-none text-[14px] font-bold text-[#2d335b] transition-all shadow-sm" value="${escapeAttribute(data.Pocket_Name || '')}" placeholder="Contoh: Dompet Utama, Tabungan Nikah..." required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Tipe Kantong <span class="text-pink-500">*</span></label>
+              <div class="relative group/input">
+                <i class="fa-solid fa-layer-group absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 z-10"></i>
+                <select id="fp_type" onchange="toggleFinanceTargetField()" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-emerald-400 outline-none text-[14px] font-bold text-[#2d335b] transition-all shadow-sm appearance-none cursor-pointer">
+                  <option value="Liquid" ${data.Pocket_Type === 'Liquid' ? 'selected' : ''}>Liquid (Uang Harian)</option>
+                  <option value="Saving" ${data.Pocket_Type === 'Saving' ? 'selected' : ''}>Saving (Tabungan Goals)</option>
+                  <option value="Investment" ${data.Pocket_Type === 'Investment' ? 'selected' : ''}>Investment (Aset Investasi)</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Warna UI</label>
+              <div class="relative flex items-center gap-3 p-2 rounded-[20px] bg-white/70 border border-white shadow-sm h-14 focus-within:border-emerald-400 transition-colors">
+                <div class="relative w-10 h-10 rounded-[14px] overflow-hidden shadow-sm border border-white shrink-0 cursor-pointer">
+                   <input type="color" id="fp_color" value="${data.Color_Tag || '#10b981'}" class="absolute -top-2 -left-2 w-16 h-16 cursor-pointer border-0 p-0">
+                </div>
+                <span class="text-xs font-bold text-gray-500">Pilih rona visual</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Akan muncul hanya jika Tipe = Saving -->
+          <div id="fp_target_wrapper" class="${data.Pocket_Type === 'Saving' ? 'block' : 'hidden'} space-y-2 animate-[viewEnter_0.3s_ease]">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Target Nominal (Rp) <span class="text-pink-500">*</span></label>
+            <div class="relative group/input">
+              <i class="fa-solid fa-bullseye absolute left-5 top-1/2 -translate-y-1/2 text-amber-500"></i>
+              <input id="fp_target" type="number" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-amber-400 outline-none text-[14px] font-bold text-[#2d335b] transition-all shadow-sm" value="${data.Target_Amount || ''}" placeholder="5000000">
+            </div>
+            <p class="text-[10px] font-bold text-gray-400 italic"><i class="fa-solid fa-circle-info"></i> Masukkan angka tanpa titik/koma. Berguna untuk memunculkan progress bar.</p>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Keterangan Singkat (Opsional)</label>
+            <div class="relative group/input">
+              <i class="fa-solid fa-quote-left absolute left-5 top-5 text-emerald-400"></i>
+              <textarea id="fp_desc" class="w-full min-h-[100px] pl-12 pr-4 py-4 rounded-[20px] bg-white/70 border border-white focus:border-emerald-400 outline-none text-[14px] font-bold text-[#2d335b] transition-all shadow-sm resize-y custom-scrollbar" placeholder="Misal: Dana khusus bayar kos...">${escapeHtml(data.Description || '')}</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 px-10 py-6 border-t border-white/50 bg-white/50 backdrop-blur-2xl flex items-center justify-end gap-3 flex-none">
+          <button type="button" onclick="Swal.close()" class="px-8 h-14 rounded-[20px] bg-white border border-gray-200 text-[#59648e] font-black text-[13.5px] hover:bg-gray-50 transition-all">Batal</button>
+          <button type="button" id="btnSaveFinancePocket" class="px-10 h-14 rounded-[20px] bg-gradient-to-br from-emerald-500 to-teal-500 text-white font-black text-[14px] hover:-translate-y-0.5 transition-all shadow-[0_12px_24px_rgba(16,185,129,0.3)] hover:shadow-[0_18px_36px_rgba(16,185,129,0.45)]">
+            Simpan Kantong
+          </button>
+        </div>
+      </div>
+    `,
+    didOpen: () => {
+      document.getElementById('btnSaveFinancePocket').onclick = async () => {
+        const payload = {
+          Pocket_ID: isEdit ? data.Pocket_ID : '',
+          Pocket_Name: document.getElementById('fp_name').value.trim(),
+          Pocket_Type: document.getElementById('fp_type').value,
+          Target_Amount: document.getElementById('fp_target').value || 0,
+          Color_Tag: document.getElementById('fp_color').value,
+          Description: document.getElementById('fp_desc').value.trim()
+        };
+
+        if (!payload.Pocket_Name) {
+          return Swal.showValidationMessage('Nama Kantong wajib diisi!');
+        }
+
+        Swal.close();
+        showLoading('Menyimpan...', 'Mempersiapkan kantong keuangan...');
+        try {
+          const action = isEdit ? 'update_finance_pocket' : 'create_finance_pocket';
+          const res = await sendToBackend({ action, token: getToken(), pocketData: payload });
+          hideLoading();
+          if (res.status === 'success') {
+            showToast('Tersimpan', 'Kantong keuangan siap digunakan.', 'fa-solid fa-check');
+            loadFinancePockets({ silent: true });
+          } else throw new Error(res.message);
+        } catch(e) { hideLoading(); showError(e); }
+      };
+    }
+  });
+}
+
+function toggleFinanceTargetField() {
+  const type = document.getElementById('fp_type').value;
+  const wrap = document.getElementById('fp_target_wrapper');
+  if(type === 'Saving') {
+    wrap.classList.remove('hidden');
+    wrap.classList.add('block');
+  } else {
+    wrap.classList.remove('block');
+    wrap.classList.add('hidden');
+    document.getElementById('fp_target').value = '';
+  }
+}
+
+async function deleteFinancePocket(id) {
+  const r = await Swal.fire({ title: 'Hapus Kantong?', text: "Seluruh riwayat transaksi di dalamnya akan ikut lenyap dan total kekayaan akan berkurang.", icon: 'warning', showCancelButton: true, confirmButtonText: 'Ya, Hapus', confirmButtonColor: '#ef4444' });
+  if (r.isConfirmed) {
+    showLoading();
+    try {
+      await sendToBackend({ action: 'delete_finance_pocket', token: getToken(), pocketId: id });
+      hideLoading(); loadFinancePockets({silent:true});
+    } catch(e) { hideLoading(); showError(e); }
+  }
+}
+
+// 4. LOGIKA LACI WORKSPACE & ISI TRANSAKSI
+async function openFinanceWorkspace(pocketId) {
+  const p = financePocketsRaw.find(x => x.Pocket_ID === pocketId);
+  if (!p) return;
+  currentFinancePocket = p;
+
+  // Set Warna Visual Header
+  const header = document.getElementById('fwHeader');
+  header.style.background = `linear-gradient(135deg, ${p.Color_Tag}, ${hexToRgba(p.Color_Tag, 0.75)})`;
+  document.getElementById('fwType').innerHTML = `<i class="fa-solid fa-tag mr-1"></i> ${p.Pocket_Type}`;
+  document.getElementById('fwTitle').textContent = p.Pocket_Name;
+  document.getElementById('fwBalance').textContent = formatRupiah(p.Balance);
+  
+  // TAMBAHKAN BARIS INI: Isi deskripsi laci samping secara dinamis
+  const descEl = document.getElementById('fwDesc');
+  if (descEl) descEl.textContent = p.Description || 'Belum ada deskripsi untuk kantong ini.';
+
+  // Buka Panel Animasi
+  const panel = document.getElementById('financeWorkspacePanel');
+  panel.classList.remove('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+  panel.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+  
+  const gallery = document.getElementById('financeGalleryArea');
+  gallery.style.opacity = '0.35'; gallery.style.filter = 'blur(6px)'; gallery.style.transform = 'scale(0.98)'; gallery.style.pointerEvents = 'none';
+
+  loadFinanceTransactions();
+}
+function closeFinanceWorkspace() {
+  const panel = document.getElementById('financeWorkspacePanel');
+  panel.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+  panel.classList.add('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+  
+  const gallery = document.getElementById('financeGalleryArea');
+  gallery.style.opacity = '1'; gallery.style.filter = 'none'; gallery.style.transform = 'scale(1)'; gallery.style.pointerEvents = 'auto';
+  
+  currentFinancePocket = null;
+  currentFinanceTxs = [];
+  loadFinancePockets({silent: true}); // Refresh the main dashboard after closing to get updated balance
+}
+
+async function loadFinanceTransactions() {
+  const container = document.getElementById('fwTxList');
+  container.innerHTML = `<div class="text-center py-10"><i class="fa-solid fa-circle-notch fa-spin text-3xl text-emerald-500"></i></div>`;
+  try {
+    const res = await sendToBackend({ action: 'get_finance_transactions', token: getToken(), pocketId: currentFinancePocket.Pocket_ID });
+    if (res.status === 'success') {
+      currentFinanceTxs = res.data || [];
+      renderFinanceTxList();
+    }
+  } catch(e) { container.innerHTML = `<div class="text-red-500 font-bold text-center">Gagal memuat transaksi.</div>`; }
+}
+
+function renderFinanceTxList() {
+  const container = document.getElementById('fwTxList');
+  if (!currentFinanceTxs.length) {
+    container.innerHTML = `
+      <div class="h-full flex flex-col items-center justify-center text-center opacity-70 mt-10">
+        <div class="w-20 h-20 rounded-[24px] bg-white/40 border border-white/60 shadow-inner flex items-center justify-center mb-5">
+           <i class="fa-solid fa-receipt text-4xl text-gray-400"></i>
+        </div>
+        <h4 class="font-black text-[#2d335b] text-xl tracking-tight">Belum Ada Mutasi</h4>
+        <p class="text-[13px] font-bold text-gray-500 mt-2 max-w-xs leading-relaxed">Gunakan tombol di bawah untuk mencatat pemasukan atau pengeluaran pertama.</p>
+      </div>`;
+    return;
+  }
+
+  // Pengelompokan berdasakan Tanggal
+  let lastDate = '';
+  let html = '';
+
+  currentFinanceTxs.forEach(tx => {
+    // Header Tanggal
+    if (tx.Tx_Date !== lastDate) {
+      const dObj = new Date(tx.Tx_Date);
+      const dStr = dObj.toLocaleDateString('id-ID', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+      html += `<div class="mt-6 mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#8a94b6] flex items-center gap-2">
+                 <span class="w-2 h-2 rounded-full bg-gray-300"></span> ${dStr}
+               </div>`;
+      lastDate = tx.Tx_Date;
+    }
+
+    // Styling berdasarkan tipe (Double Entry Concept)
+    let isPlus = (tx.Tx_Type === 'Income' || tx.Tx_Type === 'Transfer_In');
+    let sign = isPlus ? '+' : '-';
+    let colorClass = isPlus ? 'text-emerald-600' : 'text-rose-600';
+    let icon = '';
+    let bgIcon = '';
+
+    if (tx.Tx_Type === 'Income') { icon = 'fa-arrow-down'; bgIcon = 'bg-emerald-100 text-emerald-600'; }
+    if (tx.Tx_Type === 'Expense') { icon = 'fa-arrow-up'; bgIcon = 'bg-rose-100 text-rose-600'; }
+    if (tx.Tx_Type === 'Transfer_In') { icon = 'fa-right-to-bracket'; bgIcon = 'bg-blue-100 text-blue-600'; colorClass = 'text-blue-600'; }
+    if (tx.Tx_Type === 'Transfer_Out') { icon = 'fa-right-from-bracket'; bgIcon = 'bg-indigo-100 text-indigo-600'; colorClass = 'text-indigo-600'; }
+
+    html += `
+      <div class="finance-tx-item flex items-center justify-between gap-4 group">
+        <div class="flex items-center gap-4 min-w-0">
+          <div class="w-12 h-12 rounded-[16px] flex items-center justify-center text-sm shadow-sm flex-none ${bgIcon}">
+             <i class="fa-solid ${icon}"></i>
+          </div>
+          <div class="min-w-0">
+            <h4 class="text-[15.5px] font-black text-[#2d335b] truncate" title="${escapeHtml(tx.Description)}">${escapeHtml(tx.Description || tx.Category)}</h4>
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-widest mt-1 inline-block">${escapeHtml(tx.Category)}</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-col items-end gap-2 flex-none">
+          <h3 class="text-[17px] font-black ${colorClass}">${sign} ${formatRupiah(tx.Amount)}</h3>
+          
+          <div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button onclick="openFinanceTxModal('${tx.Tx_Type.includes('Transfer') ? 'Transfer' : tx.Tx_Type}', '${tx.Tx_ID}')" class="text-gray-400 hover:text-indigo-500" title="Edit"><i class="fa-solid fa-pen text-[11px]"></i></button>
+            <button onclick="deleteFinanceTx('${tx.Tx_ID}')" class="text-gray-400 hover:text-red-500" title="Hapus"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+// 5. MODAL: CREATE / EDIT TRANSAKSI (DYNAMIC FORM)
+// ==================================================
+// HELPER TAMBAHAN: Normalisasi Tanggal ke YYYY-MM-DD
+// ==================================================
+function formatToDateInput(val) {
+  if (!val) return '';
+  const date = new Date(val);
+  if (isNaN(date.getTime())) {
+    const match = String(val).match(/^\d{4}-\d{2}-\d{2}/);
+    return match ? match[0] : '';
+  }
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+// ==================================================
+// HELPER TAMBAHAN: Format Ribuan (Thousand Separator)
+// ==================================================
+function formatThousandSeparator(val) {
+  if (val === undefined || val === null || val === '') return '';
+  // Buang semua karakter non-angka
+  const numStr = String(val).replace(/\D/g, '');
+  if (!numStr) return '';
+  // Format menjadi desimal dengan pemisah ribuan bahasa Indonesia (.)
+  return new Intl.NumberFormat('id-ID').format(numStr);
+}
+
+// ==================================================
+// FUNGSI MODAL TRANSAKSI YANG DIPERBARUI
+// ==================================================
+async function openFinanceTxModal(mode, txId = null) {
+  // mode = 'Income' | 'Expense' | 'Transfer'
+  const isEdit = Boolean(txId);
+  const data = isEdit ? currentFinanceTxs.find(i => i.Tx_ID === txId) : {};
+
+  let icon = '', themeColor = '', title = '';
+  if(mode === 'Income') { icon = 'fa-plus'; themeColor = 'emerald'; title = 'Pemasukan Baru'; }
+  if(mode === 'Expense') { icon = 'fa-minus'; themeColor = 'rose'; title = 'Pengeluaran Baru'; }
+  if(mode === 'Transfer') { icon = 'fa-right-left'; themeColor = 'blue'; title = 'Transfer Dana'; }
+  
+  if(isEdit) title = 'Edit Transaksi';
+
+  // Opsi Kategori Standar
+  const incCats = ['Gaji', 'Bonus', 'Penjualan', 'Investasi', 'Hadiah', 'Lainnya'];
+  const expCats = ['Makan & Minum', 'Transportasi', 'Tagihan & Utilitas', 'Belanja', 'Kesehatan', 'Hiburan', 'Lainnya'];
+  let catOptions = '';
+  if (mode === 'Income') catOptions = incCats.map(c => `<option value="${c}" ${data.Category===c?'selected':''}>${c}</option>`).join('');
+  if (mode === 'Expense') catOptions = expCats.map(c => `<option value="${c}" ${data.Category===c?'selected':''}>${c}</option>`).join('');
+
+  // Dropdown Destinasi Kantong (Hanya jika Transfer)
+  let destOptions = '';
+  if (mode === 'Transfer') {
+    destOptions = financePocketsRaw
+      .filter(p => p.Pocket_ID !== currentFinancePocket.Pocket_ID)
+      .map(p => `<option value="${p.Pocket_ID}" ${data.Linked_Pocket_ID===p.Pocket_ID?'selected':''}>${p.Pocket_Name} (${p.Pocket_Type})</option>`)
+      .join('');
+  }
+
+  const todayStr = new Date().toLocaleDateString('en-CA');
+  
+  // Normalisasi tanggal simpanan lama atau gunakan tanggal hari ini
+  const savedDate = isEdit && data.Tx_Date ? formatToDateInput(data.Tx_Date) : todayStr;
+
+  const { value: formValues } = await Swal.fire({
+    title: '', width: 700, background: 'transparent',
+    showConfirmButton: false, showCloseButton: false, customClass: { popup: 'p-0' },
+    html: `
+      <div class="relative overflow-hidden text-left flex flex-col h-full bg-gradient-to-br from-[#f8f9ff]/95 to-white/90 backdrop-blur-3xl rounded-[40px] border border-white/80 shadow-[0_40px_120px_rgba(31,38,135,0.25)]">
+        
+        <div class="relative z-10 px-10 py-8 border-b border-white/50 bg-white/30 backdrop-blur-2xl flex items-center justify-between flex-none">
+          <div class="flex items-center gap-5">
+             <div class="w-[60px] h-[60px] rounded-[20px] bg-${themeColor}-100 text-${themeColor}-600 flex items-center justify-center text-[24px] shadow-sm flex-none">
+                <i class="fa-solid ${icon}"></i>
+             </div>
+             <div>
+               <h3 class="text-[26px] font-black text-[#2d335b] leading-none">${title}</h3>
+               <p class="text-[12px] font-bold text-[#667092] mt-1.5">${currentFinancePocket.Pocket_Name}</p>
+             </div>
+          </div>
+          <button type="button" onclick="Swal.close()" class="w-10 h-10 rounded-[14px] bg-white/50 hover:bg-white border border-white/60 text-[#59648e] hover:text-red-500 flex items-center justify-center transition-all shadow-sm">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="relative z-10 p-10 space-y-6">
+          
+          <div class="space-y-2">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Nominal (Rp) <span class="text-pink-500">*</span></label>
+            <div class="relative group/input">
+              <span class="absolute left-5 top-1/2 -translate-y-1/2 text-${themeColor}-500 font-black">Rp</span>
+              <!-- TIPE DIUBAH MENJADI TEXT AGAR BISA LIVE FORMATTING TITIK -->
+              <input id="tx_amount" type="text" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-${themeColor}-400 outline-none text-[16px] font-black text-[#2d335b]" value="${isEdit ? formatThousandSeparator(data.Amount) : ''}" placeholder="0" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            ${mode === 'Transfer' ? `
+              <div class="space-y-2">
+                <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Pilih Kantong Tujuan <span class="text-pink-500">*</span></label>
+                <div class="relative group/input">
+                  <i class="fa-solid fa-wallet absolute left-5 top-1/2 -translate-y-1/2 text-${themeColor}-500 z-10"></i>
+                  <select id="tx_dest" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-${themeColor}-400 outline-none text-[13.5px] font-bold text-[#2d335b] appearance-none cursor-pointer">
+                    <option value="">-- Pilih Tujuan --</option>
+                    ${destOptions}
+                  </select>
+                  <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                </div>
+              </div>
+            ` : `
+              <div class="space-y-2">
+                <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Kategori <span class="text-pink-500">*</span></label>
+                <div class="relative group/input">
+                  <i class="fa-solid fa-tag absolute left-5 top-1/2 -translate-y-1/2 text-${themeColor}-500 z-10"></i>
+                  <select id="tx_cat" class="w-full h-14 pl-12 pr-4 rounded-[20px] bg-white/70 border border-white focus:border-${themeColor}-400 outline-none text-[13.5px] font-bold text-[#2d335b] appearance-none cursor-pointer">
+                    ${catOptions}
+                  </select>
+                  <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                </div>
+              </div>
+            `}
+
+            <div class="space-y-2">
+              <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Tanggal</label>
+              <div class="relative group/input">
+                <!-- TANGGAL MENGGUNAKAN VARIABEL SAVEDDATE YANG SUDAH DINORMALISASI -->
+                <input id="tx_date" type="date" class="w-full h-14 px-5 rounded-[20px] bg-white/70 border border-white focus:border-${themeColor}-400 outline-none text-[13.5px] font-bold text-[#2d335b]" value="${savedDate}">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-[11px] font-black uppercase text-[#59648e] tracking-widest block mb-1">Catatan</label>
+            <input id="tx_desc" type="text" class="w-full h-14 px-5 rounded-[20px] bg-white/70 border border-white focus:border-${themeColor}-400 outline-none text-[13.5px] font-bold text-[#2d335b]" value="${escapeAttribute(data.Description || '')}" placeholder="Beli kopi, bayar listrik...">
+          </div>
+        </div>
+
+        <div class="relative z-10 px-10 py-6 border-t border-white/50 bg-white/50 backdrop-blur-2xl flex justify-end">
+          <button type="button" id="btnSaveTx" class="px-10 h-12 rounded-[18px] bg-${themeColor}-500 text-white font-black text-[13px] hover:-translate-y-0.5 transition-all shadow-[0_8px_20px_rgba(0,0,0,0.15)]">Simpan Transaksi</button>
+        </div>
+      </div>
+    `,
+    didOpen: () => {
+      const amountInput = document.getElementById('tx_amount');
+      if (amountInput) {
+        // Efek pemisah ribuan otomatis saat mengetik di form
+        amountInput.addEventListener('input', function() {
+          this.value = formatThousandSeparator(this.value);
+        });
+      }
+
+      document.getElementById('btnSaveTx').onclick = async () => {
+        const amtRaw = document.getElementById('tx_amount').value;
+        // Konversi string "400.000" menjadi angka murni 400000 sebelum dikirim ke backend
+        const amt = Number(amtRaw.replace(/\D/g, '')); 
+        
+        const dt = document.getElementById('tx_date').value;
+        const desc = document.getElementById('tx_desc').value.trim();
+        
+        let txType = mode;
+        let cat = 'Transfer';
+        let linked = '';
+
+        if (mode === 'Transfer') {
+          linked = document.getElementById('tx_dest').value;
+          if (!linked) return Swal.showValidationMessage('Kantong Tujuan wajib dipilih!');
+        } else {
+          cat = document.getElementById('tx_cat').value;
+        }
+
+        if (!amt || amt <= 0) return Swal.showValidationMessage('Nominal harus lebih dari 0!');
+
+        const payload = {
+          Tx_ID: txId || '',
+          Pocket_ID: currentFinancePocket.Pocket_ID,
+          Tx_Type: txType,
+          Amount: amt,
+          Category: cat,
+          Tx_Date: dt,
+          Linked_Pocket_ID: linked,
+          Description: desc
+        };
+
+        Swal.close();
+        showLoading('Menyimpan Transaksi...', 'Double-entry sinkronisasi berjalan...');
+        try {
+          const action = isEdit ? 'update_finance_transaction' : 'add_finance_transaction';
+          const res = await sendToBackend({ action, token: getToken(), txData: payload });
+          hideLoading();
+          if (res.status === 'success') {
+            showToast('Tercatat', 'Transaksi berhasil disimpan.', 'fa-solid fa-check');
+            loadFinanceTransactions(); // Refresh list mutasi
+          } else throw new Error(res.message);
+        } catch(e) { hideLoading(); showError(e); }
+      };
+    }
+  });
+}
+// 6. DELETE TRANSAKSI (Dengan Efek Cascade ke Kantong Pasangan)
+async function deleteFinanceTx(txId) {
+  const r = await Swal.fire({ title: 'Hapus Transaksi?', text: "Jika ini adalah transfer, transaksi pada kantong tujuan juga akan dihapus untuk menjaga keseimbangan (Double Entry).", icon: 'warning', showCancelButton: true, confirmButtonText: 'Ya, Hapus', confirmButtonColor: '#ef4444' });
+  if (r.isConfirmed) {
+    showLoading();
+    try {
+      await sendToBackend({ action: 'delete_finance_transaction', token: getToken(), txId: txId });
+      hideLoading();
+      loadFinanceTransactions();
+    } catch(e) { hideLoading(); showError(e); }
+  }
+}
 /****************************************************
  * CREATIVE BRIEF PORTFOLIO - JAVASCRIPT ENGINE
  * Ultra Premium Glassmorphism Edition
@@ -34540,6 +36149,26 @@ const APP_ROUTES = {
     id: 'contentBoardView', title: 'Papan Inspirasi Konten', 
     init: () => !window.__contentBoardsLoadedOnce ? loadContentBoards() : applyContentBoardFilters() 
   },
+  'finance': { 
+    id: 'financePocketsView', title: 'Wealth Hub & Pockets', 
+    init: () => !window.__financeLoadedOnce ? loadFinancePockets() : applyFinanceFilters() 
+  },
+  'timer': { 
+    id: 'timerView', 
+    title: 'Smart Focus Timer', 
+    init: async () => {
+      // Menunggu pemuatan dropdown selesai secara asinkronus
+      if (typeof populateTimerProjectDropdown === 'function') {
+        await populateTimerProjectDropdown();
+      }
+      if (typeof restoreTimerState === 'function') {
+        restoreTimerState();
+      }
+      if (!window.__timerLoadedOnce) {
+        loadTimerHistoryAndAnalytics().then(() => window.__timerLoadedOnce = true);
+      }
+    }
+  },
   'daily_work_plan':{ 
     id: 'dailyWorkPlanView', title: 'Daily Work Plan', 
     init: () => {
@@ -40516,6 +42145,8 @@ function initRefresh() {
       if (activeView === 'matrix') await loadPriorityMatrix();
       if (activeView === 'ideaPockets') await loadIdeaPockets({ silent: true });
       if (activeView === 'feedback') await loadFeedbackHistory();
+        if (activeView === 'finance') await loadFinancePockets({ silent: true });
+         if (activeView === 'timer') await loadTimerHistoryAndAnalytics();
       if (activeView === 'contentBoard') await loadContentBoards({ silent: true });
       if (activeView === 'aiAssistant') await loadAiSessions(true); // <--- 29. AI ASSISTANT
       if (activeView === 'profile') { /* 30. USER PROFILE (Sudah direfresh di baris 8) */ } 
