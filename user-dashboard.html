@@ -16585,6 +16585,55 @@ input[list]::-webkit-calendar-picker-indicator {
   box-shadow: 0 15px 40px rgba(83, 94, 160, 0.1);
   background: rgba(255, 255, 255, 0.8);
 }
+/* ==================================================
+   ULTRA PREMIUM CAMPAIGN HUBS STYLES
+   ================================================== */
+.campaign-tab-btn {
+  padding: 8px 15px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #667092;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.23s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+.campaign-tab-btn.active {
+  color: #e873aa;
+  background: rgba(232, 115, 170, 0.1);
+  border-color: rgba(232, 115, 170, 0.2);
+}
+.campaign-tab-btn:hover:not(.active) {
+  background: rgba(255,255,255,0.5);
+  color: #2d335b;
+}
+
+/* Card Persiapan Kampanye */
+.cmi-item-card {
+  padding: 18px 22px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 25px rgba(83, 94, 160, 0.06);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cmi-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(83, 94, 160, 0.12);
+}
+.cmi-item-card.pinned {
+  background: linear-gradient(135deg, #fff3f8, #ffffff);
+  border-color: #fbc2eb;
+}
+
+/* Timeline/Workspace Wrapper */
+#campaignWorkspacePanel.open {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
   </style>
 </head>
 
@@ -16763,6 +16812,10 @@ input[list]::-webkit-calendar-picker-indicator {
 <button class="menu-item" data-view="timer">
   <i class="fa-solid fa-stopwatch"></i>
   <span>Focus Timer</span>
+</button>
+<button class="menu-item" data-view="campaigns">
+  <i class="fa-solid fa-rectangle-ad"></i>
+  <span>Campaign Hubs</span>
 </button>
 
           <button class="menu-item" data-view="profile">
@@ -19222,6 +19275,263 @@ input[list]::-webkit-calendar-picker-indicator {
   
 <!-- Idea Pockets View -->
 
+</section>
+<!-- ================================================== -->
+<!-- VIEW: KANTONG KAMPANYE & EVENT (CAMPAIGN HUBS)     -->
+<!-- ================================================== -->
+<section id="campaignHubsView" class="view-section relative">
+  
+  <!-- === A. AREA GALERI UTAMA === -->
+  <div id="campaignGalleryArea" class="h-full flex flex-col transition-all duration-500 pb-10">
+    
+    <!-- Hero Dashboard Premium -->
+    <!-- Hero Dashboard Premium (Campaign Hubs Redesign) -->
+    <div class="hero-dashboard glass-deep mb-8 overflow-hidden relative p-10 md:p-12 rounded-[48px] border border-white/40 shadow-[0_32px_120px_rgba(31,38,135,0.15)] flex-none mt-6">
+      
+      <!-- Volumetric Mesh Neon Orbs -->
+      <div class="absolute top-[-25%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-[#e873aa]/20 via-[#8b5cf6]/10 to-transparent rounded-full blur-[140px] pointer-events-none z-0"></div>
+      <div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-[#65d7c5]/15 via-[#6f8cff]/10 to-transparent rounded-full blur-[120px] pointer-events-none z-0"></div>
+      
+      <!-- Precise Dot Matrix Blueprint Grid Pattern -->
+      <div class="absolute inset-0 opacity-[0.025] pointer-events-none z-0" style="background-image: radial-gradient(#2d335b 1.2px, transparent 1px); background-size: 26px 26px;"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Kiri: Editorial Typography & Strategic Indicators -->
+        <div class="lg:col-span-7 space-y-8">
+          
+          <!-- Crystal Floating Badge -->
+          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/20 border border-white/60 text-[#e873aa] backdrop-blur-xl shadow-[0_12px_32px_rgba(232,115,170,0.08)]">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#e873aa]"></span>
+            </span>
+            <span class="text-[10px] font-black uppercase tracking-[0.25em] text-[#29304f]/80">Event Operations Command</span>
+          </div>
+          
+          <!-- Mega Editorial Title (Descender Safe) -->
+          <div class="space-y-4">
+            <h1 class="page-title text-[56px] md:text-[76px] font-black leading-[1.02] tracking-[-0.06em] text-[#1a1f3d] font-display pb-1 overflow-visible">
+              Campaign & <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#e873aa] via-[#8b5cf6] to-[#6f8cff] block pb-2 overflow-visible">Event Hubs.</span>
+            </h1>
+            <p class="max-w-[540px] text-[16px] md:text-[17px] font-medium text-[#59648e] leading-[1.8] tracking-[-0.01em]">
+              Pusat komando persiapan acara. Buat kantong khusus untuk melacak logistik, memonitor alokasi anggaran, mengunggah aset visual, menyusun draf pers, serta menyusun profil pembicara.
+            </p>
+          </div>
+
+          <!-- Feature Lanyard Indicator Stack -->
+          <div class="flex items-center gap-6 pt-2">
+            <div class="flex -space-x-3">
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-pink-100 flex items-center justify-center text-pink-600 text-xs font-bold shadow-sm" title="Logistics Checklist"><i class="fa-solid fa-clipboard-list"></i></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-indigo-600 text-xs font-bold shadow-sm" title="Graphic Assets"><i class="fa-solid fa-image"></i></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-blue-600 text-xs font-bold shadow-sm" title="Budget Logs"><i class="fa-solid fa-money-bill-wave"></i></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-emerald-100 flex items-center justify-center text-emerald-600 text-xs font-bold shadow-sm" title="Speaker Cards"><i class="fa-solid fa-microphone"></i></div>
+            </div>
+            <p class="text-[13px] font-bold text-[#667092]">Campaign structuring made <span class="text-[#e873aa] font-extrabold">intelligent.</span></p>
+          </div>
+        </div>
+
+        <!-- Kanan: Telemetry Board (Bento Style Stats) -->
+        <div class="lg:col-span-5 flex lg:justify-end">
+          <div class="group relative w-full lg:w-auto min-w-[340px]">
+            <!-- Volumetric aura glow on hover -->
+            <div class="absolute inset-0 bg-pink-500/10 blur-[45px] rounded-[44px] group-hover:bg-pink-500/20 transition-all duration-700 pointer-events-none"></div>
+            
+            <!-- Glass Terminal Panel -->
+            <div class="relative bg-gradient-to-b from-white/40 to-white/10 p-10 rounded-[44px] border border-white/70 shadow-[0_20px_50px_rgba(0,0,0,0.05)] backdrop-blur-2xl overflow-hidden">
+              
+              <!-- Floating Specular Icon Decor -->
+              <div class="absolute top-6 right-6 w-14 h-14 rounded-2xl bg-white/30 border border-white/60 flex items-center justify-center text-pink-500/40 text-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                <i class="fa-solid fa-rectangle-ad animate-pulse"></i>
+              </div>
+
+              <div class="space-y-9">
+                <!-- Card Header -->
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-[0.2em] text-[#e873aa] mb-1.5">Production Pipeline</p>
+                  <h4 class="text-xl font-black text-[#2d335b]">Campaign Analytics</h4>
+                </div>
+
+                <!-- Bento-style telemetry cards -->
+                <div class="relative z-10 grid grid-cols-2 gap-4">
+                  <!-- Active Hubs Stat Box -->
+                  <div class="p-4 rounded-[22px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/75 transition-colors duration-300">
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2.5">Active Hubs</p>
+                    <div class="flex items-baseline gap-1">
+                      <h3 id="statTotalCampaigns" class="text-5xl font-black text-[#2d335b] tracking-tighter leading-none">0</h3>
+                      <span class="text-[11px] font-bold text-gray-400">boards</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Tasks Solved Stat Box -->
+                  <div class="p-4 rounded-[22px] bg-white/50 border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_24px_rgba(83,94,160,0.03)] hover:bg-white/75 transition-colors duration-300">
+                    <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2.5">Tasks Solved</p>
+                    <div class="flex items-baseline gap-1">
+                      <h3 id="statTotalCampaignItems" class="text-5xl font-black text-[#e873aa] tracking-tighter leading-none">0</h3>
+                      <span class="text-[11px] font-bold text-[#e873aa]">items</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Security Status Indicator -->
+                <div class="p-4 rounded-[22px] bg-white/30 border border-white/50 flex items-center justify-between group-hover:bg-white/40 transition-colors shadow-inner">
+                  <div class="flex items-center gap-3">
+                    <div class="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-[0_0_12px_rgba(16,185,129,0.8)] animate-pulse"></div>
+                    <span class="text-[10px] font-black text-[#2d335b] uppercase tracking-widest">End-to-End Crypt</span>
+                  </div>
+                  <span class="text-[10px] font-black text-emerald-600 bg-emerald-50/80 px-3 py-1.5 rounded-full border border-emerald-100 shadow-sm">Verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Executive Toolbar -->
+    <div class="relative z-10 mb-8 p-4 md:p-5 rounded-[32px] border border-white/60 shadow-[0_15px_40px_rgba(83,94,160,0.08)] flex flex-col lg:flex-row items-center justify-between gap-5 bg-gradient-to-r from-white/50 via-white/30 to-white/50 backdrop-blur-2xl flex-none">
+      <div class="flex-1 flex flex-col sm:flex-row items-center gap-4 w-full">
+        <div class="relative w-full sm:flex-1 group">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-pink-500">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <input id="campaignSearchInput" type="text" class="w-full h-[56px] pl-11 pr-4 bg-white/60 hover:bg-white/80 border border-white/80 rounded-[20px] text-[13.5px] font-black text-[#2d335b] outline-none focus:ring-4 focus:ring-pink-500/15 focus:border-pink-400 transition-all shadow-sm placeholder-gray-400" placeholder="Cari nama event, kampanye, sasaran audiens...">
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full lg:w-auto">
+        <button onclick="safeReloadCampaignHubs()" class="h-[56px] w-full sm:w-[56px] flex items-center justify-center rounded-[20px] bg-white/60 border border-white/80 text-pink-500 hover:bg-white hover:text-pink-700 hover:shadow-[0_8px_20px_rgba(232,115,170,0.15)] transition-all group flex-none" title="Refresh Kantong">
+          <i class="fa-solid fa-rotate group-hover:rotate-180 transition-transform duration-500"></i>
+        </button>
+        <button onclick="openCampaignFormModal()" class="flex-1 lg:flex-none h-[56px] px-8 rounded-[20px] bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 text-white font-black text-[13px] border border-white/20 shadow-[0_12px_24px_rgba(232,115,170,0.3)] hover:shadow-[0_16px_32px_rgba(232,115,170,0.45)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+          <i class="fa-solid fa-folder-plus text-lg relative z-10 group-hover:scale-110 transition-transform"></i>
+          <span class="relative z-10 tracking-wide">Buat Kantong Event</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid Wadah Kampanye -->
+    <div id="campaignGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 pb-10">
+      <!-- Diisi oleh JavaScript -->
+    </div>
+  </div>
+
+  <!-- === B. THE SLIDING WORKSPACE (CAMPAIGN DRAWER PANEL) === -->
+  <div id="campaignWorkspacePanel" class="fixed top-[20px] bottom-[20px] right-[20px] w-[calc(100%-40px)] md:w-[480px] lg:w-[560px] xl:w-[660px] bg-gradient-to-br from-white/95 via-white/90 to-pink-50/90 backdrop-blur-3xl border border-white shadow-[-30px_0_100px_rgba(31,38,135,0.15)] flex flex-col translate-x-[120%] transition-all duration-500 ease-out z-[100] rounded-[36px] opacity-0 pointer-events-none overflow-hidden">
+    
+    <!-- Lanyard Grip Line -->
+    <div class="absolute left-3 top-1/2 -translate-y-1/2 w-1.5 h-16 rounded-full bg-gray-300/50 backdrop-blur-sm z-50"></div>
+
+    <!-- Workspace Header Dinamis -->
+   <!-- Workspace Header Dinamis (CAMPAIGN HUBS) -->
+    <div id="cwCampaignHeader" class="relative px-10 py-8 flex-none overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b border-white/40">
+       <div class="absolute top-0 right-0 w-48 h-48 bg-white/20 rounded-full blur-2xl -mt-10 -mr-10 pointer-events-none"></div>
+       <div class="absolute bottom-0 left-0 w-40 h-40 bg-black/5 rounded-full blur-xl -mb-10 -ml-10 pointer-events-none"></div>
+       
+       <div class="relative z-10 flex gap-4 w-full">
+         <div id="cwCampaignAvatar" class="w-14 h-14 rounded-2xl bg-white/30 border border-white/60 flex items-center justify-center text-2xl font-black text-white shadow-md flex-none mt-1">C</div>
+         <div class="flex-1 min-w-0 pr-12"> <!-- pr-12 memberikan ruang agar teks tidak menabrak tombol silang -->
+           <div class="flex flex-wrap items-center gap-2 mb-2">
+             <span id="cwCampaignAudience" class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/40 bg-white/20 text-white shadow-sm inline-flex items-center gap-1.5">
+               <i class="fa-solid fa-users"></i> Audience
+             </span>
+             <span id="cwCampaignDates" class="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/40 bg-black/10 text-white/95 shadow-sm inline-flex items-center gap-1.5">
+               <i class="fa-regular fa-calendar-days"></i> Dates
+             </span>
+           </div>
+           <h2 id="cwCampaignName" class="text-3xl font-black text-white tracking-tight leading-none drop-shadow-md truncate">Campaign Name</h2>
+           <p id="cwCampaignDesc" class="text-xs font-bold text-white/90 mt-2.5 line-clamp-2 leading-relaxed drop-shadow-sm">Description...</p>
+         </div>
+       </div>
+
+       <!-- PERBAIKAN: Menggunakan class 'absolute top-8 right-8 z-30' agar terkunci di pojok kanan atas -->
+       <button onclick="closeCampaignWorkspace()" class="absolute top-8 right-8 w-11 h-11 rounded-[16px] bg-white/20 hover:bg-white/40 border border-white/40 text-white flex items-center justify-center transition-all shadow-sm backdrop-blur-md hover:rotate-90 duration-300 z-30">
+         <i class="fa-solid fa-xmark text-xl"></i>
+       </button>
+    </div>
+
+    <!-- Papan Alur Persiapan Acara (Timeline / List Area) -->
+    <div id="cwCampaignItemsList" class="flex-1 overflow-y-auto custom-scrollbar px-10 py-6 space-y-5 relative">
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 20px 20px;"></div>
+      <!-- Items rendered via JS -->
+    </div>
+
+    <!-- === MULTI-MODE INPUT FOOTER === -->
+    <div class="border-t border-white/50 bg-white/50 backdrop-blur-xl flex-none relative z-20 pb-6 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+      
+      <!-- Segmented Tab Selector -->
+      <div class="flex items-center justify-center gap-1.5 px-8 pt-4 pb-2 overflow-x-auto custom-scrollbar select-none">
+        <button onclick="switchCampaignInputMode('Logistik/Checklist')" id="tabModeLogistik" class="campaign-tab-btn active"><i class="fa-solid fa-clipboard-list mr-1"></i> Logistik</button>
+        <button onclick="switchCampaignInputMode('Aset Grafis')" id="tabModeAset" class="campaign-tab-btn"><i class="fa-solid fa-image mr-1"></i> Aset</button>
+        <button onclick="switchCampaignInputMode('Naskah Rilis')" id="tabModeRilis" class="campaign-tab-btn"><i class="fa-solid fa-file-invoice mr-1"></i> rilis</button>
+        <button onclick="switchCampaignInputMode('Anggaran/Biaya')" id="tabModeAnggaran" class="campaign-tab-btn"><i class="fa-solid fa-money-bill-wave mr-1"></i> Anggaran</button>
+        <button onclick="switchCampaignInputMode('Daftar Pembicara')" id="tabModePembicara" class="campaign-tab-btn"><i class="fa-solid fa-microphone mr-1"></i> Pembicara</button>
+      </div>
+
+      <div class="px-8 pt-2">
+        <div class="bg-white/80 border border-white shadow-[0_15px_40px_rgba(83,94,160,0.08)] rounded-[28px] p-3 focus-within:ring-4 focus-within:ring-pink-500/10 focus-within:border-pink-400 transition-all duration-300">
+          
+          <!-- Mode 1: Logistik/Checklist -->
+          <div id="inputModeLogistik" class="flex flex-col gap-3 px-2 pt-1 animate-[viewEnter_0.2s_ease]">
+            <div class="flex gap-3">
+              <input id="cmiLogistikTask" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-[2]" placeholder="Nama Tugas / Kebutuhan Logistik (contoh: Booking Konsumsi)">
+              <input id="cmiLogistikPic" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="PIC">
+            </div>
+          </div>
+
+          <!-- Mode 2: Aset Grafis -->
+          <div id="inputModeAset" class="hidden flex-col gap-3 px-2 pt-1 animate-[viewEnter_0.2s_ease]">
+            <input id="cmiAsetName" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 w-full" placeholder="Nama Aset (contoh: Feed IG Utama)">
+            <div class="flex gap-3">
+              <input id="cmiAsetDim" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="Dimensi / Format (contoh: 1080x1080 PNG)">
+              <input id="cmiAsetLink" type="url" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="Link Download (https://...)">
+            </div>
+          </div>
+
+          <!-- Mode 3: Naskah Rilis -->
+          <div id="inputModeRilis" class="hidden flex-col gap-3 px-2 pt-1 animate-[viewEnter_0.2s_ease]">
+            <input id="cmiRilisTitle" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 w-full" placeholder="Judul Rilis Pers">
+            <div class="flex gap-3">
+              <textarea id="cmiRilisBody" rows="2" class="flex-1 bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 resize-none max-h-24 custom-scrollbar" placeholder="Draf pesan / siaran pers..."></textarea>
+              <input id="cmiRilisNotes" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 w-44 h-11" placeholder="Catatan Media (Contoh: PR/Media)">
+            </div>
+          </div>
+
+          <!-- Mode 4: Anggaran/Biaya -->
+          <div id="inputModeAnggaran" class="hidden flex-col gap-3 px-2 pt-1 animate-[viewEnter_0.2s_ease]">
+            <input id="cmiBudgetTitle" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 w-full" placeholder="Keterangan Pengeluaran (contoh: Cetak Banner x3)">
+            <div class="flex gap-3">
+              <input id="cmiBudgetCost" type="number" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="Biaya (Contoh: 150000)">
+              <select id="cmiBudgetStatus" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1 cursor-pointer">
+                <option value="Belum Bayar">Belum Bayar</option>
+                <option value="Lunas">Lunas</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Mode 5: Daftar Pembicara -->
+          <div id="inputModePembicara" class="hidden flex-col gap-3 px-2 pt-1 animate-[viewEnter_0.2s_ease]">
+            <input id="cmiSpeakerName" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 w-full" placeholder="Nama Pembicara / Speaker">
+            <div class="flex gap-3">
+              <input id="cmiSpeakerContact" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="Kontak / Jabatan (contoh: CEO TechCorp / 0812...)">
+              <input id="cmiSpeakerTopic" type="text" class="bg-gray-100/50 rounded-xl px-3 py-2.5 text-[13px] font-bold text-[#2d335b] outline-none border border-transparent focus:border-pink-400 flex-1" placeholder="Topik Materi / Tema Sesi">
+            </div>
+          </div>
+
+          <!-- Send Action Button -->
+          <div class="mt-3 flex justify-end">
+             <button id="btnSendCampaignItem" onclick="submitCampaignItem()" class="px-6 h-[42px] rounded-[14px] text-white font-black text-xs hover:-translate-y-0.5 transition-all flex items-center gap-2">
+               Tambahkan <i class="fa-solid fa-arrow-up"></i>
+             </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 <!-- ================================================== -->
 <!-- VIEW: CONTENT DRAFT BOARD                          -->
@@ -23719,6 +24029,8 @@ initOkrControls(); // Tambahkan ini di bawah init lainnya
       initFeedbackControls();
       initDailyActivities();
       initFinanceControls();
+      // === DAFTARKAN INI DI DALAM DOMCONTENTLOADED ===
+  initCampaignControls();
       initTimerControls();
     });
 async function openReportAdminComplaintModal() {
@@ -23791,7 +24103,679 @@ async function openReportAdminComplaintModal() {
  * SMART WORK TIMER - JAVASCRIPT ENGINE
  * Robust LocalStorage Timer & Chart.js Analytics
  ****************************************************/
+/****************************************************
+ * CAMPAIGN HUBS (MANAJEMEN EVENT) - JAVASCRIPT ENGINE
+ * Ultra Premium Glassmorphism Interface
+ ****************************************************/
 
+let campaignHubsRaw = [];
+let currentCollabCampaign = null;
+let currentCampaignItems = [];
+let campaignLoading = false;
+let currentActiveCampaignInputMode = 'Logistik/Checklist';
+
+// 1. INITIALIZATION & REFRESH SYSTEM
+function initCampaignControls() {
+  const searchInput = document.getElementById('campaignSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', debounce(applyCampaignFilters, 200));
+  }
+}
+
+async function loadCampaignHubs(options = {}) {
+  if (campaignLoading) return;
+  campaignLoading = true;
+
+  const container = document.getElementById('campaignGrid');
+  if (!options.silent && container) {
+    container.innerHTML = `
+      <div class="col-span-full flex flex-col items-center justify-center p-20 glass-soft rounded-[40px] border border-white/50 text-center">
+        <i class="fa-solid fa-rectangle-ad fa-beat-fade text-5xl text-[#e873aa] mb-6"></i>
+        <h3 class="text-2xl font-black text-[#2d335b] tracking-tight">Menyelaraskan Campaign Hubs...</h3>
+        <p class="font-bold text-gray-500 mt-2">Mengambil data persiapan operasional event Anda.</p>
+      </div>`;
+  }
+
+  try {
+    const res = await sendToBackend({ action: 'get_campaign_hubs', token: getToken() });
+    if (res.status !== 'success') throw new Error(res.message);
+
+    campaignHubsRaw = res.data || [];
+    window.__campaignsLoadedOnce = true;
+
+    // Update Stats Hero
+    document.getElementById('statTotalCampaigns').textContent = campaignHubsRaw.length;
+    document.getElementById('statTotalCampaignItems').textContent = campaignHubsRaw.reduce((sum, h) => sum + (h.Stats?.Total_Items || 0), 0);
+
+    applyCampaignFilters();
+  } catch (e) {
+    showBackendError(e);
+  } finally {
+    campaignLoading = false;
+  }
+}
+
+async function safeReloadCampaignHubs() {
+  showToast('Sinkronisasi', 'Memuat data terbaru dari server...', 'fa-solid fa-rotate fa-spin');
+  await loadCampaignHubs({ silent: true });
+}
+
+function applyCampaignFilters() {
+  const keyword = lower(document.getElementById('campaignSearchInput')?.value || '');
+  const filtered = campaignHubsRaw.filter(c => 
+    !keyword || lower(c.Campaign_Name + ' ' + c.Target_Audience).includes(keyword)
+  );
+  renderCampaignHubsGrid(filtered);
+}
+
+// 2. RENDER WADAH KAMPANYE (GRID)
+function renderCampaignHubsGrid(data) {
+  const container = document.getElementById('campaignGrid');
+  if (!container) return;
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-span-full empty-state glass-soft p-16 text-center rounded-[40px] border border-white/60 shadow-[0_20px_50px_rgba(83,94,160,0.05)]">
+        <div class="w-24 h-24 mx-auto rounded-[30px] grid place-items-center bg-gradient-to-br from-pink-400 to-purple-500 text-white mb-6 shadow-[0_15px_30px_rgba(232,115,170,0.25)]">
+           <i class="fa-solid fa-rectangle-ad text-[40px]"></i>
+        </div>
+        <h3 class="font-black text-[28px] text-[#2d335b] tracking-tight">Belum Ada Kantong Event</h3>
+        <p class="text-[#667092] text-[15px] font-bold mt-2">Buat kantong event atau kampanye baru Anda untuk melacak logistik kerja.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = data.map(c => {
+    const color = c.Color_Tag || '#e873aa';
+    
+    // Gradasi background premium: transparansi 18% ke 35% dengan efek kaca
+    const bgStyle = `background: linear-gradient(135deg, ${hexToRgba(color, 0.18)} 0%, rgba(255, 255, 255, 0.35) 100%); border-color: ${hexToRgba(color, 0.45)};`;
+    
+    // Variabel Metrik
+    const totalCheck = c.Stats?.Total_Checklists || 0;
+    const progress = c.Stats?.Checklist_Progress || 0;
+    const totalAssets = c.Stats?.Total_Assets || 0;
+    const totalReleases = c.Stats?.Total_Releases || 0;
+    const totalSpeakers = c.Stats?.Total_Speakers || 0;
+    
+    // Variabel Anggaran
+    const spentStr = formatRupiah(c.Spent_Budget || 0);
+    const totalStr = formatRupiah(c.Total_Budget || 0);
+
+    return `
+      <!-- ULTRA PREMIUM CAMPAIGN CARD -->
+      <div class="group relative flex flex-col h-full rounded-[40px] border shadow-[0_15px_40px_rgba(83,94,160,0.08)] hover:shadow-[0_30px_80px_rgba(31,38,135,0.15)] hover:-translate-y-2.5 transition-all duration-500 overflow-hidden cursor-pointer backdrop-blur-2xl p-7 isolate" style="${bgStyle}" onclick="openCampaignWorkspace('${c.Campaign_ID}')">
+        
+        <!-- Pendaran Cahaya Holografis (Ambient Glow) -->
+        <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full blur-[55px] opacity-40 group-hover:opacity-75 transition-opacity duration-700 pointer-events-none z-0" style="background-color: ${color};"></div>
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style="background-image: radial-gradient(#2d335b 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+        <!-- Header: Icon & Hidden Delete Button -->
+        <div class="flex justify-between items-start mb-6 relative z-10">
+          <div class="w-16 h-16 rounded-[22px] flex items-center justify-center text-2xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] border border-white/80 group-hover:scale-105 transition-transform duration-500 relative overflow-hidden" style="background: linear-gradient(135deg, ${color}, ${hexToRgba(color, 0.6)}); color: white;">
+            <div class="absolute inset-x-0 top-0 h-1/2 bg-white/20"></div> <!-- Specular Highlight -->
+            <i class="fa-solid fa-rectangle-ad relative z-10"></i>
+          </div>
+          
+          <button onclick="event.stopPropagation(); deleteCampaignHub('${c.Campaign_ID}')" class="w-10 h-10 rounded-[14px] bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-sm" title="Hapus Kantong">
+            <i class="fa-regular fa-trash-can text-[13px]"></i>
+          </button>
+        </div>
+
+        <!-- Identity & Inline Tags -->
+        <!-- === BAGIAN IDENTITAS YANG DIREVISI === -->
+        <div class="relative z-10 flex-1">
+          <!-- Menggunakan 'flex items-center justify-between' agar berdampingan di satu baris (kiri & kanan) -->
+          <div class="flex items-center justify-between gap-2 mb-3.5">
+             <!-- Lencana Target Audience (Kiri) -->
+             <span class="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.15em] border shadow-sm backdrop-blur-md" style="background: ${hexToRgba(color, 0.15)}; color: ${color}; border-color: ${hexToRgba(color, 0.3)};">
+                <i class="fa-solid fa-bullseye mr-1"></i> ${escapeHtml(c.Target_Audience)}
+             </span>
+             
+             <!-- Lencana Anggaran/Budget (Kanan) -->
+             <span class="px-2.5 py-1 rounded-full text-[9.5px] font-black tracking-wider bg-white/60 border border-white/80 text-[#2d335b] shadow-sm backdrop-blur-md flex items-center gap-1">
+                <i class="fa-solid fa-wallet opacity-50" style="color: ${color}; font-size: 11px;"></i> 
+                ${spentStr} <span class="text-[8.5px] text-gray-400 font-bold ml-0.5">/ ${totalStr}</span>
+             </span>
+          </div>
+
+          <h3 class="text-[22px] font-black text-[#2d335b] leading-tight mb-2 truncate group-hover:opacity-85 transition-opacity">${escapeHtml(c.Campaign_Name)}</h3>
+          <p class="text-[12px] font-bold text-[#667092] flex items-center gap-1.5 mb-4">
+            <i class="fa-regular fa-calendar-days text-[10px]" style="color:${color}"></i> 
+            ${formatDateOnlyID(c.Start_Date)} - ${formatDateOnlyID(c.End_Date)}
+          </p>
+        </div>
+        <!-- ====================================== -->
+        <!-- Glowing Progress Bar (Logistik & Keseluruhan) -->
+        <div class="mt-2 pt-5 border-t border-dashed border-gray-400/50 relative z-10">
+          <div class="flex justify-between items-end mb-2.5">
+            <span class="text-[10px] font-black text-[#59648e] uppercase tracking-widest">Progress Logistik</span>
+            <span class="text-[18px] font-black leading-none" style="color: ${color};">${progress}%</span>
+          </div>
+          <div class="h-2.5 w-full bg-white/50 rounded-full overflow-hidden border border-white/80 shadow-inner">
+            <div class="h-full rounded-full transition-all duration-1000 relative" style="width: ${progress}%; background-color: ${color};">
+              <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmerProgress_2s_infinite]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER: Bento Analytics Metrics (Logistik, Aset, Rilis, Speaker) -->
+        <div class="mt-5 grid grid-cols-2 gap-2.5 relative z-10">
+          
+          <!-- Metric: Logistik -->
+          <div class="px-3 py-2.5 rounded-2xl border flex items-center justify-between group-hover:bg-white/60 transition-colors" style="background:${hexToRgba(color,0.08)}; border-color:${hexToRgba(color,0.2)}">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg flex items-center justify-center shadow-sm bg-white" style="color:${color};"><i class="fa-solid fa-clipboard-list text-[10px]"></i></div>
+              <span class="text-[10px] font-black text-[#59648e] uppercase tracking-wider">Logistik</span>
+            </div>
+            <strong class="text-[14px] font-black text-[#2d335b]">${totalCheck}</strong>
+          </div>
+
+          <!-- Metric: Aset Grafis -->
+          <div class="px-3 py-2.5 rounded-2xl border flex items-center justify-between group-hover:bg-white/60 transition-colors" style="background:${hexToRgba(color,0.08)}; border-color:${hexToRgba(color,0.2)}">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg flex items-center justify-center shadow-sm bg-white" style="color:${color};"><i class="fa-solid fa-image text-[10px]"></i></div>
+              <span class="text-[10px] font-black text-[#59648e] uppercase tracking-wider">Aset</span>
+            </div>
+            <strong class="text-[14px] font-black text-[#2d335b]">${totalAssets}</strong>
+          </div>
+
+          <!-- Metric: Rilis -->
+          <div class="px-3 py-2.5 rounded-2xl border flex items-center justify-between group-hover:bg-white/60 transition-colors" style="background:${hexToRgba(color,0.08)}; border-color:${hexToRgba(color,0.2)}">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg flex items-center justify-center shadow-sm bg-white" style="color:${color};"><i class="fa-solid fa-file-invoice text-[10px]"></i></div>
+              <span class="text-[10px] font-black text-[#59648e] uppercase tracking-wider">Rilis</span>
+            </div>
+            <strong class="text-[14px] font-black text-[#2d335b]">${totalReleases}</strong>
+          </div>
+
+          <!-- Metric: Speaker -->
+          <div class="px-3 py-2.5 rounded-2xl border flex items-center justify-between group-hover:bg-white/60 transition-colors" style="background:${hexToRgba(color,0.08)}; border-color:${hexToRgba(color,0.2)}">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg flex items-center justify-center shadow-sm bg-white" style="color:${color};"><i class="fa-solid fa-microphone text-[10px]"></i></div>
+              <span class="text-[10px] font-black text-[#59648e] uppercase tracking-wider">Speaker</span>
+            </div>
+            <strong class="text-[14px] font-black text-[#2d335b]">${totalSpeakers}</strong>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }).join('');
+}
+// 3. MODAL: CREATE/EDIT PORTFOLIO KAMPANYE
+async function openCampaignFormModal() {
+  const { value: formValues } = await Swal.fire({
+    title: '', width: 760, background: 'transparent',
+    showConfirmButton: false, showCloseButton: true,
+    customClass: { 
+      popup: 'swal-directory-premium p-0', 
+      closeButton: 'custom-swal-close !bg-white/20 !text-[#2d335b] hover:!bg-white/50 backdrop-blur-md z-50' 
+    },
+    html: `
+      <div class="relative overflow-hidden text-left flex flex-col h-full bg-gradient-to-br from-white/95 to-white/75 backdrop-blur-3xl rounded-[40px] border border-white/60 shadow-[0_35px_120px_rgba(31,38,135,0.22)]">
+        <div class="absolute -top-32 -right-32 w-80 h-80 bg-pink-500/15 rounded-full blur-[80px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="relative z-10 px-8 py-6 border-b border-white/30 bg-white/20 backdrop-blur-xl flex-none">
+          <div class="flex items-center gap-5">
+            <div class="w-16 h-16 rounded-[22px] bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 text-white flex items-center justify-center text-2xl shadow-[0_12px_30px_rgba(232,115,170,0.3)] flex-none">
+              <i class="fa-solid fa-rectangle-ad"></i>
+            </div>
+            <div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-pink-500/10 text-pink-600 text-[10px] font-black uppercase tracking-widest border border-pink-200/40 mb-1.5 shadow-sm">
+                <i class="fa-solid fa-play mr-1.5"></i> Event Hub Setup
+              </span>
+              <h3 class="text-3xl font-black text-[#2d335b] tracking-tight leading-none">Buat Kantong Event</h3>
+              <p class="text-[13px] font-bold text-[#667092] mt-2">Daftarkan kampanye publisitas atau acara mendatang di bawah.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 p-8 space-y-6 overflow-y-auto custom-scrollbar max-h-[60vh]">
+          <div class="space-y-2">
+            <label class="flex justify-between items-center text-xs font-black text-[#59648e] uppercase tracking-wider">
+              <span>Nama Kampanye / Event</span> <span class="text-pink-500">* Wajib</span>
+            </label>
+            <div class="relative">
+              <i class="fa-solid fa-signature absolute left-4 top-1/2 -translate-y-1/2 text-pink-500"></i>
+              <input id="cam_name" type="text" class="dir-input pl-11 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400" placeholder="Contoh: Webinar Launching Aplikasi V2.0">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Target Sasaran Audiens</label>
+              <div class="relative">
+                <i class="fa-solid fa-users absolute left-4 top-1/2 -translate-y-1/2 text-pink-500"></i>
+                <input id="cam_audience" type="text" class="dir-input pl-11 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400" placeholder="Contoh: Pemilik Bisnis, Mahasiswa">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Alokasi Anggaran (Rp)</label>
+              <div class="relative">
+                <i class="fa-solid fa-money-bill-wave absolute left-4 top-1/2 -translate-y-1/2 text-pink-500"></i>
+                <input id="cam_budget" type="number" class="dir-input pl-11 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400" placeholder="Contoh: 15000000">
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Tanggal Mulai <span class="text-pink-500">*</span></label>
+              <div class="relative">
+                <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-pink-500"></i>
+                <input id="cam_start" type="date" class="dir-input pl-11 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400">
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Tanggal Selesai <span class="text-pink-500">*</span></label>
+              <div class="relative">
+                <i class="fa-regular fa-calendar-check absolute left-4 top-1/2 -translate-y-1/2 text-pink-500"></i>
+                <input id="cam_end" type="date" class="dir-input pl-11 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400">
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Aksen Warna Kartu</label>
+              <div class="relative flex items-center gap-3 p-2 rounded-[20px] bg-white/40 border border-white/80 shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] h-[52px] focus-within:border-pink-400 transition-colors">
+                <div class="relative w-10 h-10 rounded-[14px] overflow-hidden shadow-sm border border-white shrink-0 cursor-pointer">
+                   <input type="color" id="cam_color" value="#e873aa" class="absolute -top-2 -left-2 w-16 h-16 cursor-pointer border-0 p-0">
+                </div>
+                <span class="text-xs font-bold text-gray-500">Pilih rona visual...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-xs font-black text-[#59648e] uppercase tracking-wider">Keterangan Singkat (Opsional)</label>
+            <div class="relative">
+              <i class="fa-solid fa-quote-left absolute left-4 top-4 text-pink-500"></i>
+              <textarea id="cam_desc" class="dir-textarea pl-11 !min-h-[100px] shadow-[inset_0_2px_5px_rgba(0,0,0,0.02)] border-white/80 focus:border-pink-400" placeholder="Ketik deskripsi singkat tujuan kampanye ini..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 px-8 py-5 border-t border-white/30 bg-white/30 backdrop-blur-xl flex items-center justify-end gap-3 flex-none mt-auto">
+          <button onclick="Swal.close()" class="dir-btn-cancel">Batal</button>
+          <button id="btnSaveCampaignHub" class="dir-btn-submit !bg-pink-500 shadow-[0_10px_20px_rgba(232,115,170,0.3)] hover:shadow-[0_15px_30px_rgba(232,115,170,0.4)]">
+            <i class="fa-solid fa-folder-plus mr-2"></i> Inisialisasi Event
+          </button>
+        </div>
+      </div>
+    `,
+    didOpen: () => {
+      document.getElementById('btnSaveCampaignHub').onclick = async () => {
+        const payload = {
+          Campaign_Name: document.getElementById('cam_name').value.trim(),
+          Target_Audience: document.getElementById('cam_audience').value.trim() || 'Umum',
+          Total_Budget: document.getElementById('cam_budget').value || 0,
+          Start_Date: document.getElementById('cam_start').value,
+          End_Date: document.getElementById('cam_end').value,
+          Color_Tag: document.getElementById('cam_color').value,
+          Description: document.getElementById('cam_desc').value.trim()
+        };
+
+        if (!payload.Campaign_Name || !payload.Start_Date || !payload.End_Date) {
+          return showToast('Input Belum Lengkap', 'Nama, Tanggal Mulai, dan Tanggal Selesai wajib diisi!', 'fa-solid fa-xmark');
+        }
+
+        showLoading('Menyimpan...', 'Mempersiapkan database persiapan event baru...');
+        try {
+          const res = await sendToBackend({ action: 'create_campaign_hub', token: getToken(), campaignData: payload });
+          Swal.close();
+          if (res.status === 'success') {
+            showToast('Tersimpan', 'Papan kampanye baru siap dirancang.', 'fa-solid fa-check');
+            loadCampaignHubs({ silent: true });
+          } else throw new Error(res.message);
+        } catch (e) { Swal.close(); showBackendError(e); }
+      };
+    }
+  });
+}
+
+async function deleteCampaignHub(id) {
+  const r = await Swal.fire({ title: 'Hapus Kantong Kampanye?', text: "Semua checklist logistik, draf, dan anggaran di dalamnya akan hilang selamanya.", icon: 'warning', showCancelButton: true, confirmButtonText: 'Ya, Hapus', confirmButtonColor: '#ef4444' });
+  if (r.isConfirmed) {
+    showLoading();
+    try {
+      await sendToBackend({ action: 'delete_campaign_hub', token: getToken(), campaignId: id });
+      hideLoading(); loadCampaignHubs({ silent: true });
+    } catch(e) { hideLoading(); showBackendError(e); }
+  }
+}
+
+// 4. WORKSPACE PANEL (SLIDING ACTIVE AREA)
+async function openCampaignWorkspace(campaignId) {
+  const c = campaignHubsRaw.find(x => x.Campaign_ID === campaignId);
+  if (!c) return;
+  currentCollabCampaign = c;
+
+  const header = document.getElementById('cwCampaignHeader');
+  header.style.background = `linear-gradient(135deg, ${c.Color_Tag}, ${hexToRgba(c.Color_Tag, 0.75)})`;
+  
+  document.getElementById('cwCampaignAudience').innerHTML = `<i class="fa-solid fa-users mr-1"></i> ${c.Target_Audience}`;
+  document.getElementById('cwCampaignDates').innerHTML = `<i class="fa-regular fa-calendar-days mr-1"></i> ${formatDateOnlyID(c.Start_Date)} - ${formatDateOnlyID(c.End_Date)}`;
+  document.getElementById('cwCampaignName').textContent = c.Campaign_Name;
+  document.getElementById('cwCampaignDesc').textContent = c.Description || 'Mulai susun alur persiapan tim di bawah.';
+
+  // Terapkan Warna Tombol Submit
+  const btnSend = document.getElementById('btnSendCampaignItem');
+  if (btnSend) {
+    btnSend.style.background = `linear-gradient(135deg, ${c.Color_Tag}, ${hexToRgba(c.Color_Tag, 0.85)})`;
+    btnSend.style.boxShadow = `0 8px 20px ${hexToRgba(c.Color_Tag, 0.35)}`;
+  }
+
+  const panel = document.getElementById('campaignWorkspacePanel');
+  panel.classList.remove('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+  panel.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+  
+  const gallery = document.getElementById('campaignGalleryArea');
+  gallery.style.opacity = '0.35'; gallery.style.filter = 'blur(6px)'; gallery.style.transform = 'scale(0.98)'; gallery.style.pointerEvents = 'none';
+
+  loadCampaignItems();
+}
+
+function closeCampaignWorkspace() {
+  document.getElementById('campaignWorkspacePanel').classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+  document.getElementById('campaignWorkspacePanel').classList.add('translate-x-[120%]', 'opacity-0', 'pointer-events-none');
+  
+  const gallery = document.getElementById('campaignGalleryArea');
+  gallery.style.opacity = '1'; gallery.style.filter = 'none'; gallery.style.transform = 'scale(1)'; gallery.style.pointerEvents = 'auto';
+  
+  currentCollabCampaign = null;
+  loadCampaignHubs({ silent: true }); // Refresh main metrics
+}
+
+// 5. INPUT MODE SEGMENTED SWITCHER
+function switchCampaignInputMode(mode) {
+  currentActiveCampaignInputMode = mode;
+  document.querySelectorAll('.campaign-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+  // Sembunyikan Semua Kontainer Inputan
+  document.getElementById('inputModeLogistik').classList.add('hidden');
+  document.getElementById('inputModeAset').classList.add('hidden');
+  document.getElementById('inputModeRilis').classList.add('hidden');
+  document.getElementById('inputModeAnggaran').classList.add('hidden');
+  document.getElementById('inputModePembicara').classList.add('hidden');
+
+  if (mode === 'Logistik/Checklist') {
+    document.getElementById('tabModeLogistik').classList.add('active');
+    document.getElementById('inputModeLogistik').classList.remove('hidden');
+  } else if (mode === 'Aset Grafis') {
+    document.getElementById('tabModeAset').classList.add('active');
+    document.getElementById('inputModeAset').classList.remove('hidden');
+  } else if (mode === 'Naskah Rilis') {
+    document.getElementById('tabModeRilis').classList.add('active');
+    document.getElementById('inputModeRilis').classList.remove('hidden');
+  } else if (mode === 'Anggaran/Biaya') {
+    document.getElementById('tabModeAnggaran').classList.add('active');
+    document.getElementById('inputModeAnggaran').classList.remove('hidden');
+  } else if (mode === 'Daftar Pembicara') {
+    document.getElementById('tabModePembicara').classList.add('active');
+    document.getElementById('inputModePembicara').classList.remove('hidden');
+  }
+}
+
+// 6. LOAD & RENDER CAMPAIGN ITEMS (CHILD LIST)
+async function loadCampaignItems() {
+  const container = document.getElementById('cwCampaignItemsList');
+  container.innerHTML = `<div class="text-center py-10"><i class="fa-solid fa-circle-notch fa-spin text-2xl text-pink-500"></i></div>`;
+  try {
+    const res = await sendToBackend({ action: 'get_campaign_items', token: getToken(), campaignId: currentCollabCampaign.Campaign_ID });
+    if (res.status === 'success') {
+      currentCampaignItems = res.data || [];
+      renderCampaignItemsList();
+    }
+  } catch(e) {
+    container.innerHTML = `<div class="text-red-500 text-center font-bold">Gagal memuat detail persiapan.</div>`;
+  }
+}
+
+function renderCampaignItemsList() {
+  const container = document.getElementById('cwCampaignItemsList');
+  if (!currentCampaignItems.length) {
+    container.innerHTML = `
+      <div class="h-full flex flex-col items-center justify-center text-center opacity-70">
+        <div class="w-20 h-20 rounded-[24px] bg-white/40 border border-white/60 shadow-inner flex items-center justify-center mb-5">
+           <i class="fa-solid fa-signs-post text-4xl text-gray-400"></i>
+        </div>
+        <h4 class="font-black text-[#2d335b] text-xl tracking-tight">Belum Ada Item Persiapan</h4>
+        <p class="text-[13px] font-bold text-gray-500 mt-2 max-w-xs leading-relaxed">Pilih salah satu jenis persiapan di bawah untuk mulai menambahkan aset atau logistik.</p>
+      </div>`;
+    return;
+  }
+
+  const themeColor = currentCollabCampaign ? currentCollabCampaign.Color_Tag : '#e873aa';
+
+  container.innerHTML = currentCampaignItems.map(item => {
+    const isPinned = item.Is_Pinned;
+    let itemHtml = '';
+
+    // A. RENDERING: LOGISTIK / CHECKLIST
+    if (item.Item_Type === 'Logistik/Checklist') {
+      const isDone = item.Content_3 === 'Done';
+      itemHtml = `
+        <div class="flex items-center gap-4">
+          <button onclick="toggleChecklistStatus('${item.Item_ID}', ${!isDone})" class="w-7 h-7 rounded-xl border-2 border-pink-500/40 bg-white flex items-center justify-center flex-none transition-all active:scale-95 ${isDone ? '!bg-pink-500 !border-transparent text-white' : 'text-transparent hover:border-pink-500'}">
+            <i class="fa-solid fa-check text-xs"></i>
+          </button>
+          <div class="min-w-0 flex-1">
+            <h5 class="text-[15.5px] font-black text-[#2d335b] leading-tight ${isDone ? 'line-through text-gray-400' : ''}">${escapeHtml(item.Content_1)}</h5>
+            <p class="text-[11px] font-bold text-gray-400 mt-1 uppercase tracking-wider"><i class="fa-solid fa-user-tag mr-1" style="color:${themeColor}"></i> PIC: ${escapeHtml(item.Content_2 || 'Belum ditunjuk')}</p>
+          </div>
+        </div>`;
+    }
+    // B. RENDERING: ASET GRAFIS
+    else if (item.Item_Type === 'Aset Grafis') {
+      itemHtml = `
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-[18px] text-white flex items-center justify-center text-lg flex-none shadow-md" style="background: linear-gradient(135deg, ${themeColor}, ${hexToRgba(themeColor, 0.6)});">
+            <i class="fa-solid fa-photo-film"></i>
+          </div>
+          <div class="min-w-0 flex-1 pr-14">
+            <h5 class="text-[15.5px] font-black text-[#2d335b] leading-tight truncate">${escapeHtml(item.Content_1)}</h5>
+            <p class="text-[11px] font-bold text-gray-500 mt-1 uppercase tracking-widest">Format: ${escapeHtml(item.Content_2)}</p>
+          </div>
+          ${item.Content_3 ? `
+            <a href="${escapeAttribute(item.Content_3)}" target="_blank" class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-all mr-14"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+          ` : ''}
+        </div>`;
+    }
+    // C. RENDERING: NASKAH RILIS
+    else if (item.Item_Type === 'Naskah Rilis') {
+      const safeText = encodeURIComponent(item.Content_2);
+      itemHtml = `
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-sm border flex-none" style="background: ${hexToRgba(themeColor, 0.1)}; border-color: ${hexToRgba(themeColor, 0.2)}; color: ${themeColor};">
+              <i class="fa-solid fa-file-invoice"></i>
+            </div>
+            <h5 class="text-[15.5px] font-black text-[#2d335b] truncate w-2/3">${escapeHtml(item.Content_1)}</h5>
+          </div>
+          <div class="p-3.5 bg-white/40 border border-white/60 rounded-[18px] text-xs font-semibold text-[#59648e] leading-relaxed line-clamp-3">
+            ${escapeHtml(item.Content_2).replace(/\n/g, '<br>')}
+          </div>
+          <div class="flex justify-between items-center text-[10px] font-bold text-gray-500 uppercase tracking-widest pt-2">
+            <span>Target: ${escapeHtml(item.Content_3 || 'Rilis Umum')}</span>
+            <button onclick="copyToClipboard(decodeURIComponent('${safeText}'))" class="text-indigo-500 hover:text-indigo-700 flex items-center gap-1"><i class="fa-regular fa-copy"></i> Copy Draft</button>
+          </div>
+        </div>`;
+    }
+    // D. RENDERING: ANGGARAN & BIAYA
+    else if (item.Item_Type === 'Anggaran/Biaya') {
+      const isLunas = item.Content_3 === 'Lunas';
+      itemHtml = `
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-4 min-w-0">
+            <div class="w-11 h-11 rounded-[16px] flex items-center justify-center text-base flex-none" style="background: ${hexToRgba(themeColor, 0.1)}; color: ${themeColor}; border: 1px solid ${hexToRgba(themeColor, 0.2)};">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div class="min-w-0">
+              <h5 class="text-[15.5px] font-black text-[#2d335b] leading-tight truncate">${escapeHtml(item.Content_1)}</h5>
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border mt-1.5 inline-block ${isLunas ? 'text-emerald-600 bg-emerald-50 border-emerald-100' : 'text-amber-600 bg-amber-50 border-amber-100'}">${item.Content_3}</span>
+            </div>
+          </div>
+          <h4 class="text-[17px] font-black" style="color: ${themeColor};">${formatRupiah(Number(item.Content_2 || 0))}</h4>
+        </div>`;
+    }
+    // E. RENDERING: DAFTAR PEMBICARA (SPEAKER CARD)
+    else if (item.Item_Type === 'Daftar Pembicara') {
+      itemHtml = `
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-[18px] bg-gray-100 text-gray-600 font-black text-xl flex items-center justify-center shadow-inner border border-white flex-none">
+            ${getInitial(item.Content_1)}
+          </div>
+          <div class="flex-1 min-w-0 pr-14">
+            <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-1" style="color: ${themeColor};"><i class="fa-solid fa-microphone mr-1"></i> Speaker / Host</p>
+            <h5 class="text-[16px] font-black text-[#2d335b] leading-tight truncate">${escapeHtml(item.Content_1)}</h5>
+            <p class="text-[12.5px] font-semibold text-gray-500 mt-1 truncate">Materi: "${escapeHtml(item.Content_3 || 'TBA')}"</p>
+            <p class="text-[11px] font-bold text-gray-400 mt-0.5 truncate"><i class="fa-solid fa-address-card"></i> ${escapeHtml(item.Content_2 || '-')}</p>
+          </div>
+        </div>`;
+    }
+
+    // Main Card Wrapper (Unified Pinned & Actions)
+    return `
+      <div class="group relative cmi-item-card ${isPinned ? 'pinned' : ''}">
+        
+        <!-- Pinned Icon Absolute -->
+        ${isPinned ? `<div class="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-pink-500 text-white border-2 border-white flex items-center justify-center shadow-md rotate-[-15deg] z-20"><i class="fa-solid fa-thumbtack text-xs"></i></div>` : ''}
+
+        <!-- Actions Panel (Pin & Delete) -->
+        <div class="absolute top-4 right-4 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+          <button onclick="togglePinCampaignItem('${item.Item_ID}', ${!isPinned})" class="w-8 h-8 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm hover:border-pink-400 hover:text-pink-500 transition-all ${isPinned ? 'text-pink-500' : 'text-gray-400'}" title="${isPinned ? 'Lepaskan Pin' : 'Sematkan ke Atas'}">
+            <i class="fa-solid fa-thumbtack text-[11px]"></i>
+          </button>
+          
+          <button onclick="deleteCampaignItem('${item.Item_ID}')" class="w-8 h-8 rounded-xl bg-white border border-gray-200 flex items-center justify-center shadow-sm hover:border-red-400 hover:text-red-500 hover:bg-red-50 transition-all text-gray-400" title="Hapus Item">
+            <i class="fa-solid fa-trash-can text-[11px]"></i>
+          </button>
+        </div>
+
+        <div class="relative z-10">
+          ${itemHtml}
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-gray-200/60 relative z-10 flex justify-between items-center text-[9px] font-black text-gray-400 uppercase tracking-widest">
+  <span><i class="fa-solid fa-tag"></i> ${item.Item_Type}</span>
+  <!-- MENGGUNAKAN CLEANFORMATDATE UNTUK FORMAT ELEGAN -->
+  <span><i class="fa-regular fa-clock"></i> ${cleanFormatDate(item.Created_At)}</span>
+</div>
+      </div>
+    `;
+  }).join('');
+
+  container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+}
+
+// 7. SUBMIT SUB-ITEMS (POLIPORFIK INPUT CAPTURE)
+async function submitCampaignItem() {
+  let c1 = '', c2 = '', c3 = '';
+
+  if (currentActiveCampaignInputMode === 'Logistik/Checklist') {
+    c1 = document.getElementById('cmiLogistikTask').value.trim();
+    c2 = document.getElementById('cmiLogistikPic').value.trim();
+    c3 = 'Pending'; // Default status awal logistik
+    
+    if(!c1) return showToast('Error', 'Nama tugas logistik wajib diisi.', 'fa-solid fa-xmark');
+    
+    document.getElementById('cmiLogistikTask').value = '';
+    document.getElementById('cmiLogistikPic').value = '';
+  }
+  else if (currentActiveCampaignInputMode === 'Aset Grafis') {
+    c1 = document.getElementById('cmiAsetName').value.trim();
+    c2 = document.getElementById('cmiAsetDim').value.trim();
+    c3 = document.getElementById('cmiAsetLink').value.trim();
+
+    if(!c1) return showToast('Error', 'Nama aset wajib diisi.', 'fa-solid fa-xmark');
+
+    document.getElementById('cmiAsetName').value = '';
+    document.getElementById('cmiAsetDim').value = '';
+    document.getElementById('cmiAsetLink').value = '';
+  }
+  else if (currentActiveCampaignInputMode === 'Naskah Rilis') {
+    c1 = document.getElementById('cmiRilisTitle').value.trim();
+    c2 = document.getElementById('cmiRilisBody').value.trim();
+    c3 = document.getElementById('cmiRilisNotes').value.trim();
+
+    if(!c1 || !c2) return showToast('Error', 'Judul dan Isi rilis wajib diisi.', 'fa-solid fa-xmark');
+
+    document.getElementById('cmiRilisTitle').value = '';
+    document.getElementById('cmiRilisBody').value = '';
+    document.getElementById('cmiRilisNotes').value = '';
+  }
+  else if (currentActiveCampaignInputMode === 'Anggaran/Biaya') {
+    c1 = document.getElementById('cmiBudgetTitle').value.trim();
+    c2 = document.getElementById('cmiBudgetCost').value;
+    c3 = document.getElementById('cmiBudgetStatus').value;
+
+    if(!c1 || !c2 || c2 <= 0) return showToast('Error', 'Nama pengeluaran dan jumlah biaya wajib diisi.', 'fa-solid fa-xmark');
+
+    document.getElementById('cmiBudgetTitle').value = '';
+    document.getElementById('cmiBudgetCost').value = '';
+  }
+  else if (currentActiveCampaignInputMode === 'Daftar Pembicara') {
+    c1 = document.getElementById('cmiSpeakerName').value.trim();
+    c2 = document.getElementById('cmiSpeakerContact').value.trim();
+    c3 = document.getElementById('cmiSpeakerTopic').value.trim();
+
+    if(!c1) return showToast('Error', 'Nama pembicara wajib diisi.', 'fa-solid fa-xmark');
+
+    document.getElementById('cmiSpeakerName').value = '';
+    document.getElementById('cmiSpeakerContact').value = '';
+    document.getElementById('cmiSpeakerTopic').value = '';
+  }
+
+  showToast('Menyimpan...', '', 'fa-solid fa-spinner fa-spin');
+  try {
+    const res = await sendToBackend({
+      action: 'add_campaign_item', token: getToken(),
+      itemData: { Campaign_ID: currentCollabCampaign.Campaign_ID, Item_Type: currentActiveCampaignInputMode, Content_1: c1, Content_2: c2, Content_3: c3 }
+    });
+    if (res.status === 'success') loadCampaignItems();
+  } catch(e) { showBackendError(e); }
+}
+
+// 8. INTERACTIVE TOGGLE CHECKLIST STATUS
+async function toggleChecklistStatus(itemId, isDone) {
+  const target = currentCampaignItems.find(i => i.Item_ID === itemId);
+  if(target) {
+    target.Content_3 = isDone ? 'Done' : 'Pending';
+    renderCampaignItemsList(); // Optimistic UI
+  }
+  try {
+    await sendToBackend({ action: 'update_campaign_item', token: getToken(), itemData: { Item_ID: itemId, Content_3: isDone ? 'Done' : 'Pending' } });
+  } catch(e) { console.error("Gagal update status checklist", e); }
+}
+
+// 9. PIN CAMPAIGN ITEM
+async function togglePinCampaignItem(itemId, pinStatus) {
+  const idx = currentCampaignItems.findIndex(i => i.Item_ID === itemId);
+  if (idx !== -1) {
+    currentCampaignItems[idx].Is_Pinned = pinStatus;
+    currentCampaignItems.sort((a, b) => {
+      if (a.Is_Pinned && !b.Is_Pinned) return -1;
+      if (!a.Is_Pinned && b.Is_Pinned) return 1;
+      return new Date(a.Created_At) - new Date(b.Created_At);
+    });
+    renderCampaignItemsList();
+  }
+  try {
+    await sendToBackend({ action: 'update_campaign_item', token: getToken(), itemData: { Item_ID: itemId, Is_Pinned: pinStatus } });
+  } catch(e) { console.error("Gagal pin item", e); }
+}
+
+// 10. DELETE CAMPAIGN ITEM
+async function deleteCampaignItem(itemId) {
+  const r = await Swal.fire({ title: 'Hapus Item Persiapan?', icon: 'warning', showCancelButton: true });
+  if (r.isConfirmed) {
+    currentCampaignItems = currentCampaignItems.filter(i => i.Item_ID !== itemId);
+    renderCampaignItemsList();
+    sendToBackend({ action: 'delete_campaign_item', token: getToken(), itemId: itemId });
+  }
+}
 let timerInterval = null;
 let timerHistoryRaw = [];
 let tmrCharts = { trend: null, dist: null, avg: null, eff: null };
@@ -36153,6 +37137,10 @@ const APP_ROUTES = {
     id: 'financePocketsView', title: 'Wealth Hub & Pockets', 
     init: () => !window.__financeLoadedOnce ? loadFinancePockets() : applyFinanceFilters() 
   },
+  'campaigns': { 
+    id: 'campaignHubsView', title: 'Campaign & Event Hubs', 
+    init: () => !window.__campaignsLoadedOnce ? loadCampaignHubs() : applyCampaignFilters() 
+  },
   'timer': { 
     id: 'timerView', 
     title: 'Smart Focus Timer', 
@@ -42128,6 +43116,7 @@ function initRefresh() {
       if (activeView === 'collabPockets') await loadCollabPockets({ silent: true });
       if (activeView === 'historyTask') await loadHistoryTasks();
       if (activeView === 'reportTask') await loadReportTasks();
+      if (activeView === 'campaigns') await loadCampaignHubs({ silent: true });
       if (activeView === 'documents') await loadDigitalAssets({ silent: true });
       if (activeView === 'announcement') await loadAnnouncements({ silent: true });
       if (activeView === 'calendar') { if (calendarInstance) calendarInstance.refetchEvents(); }
