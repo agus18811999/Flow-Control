@@ -30537,18 +30537,36 @@ function renderDailyActivityGrid(data) {
     }
 
     // Hitung Durasi Kerja Dinamis
+    const getCleanDate = (val) => {
+      if (!val) return '';
+      const match = String(val).trim().match(/^\d{4}-\d{2}-\d{2}/);
+      return match ? match[0] : '';
+    };
+
+    const getCleanTime = (val) => {
+      if (!val) return '';
+      const match = String(val).trim().match(/(\d{2})[:.](\d{2})/);
+      return match ? `${match[1].padStart(2, '0')}:${match[2].padStart(2, '0')}` : '';
+    };
+
     let durationText = '-';
-    if (act.Tanggal_Mulai && act.Jam_Mulai && act.Tanggal_Selesai && act.Jam_Selesai) {
-       const start = new Date(`${act.Tanggal_Mulai}T${act.Jam_Mulai}`).getTime();
-       const end = new Date(`${act.Tanggal_Selesai}T${act.Jam_Selesai}`).getTime();
-       if (end > start) {
+    const dateStart = getCleanDate(act.Tanggal_Mulai);
+    const timeStart = getCleanTime(act.Jam_Mulai);
+    const dateEnd = getCleanDate(act.Tanggal_Selesai || act.Tanggal_Mulai); // Fallback ke tgl mulai jika tgl selesai kosong
+    const timeEnd = getCleanTime(act.Jam_Selesai);
+
+    if (dateStart && timeStart && dateEnd && timeEnd) {
+       // Gabungkan menjadi format standar aman: "YYYY-MM-DDTHH:mm:00"
+       const start = new Date(`${dateStart}T${timeStart}:00`).getTime();
+       const end = new Date(`${dateEnd}T${timeEnd}:00`).getTime();
+       
+       if (!isNaN(start) && !isNaN(end) && end > start) {
          const diffMins = Math.floor((end - start) / 60000);
          const hrs = Math.floor(diffMins / 60);
          const mins = diffMins % 60;
          durationText = hrs > 0 ? `${hrs} Jam ${mins > 0 ? mins + ' Menit' : ''}` : `${mins} Menit`;
        }
     }
-
     return `
       <!-- INDIVIDUAL AGENT CARD -->
       <div class="activity-card ${isDone ? 'is-done bg-white/20 border-white/40 shadow-inner' : 'bg-white/45 border-white/60 shadow-lg'} group/card relative p-8 md:p-9 relative overflow-hidden transition-all duration-400">
